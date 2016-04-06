@@ -1,5 +1,4 @@
-package com.company;
-
+import com.company.Display;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +8,8 @@ import java.io.PrintStream;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class MainTest {
+public class DisplayTest {
+
 
     private final
 
@@ -26,9 +26,9 @@ public class MainTest {
     }
 
     @Test
-    public void printBoardTest() {
-        Main game = new Main();
-        game.main(new String[] {""});
-        assertEquals("Hello, world\n", outContent.toString());
+    public void showBoard() {
+        Display display = new Display();
+        display.showBoard();
+        assertEquals(" 1 | 2 | 3 \n---|---|---\n 4 | 5 | 6 \n---|---|---\n 7 | 8 | 9 \n", outContent.toString());
     }
 }
