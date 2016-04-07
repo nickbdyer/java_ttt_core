@@ -1,3 +1,4 @@
+import com.company.BoardSpy;
 import com.company.Game;
 import org.junit.Test;
 
@@ -9,7 +10,8 @@ public class GameTest {
     public void setsUpGame() {
         Game game = new Game();
         DisplaySpy display = new DisplaySpy();
-        game.run(display);
+        BoardSpy board = new BoardSpy();
+        game.run(display, board);
         assertTrue(display.wasShowBoardCalled);
     }
 }

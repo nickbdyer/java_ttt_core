@@ -1,3 +1,5 @@
+import com.company.Board;
+import com.company.BoardSpy;
 import com.company.Display;
 import org.junit.After;
 import org.junit.Before;
@@ -28,7 +30,8 @@ public class DisplayTest {
     @Test
     public void showBoard() {
         Display display = new Display();
-        display.showBoard();
+        BoardSpy board = new BoardSpy();
+        display.showBoard(board);
         assertEquals(" 1 | 2 | 3 \n---|---|---\n 4 | 5 | 6 \n---|---|---\n 7 | 8 | 9 \n", outContent.toString());
     }
 }

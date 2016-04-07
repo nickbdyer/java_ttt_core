@@ -10,7 +10,7 @@ public class Display {
 
 
 
-    public void showBoard() {
+    public void showBoard(Board board) {
         System.out.println(BOARD);
     }
 }
