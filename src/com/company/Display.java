@@ -21,6 +21,15 @@ public class Display {
     }
 
     public void processMark(Scanner scanner, Board board, char mark) {
-        board.mark(scanner.nextInt(), mark);
+        int number;
+        do {
+            System.out.println("Please enter a number from 1-9");
+            while (!scanner.hasNextInt()) {
+                System.out.println("That is not a valid input");
+                scanner.next();
+            }
+            number = scanner.nextInt();
+        } while (number >= 9 && number <= 0);
+        board.mark(number, mark);
     }
 }

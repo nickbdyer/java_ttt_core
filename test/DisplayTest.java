@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertThat;
 
 public class DisplayTest {
 
@@ -44,4 +46,15 @@ public class DisplayTest {
         sc.close();
         assertTrue(board.wasMarkCalled);
     }
+
+    @Test
+    public void willRejectInvalidInputs() {
+        Display display = new Display();
+        BoardSpy board = new BoardSpy();
+        Scanner sc = new Scanner("g 1");
+        display.processMark(sc, board, 'X');
+        sc.close();
+        assertThat(outContent.toString(), containsString("That is not a valid input"));
+    }
+
 }
