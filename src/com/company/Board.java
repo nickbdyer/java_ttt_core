@@ -2,19 +2,17 @@ package com.company;
 
 public class Board {
 
-    private int width;
-    private int size;
+    private char[] cells;
 
-    public Board(int width) {
-        this.width = width;
-        this.size = width * width;
+    public Board() {
+        this.cells = new char[] {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
     }
 
-    public int getWidth() {
-        return width;
-    }
+//    public void mark(int position) {
+//        cells[position - 1] = 'X';
+//    }
 
-    public int getSize() {
-        return size;
+    public char[] showCells() {
+        return cells;
     }
 }
