@@ -1,4 +1,3 @@
-import com.company.BoardSpy;
 import com.company.Game;
 import org.junit.Test;
 

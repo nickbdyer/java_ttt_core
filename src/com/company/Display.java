@@ -1,5 +1,8 @@
 package com.company;
 
+import java.io.ByteArrayInputStream;
+import java.util.Scanner;
+
 public class Display {
 
     private static final String BOARDTEMPLATE = " # | # | # \n"
@@ -15,5 +18,9 @@ public class Display {
             liveboard = liveboard.replaceFirst("#", Character.toString(board.showCells()[i]));
         }
         System.out.println(liveboard);
+    }
+
+    public void processMark(Scanner scanner, Board board, char mark) {
+        board.mark(scanner.nextInt(), mark);
     }
 }
