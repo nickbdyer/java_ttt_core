@@ -15,10 +15,10 @@ public class BoardTest {
         assertArrayEquals(new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'}, board.showCells());
     }
 
-//    @Test
-//    public void boardCanBeMarked() {
-//        Board board = new Board();
-//        board.mark(4);
-//        assertArrayEquals(new char[]{'1', '2', '3', 'X', '5', '6', '7', '8', '9'}, board.showCells());
-//    }
+    @Test
+    public void boardCanBeMarked() {
+        Board board = new Board();
+        board.mark(4);
+        assertArrayEquals(new char[]{'1', '2', '3', 'X', '5', '6', '7', '8', '9'}, board.showCells());
+    }
 }
