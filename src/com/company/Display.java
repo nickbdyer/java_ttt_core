@@ -6,10 +6,10 @@ import java.util.Scanner;
 public class Display {
 
     private static final String BOARDTEMPLATE = " # | # | # \n"
-            + "---|---|---\n"
-            + " # | # | # \n"
-            + "---|---|---\n"
-            + " # | # | # ";
+                                              + "---|---|---\n"
+                                              + " # | # | # \n"
+                                              + "---|---|---\n"
+                                              + " # | # | # ";
 
 
     public void showBoard(Board board) {
@@ -29,7 +29,7 @@ public class Display {
                 scanner.next();
             }
             number = scanner.nextInt();
-        } while (number >= 9 && number <= 0);
+        } while (number >= 9 || number <= 0);
         board.mark(number, mark);
     }
 }
