@@ -1,9 +1,16 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Game {
 
     public void run(Display display, Board board) {
-        display.showBoard(board);
+        for (int i = 0; i < 53; i++) {
+            display.showBoard(board);
+            display.processMark(new Scanner(System.in), board, 'X');
+            display.showBoard(board);
+            display.processMark(new Scanner(System.in), board, 'O');
+        }
     }
 
 }

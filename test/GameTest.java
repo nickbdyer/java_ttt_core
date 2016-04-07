@@ -13,4 +13,14 @@ public class GameTest {
         game.run(display, board);
         assertTrue(display.wasShowBoardCalled);
     }
+
+    @Test
+    public void gameLoopRuns() {
+        Game game = new Game();
+        DisplaySpy display = new DisplaySpy();
+        BoardSpy board = new BoardSpy();
+        game.run(display, board);
+        assertTrue(display.wasShowBoardCalled);
+        assertTrue(display.wasProcessMarkCalled);
+    }
 }
