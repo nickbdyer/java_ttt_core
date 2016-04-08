@@ -21,15 +21,41 @@ public class Display {
     }
 
     public void processMark(Scanner scanner, Board board, char mark) {
-        int number;
-        do {
-            System.out.println("Please enter a number from 1-9");
-            while (!scanner.hasNextInt()) {
-                System.out.println("That is not a valid input");
-                scanner.next();
+        int validatedNumber = getValidPosition(scanner, board);
+        board.mark(validatedNumber, mark);
+    }
+
+    private int getValidPosition(Scanner scanner, Board board) {
+        System.out.println("Please choose a number between 1-9");
+        while (true) {
+            int number = getNumber(scanner);
+            if (checkNumberIsWithinBounds(number)) {
+                if (checkNumberIsMarkable(number, board)) {
+                    return number;
+                } else {
+                    System.out.println("That cell is already marked, try again");
+                }
+            } else {
+                System.out.println("That is not a valid position");
             }
-            number = scanner.nextInt();
-        } while (number >= 9 || number <= 0);
-        board.mark(number, mark);
+        }
+    }
+
+    private boolean checkNumberIsWithinBounds(int number) {
+        return (number >= 1 && number <= 9);
+    }
+
+    private boolean checkNumberIsMarkable(int number, Board board) {
+        return (board.isMarkable(number));
+    }
+
+    private int getNumber(Scanner scanner) {
+        int number;
+        while (!scanner.hasNextInt()) {
+            System.out.println("That is not a valid input");
+            scanner.next();
+        }
+        number = scanner.nextInt();
+        return number;
     }
 }

@@ -17,6 +17,6 @@ public class Board {
     }
 
     public boolean isMarkable(int position) {
-        return Character.isDigit(cells[position]);
+        return Character.isDigit(cells[position - 1]);
     }
 }

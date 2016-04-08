@@ -37,6 +37,7 @@ public class BoardTest {
         board.mark(1, 'X');
         board.mark(2, 'O');
         assertFalse(board.isMarkable(1));
+        assertTrue(board.isMarkable(3));
     }
 
     @Test
