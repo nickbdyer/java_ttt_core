@@ -16,7 +16,7 @@ public class Board {
         return cells;
     }
 
-    public boolean isMarkable(int position) {
+    public boolean isCellEmpty(int position) {
         return Character.isDigit(cells[position - 1]);
     }
 }

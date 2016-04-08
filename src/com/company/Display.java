@@ -1,6 +1,5 @@
 package com.company;
 
-import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
 public class Display {
@@ -46,7 +45,7 @@ public class Display {
     }
 
     private boolean checkNumberIsMarkable(int number, Board board) {
-        return (board.isMarkable(number));
+        return (board.isCellEmpty(number));
     }
 
     private int getNumber(Scanner scanner) {
