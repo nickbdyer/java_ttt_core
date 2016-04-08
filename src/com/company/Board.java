@@ -15,4 +15,8 @@ public class Board {
     public char[] showCells() {
         return cells;
     }
+
+    public boolean isMarkable(int position) {
+        return Character.isDigit(cells[position]);
+    }
 }
