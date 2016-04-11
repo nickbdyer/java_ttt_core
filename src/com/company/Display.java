@@ -1,5 +1,6 @@
 package com.company;
 
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Display {
@@ -9,33 +10,39 @@ public class Display {
                                               + " # | # | # \n"
                                               + "---|---|---\n"
                                               + " # | # | # ";
+    private final Scanner input;
+    private final PrintStream output;
 
+    public Display(Scanner input, PrintStream output) {
+        this.input = input;
+        this.output = output;
+    }
 
     public void showBoard(Board board) {
         String liveboard = BOARDTEMPLATE;
         for (int i = 0; i < 9; i++) {
             liveboard = liveboard.replaceFirst("#", Character.toString(board.showCells()[i]));
         }
-        System.out.println(liveboard);
+        output.println(liveboard);
     }
 
-    public void processMark(Scanner scanner, Board board, char mark) {
-        int validatedNumber = getValidPosition(scanner, board);
+    public void processMark(Board board, char mark) {
+        int validatedNumber = getValidPosition(board);
         board.mark(validatedNumber, mark);
     }
 
-    private int getValidPosition(Scanner scanner, Board board) {
-        System.out.println("Please choose a number between 1-9");
+    private int getValidPosition(Board board) {
+       output.println("Please choose a number between 1-9");
         while (true) {
-            int number = getNumber(scanner);
+            int number = getNumber();
             if (checkNumberIsWithinBounds(number)) {
                 if (checkNumberIsMarkable(number, board)) {
                     return number;
                 } else {
-                    System.out.println("That cell is already marked, try again");
+                    output.println("That cell is already marked, try again");
                 }
             } else {
-                System.out.println("That is not a valid position");
+                output.println("That is not a valid position");
             }
         }
     }
@@ -48,13 +55,13 @@ public class Display {
         return (board.isCellEmpty(number));
     }
 
-    private int getNumber(Scanner scanner) {
+    private int getNumber() {
         int number;
-        while (!scanner.hasNextInt()) {
-            System.out.println("That is not a valid input");
-            scanner.next();
+        while (!input.hasNextInt()) {
+            output.println("That is not a valid input");
+            input.next();
         }
-        number = scanner.nextInt();
+        number = input.nextInt();
         return number;
     }
 }

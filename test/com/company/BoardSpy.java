@@ -1,3 +1,5 @@
+package com.company;
+
 import com.company.Board;
 
 public class BoardSpy extends Board {

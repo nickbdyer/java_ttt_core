@@ -1,3 +1,5 @@
+package com.company;
+
 import com.company.Board;
 import org.junit.Before;
 import org.junit.Test;

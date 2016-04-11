@@ -1,5 +1,5 @@
-import com.company.Board;
-import com.company.Display;
+package com.company;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,27 +16,18 @@ import static org.junit.Assert.assertThat;
 
 public class DisplayTest {
 
-
-    private final
-
-    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private Display display;
+    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private BoardSpy board;
 
     @Before
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-        display = new Display();
+    public void setUp() {
         board = new BoardSpy();
     }
 
-    @After
-    public void cleanUpStreams() {
-        System.setOut(null);
-    }
 
     @Test
     public void showBoard() {
+        Display display = new Display(new Scanner(""), new PrintStream(outContent));
         display.showBoard(board);
         assertEquals(" 1 | 2 | 3 \n---|---|---\n 4 | 5 | 6 \n---|---|---\n 7 | 8 | 9 \n", outContent.toString());
     }
@@ -44,7 +35,8 @@ public class DisplayTest {
     @Test
     public void canProcessMark() {
         Scanner sc = new Scanner("1");
-        display.processMark(sc, board, 'X');
+        Display display = new Display(sc, new PrintStream(outContent));
+        display.processMark(board, 'X');
         sc.close();
         assertTrue(board.wasMarkCalled);
     }
@@ -52,7 +44,8 @@ public class DisplayTest {
     @Test
     public void willRejectInvalidInputs() {
         Scanner sc = new Scanner("g 1");
-        display.processMark(sc, board, 'X');
+        Display display = new Display(sc, new PrintStream(outContent));
+        display.processMark(board, 'X');
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
     }
@@ -61,8 +54,9 @@ public class DisplayTest {
     public void willNotAllowaMarkedCelltobeMarked() {
         Board board = new Board();
         Scanner sc = new Scanner("1 1 2");
-        display.processMark(sc, board, 'X');
-        display.processMark(sc, board, 'O');
+        Display display = new Display(sc, new PrintStream(outContent));
+        display.processMark(board, 'X');
+        display.processMark(board, 'O');
         sc.close();
         assertThat(outContent.toString(), containsString("That cell is already marked, try again"));
         assertArrayEquals(new char[]{'X', 'O', '3', '4', '5', '6', '7', '8', '9'}, board.showCells());
