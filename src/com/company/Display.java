@@ -32,11 +32,11 @@ public class Display {
     }
 
     private int getValidPosition(Board board) {
-       output.println("Please choose a number between 1-9");
+        output.println("Please choose a number between 1-9");
         while (true) {
             int number = getNumber();
-            if (checkNumberIsWithinBounds(number)) {
-                if (checkNumberIsMarkable(number, board)) {
+            if (isPositionInBounds(number)) {
+                if (isPositionMarkable(number, board)) {
                     return number;
                 } else {
                     output.println("That cell is already marked, try again");
@@ -47,11 +47,11 @@ public class Display {
         }
     }
 
-    private boolean checkNumberIsWithinBounds(int number) {
+    private boolean isPositionInBounds(int number) {
         return (number >= 1 && number <= 9);
     }
 
-    private boolean checkNumberIsMarkable(int number, Board board) {
+    private boolean isPositionMarkable(int number, Board board) {
         return (board.isCellEmpty(number));
     }
 

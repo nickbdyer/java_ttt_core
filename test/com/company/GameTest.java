@@ -13,14 +13,13 @@ import static junit.framework.TestCase.assertTrue;
 public class GameTest {
 
     private Game game;
-    private OutputStream outputStream;
     private DisplaySpy display;
     private BoardSpy board;
 
     @Before
     public void setUp() {
         game = new Game();
-        outputStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
         display = new DisplaySpy(new Scanner(""), new PrintStream(outputStream));
         board = new BoardSpy();
     }

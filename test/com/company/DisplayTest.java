@@ -27,8 +27,10 @@ public class DisplayTest {
 
     @Test
     public void showBoard() {
-        Display display = new Display(new Scanner(""), new PrintStream(outContent));
+        Scanner sc = new Scanner("1");
+        Display display = new Display(sc, new PrintStream(outContent));
         display.showBoard(board);
+        sc.close();
         assertEquals(" 1 | 2 | 3 \n---|---|---\n 4 | 5 | 6 \n---|---|---\n 7 | 8 | 9 \n", outContent.toString());
     }
 
