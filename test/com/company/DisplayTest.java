@@ -16,7 +16,7 @@ import static org.junit.Assert.assertThat;
 public class DisplayTest {
 
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private BoardSpy board;
+    private Board board;
     private Display display;
     private Scanner sc;
 
@@ -27,7 +27,7 @@ public class DisplayTest {
 
     @Before
     public void setUp() {
-        board = new BoardSpy();
+        board = new Board();
     }
 
     @Test
@@ -40,6 +40,7 @@ public class DisplayTest {
 
     @Test
     public void canProcessMark() {
+        BoardSpy board = new BoardSpy();
         createMockUserInput("1");
         display.processMark(board, 'X');
         sc.close();
@@ -47,11 +48,21 @@ public class DisplayTest {
     }
 
     @Test
-    public void willRejectInvalidInputs() {
+    public void willRejectNonDigitEntry() {
         createMockUserInput("g 1");
         display.processMark(board, 'X');
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
+        assertArrayEquals(new char[]{'X', '2', '3', '4', '5', '6', '7', '8', '9'}, board.showCells());
+    }
+
+    @Test
+    public void willRejectOutOfBoundsEntry() {
+        createMockUserInput("23 5");
+        display.processMark(board, 'X');
+        sc.close();
+        assertThat(outContent.toString(), containsString("That is not a valid position"));
+        assertArrayEquals(new char[]{'1', '2', '3', '4', 'X', '6', '7', '8', '9'}, board.showCells());
     }
 
     @Test
