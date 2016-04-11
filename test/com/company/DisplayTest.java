@@ -1,6 +1,5 @@
 package com.company;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,17 +17,22 @@ public class DisplayTest {
 
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private BoardSpy board;
+    private Display display;
+    private Scanner sc;
+
+    private void createMockUserInput(String input) {
+        sc = new Scanner(input);
+        display = new Display(sc, new PrintStream(outContent));
+    }
 
     @Before
     public void setUp() {
         board = new BoardSpy();
     }
 
-
     @Test
     public void showBoard() {
-        Scanner sc = new Scanner("1");
-        Display display = new Display(sc, new PrintStream(outContent));
+        createMockUserInput("");
         display.showBoard(board);
         sc.close();
         assertEquals(" 1 | 2 | 3 \n---|---|---\n 4 | 5 | 6 \n---|---|---\n 7 | 8 | 9 \n", outContent.toString());
@@ -36,8 +40,7 @@ public class DisplayTest {
 
     @Test
     public void canProcessMark() {
-        Scanner sc = new Scanner("1");
-        Display display = new Display(sc, new PrintStream(outContent));
+        createMockUserInput("1");
         display.processMark(board, 'X');
         sc.close();
         assertTrue(board.wasMarkCalled);
@@ -45,8 +48,7 @@ public class DisplayTest {
 
     @Test
     public void willRejectInvalidInputs() {
-        Scanner sc = new Scanner("g 1");
-        Display display = new Display(sc, new PrintStream(outContent));
+        createMockUserInput("g 1");
         display.processMark(board, 'X');
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
@@ -55,8 +57,7 @@ public class DisplayTest {
     @Test
     public void willNotAllowaMarkedCelltobeMarked() {
         Board board = new Board();
-        Scanner sc = new Scanner("1 1 2");
-        Display display = new Display(sc, new PrintStream(outContent));
+        createMockUserInput("1 1 2");
         display.processMark(board, 'X');
         display.processMark(board, 'O');
         sc.close();
