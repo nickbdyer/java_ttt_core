@@ -1,9 +1,9 @@
 package com.company;
 
-import com.company.Board;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertArrayEquals;
@@ -18,30 +18,35 @@ public class BoardTest {
     }
 
     @Test
-    public void boardIsGenerated() {
+    public void canShowItsFullCurrentState() {
         assertArrayEquals(new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'}, board.showCells());
     }
 
     @Test
-    public void boardCanBeMarkedWithX() {
+    public void canShowTheStateOfIndividualCell() {
+        assertEquals('1', board.getMarkAt(1));
+    }
+
+    @Test
+    public void canBeMarkedWithX() {
         board.mark(4, 'X');
-        assertArrayEquals(new char[]{'1', '2', '3', 'X', '5', '6', '7', '8', '9'}, board.showCells());
+        assertEquals('X', board.getMarkAt(4));
     }
 
     @Test
-    public void boardCanBeMarkedWithO() {
+    public void canBeMarkedWithO() {
         board.mark(2, 'O');
-        assertArrayEquals(new char[]{'1', 'O', '3', '4', '5', '6', '7', '8', '9'}, board.showCells());
+        assertEquals('O', board.getMarkAt(2));
     }
 
     @Test
-    public void boardKnowsIfCellIsMarked() {
+    public void knowsIfCellIsEmpty() {
+        assertTrue(board.isCellEmpty(1));
+    }
+
+    @Test
+    public void knowsIfCellIsNotEmpty() {
         board.mark(1, 'X');
         assertFalse(board.isCellEmpty(1));
-    }
-
-    @Test
-    public void boardKnowsIfCellIsNotMarked() {
-        assertTrue(board.isCellEmpty(1));
     }
 }
