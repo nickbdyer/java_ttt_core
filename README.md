@@ -12,16 +12,19 @@ $ cd java_ttt/
 
 ###Compile
 ```shell
-$ cd src/com/company/
-
-$ javac *.java
+$ javac -cp .:vendor/junit-4.12.jar:vendor/hamcrest-core-1.3.jar src/com/company/*.java test/com/company/*.java
 ```
 
-###Run
+###Run Program
 ```shell
-$ cd ../../
-
 $ java com.company.Main
+```
+
+###Test Program
+```shell
+$ java -cp .:../vendor/junit-4.12.jar:../vendor/hamcrest-core-1.3.jar:../src org.junit.runner.JUnitCore com.company.BoardTest;
+$ java -cp .:../vendor/junit-4.12.jar:../vendor/hamcrest-core-1.3.jar:../src org.junit.runner.JUnitCore com.company.DisplayTest;
+$ java -cp .:../vendor/junit-4.12.jar:../vendor/hamcrest-core-1.3.jar:../src org.junit.runner.JUnitCore com.company.GameTest;
 ```
 
 
