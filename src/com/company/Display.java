@@ -34,17 +34,27 @@ public class Display {
     private int getValidPosition(Board board) {
         output.println("Please choose a number between 1-9");
         while (true) {
-            int number = getNumber();
-            if (!isPositionInBounds(number)) {
-                output.println("That is not a valid position");
+            int position = getNumber();
+            if (outOfBounds(position) || alreadyMarked(board, position))
                 continue;
-            }
-            if (!isPositionMarkable(number, board)) {
-                output.println("That cell is already marked, try again");
-                continue;
-            }
-            return number;
+            return position;
         }
+    }
+
+    private boolean outOfBounds(int number) {
+        if (!isPositionInBounds(number)) {
+            output.println("That is not a valid position");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean alreadyMarked(Board board, int number) {
+        if (!isPositionMarkable(number, board)) {
+            output.println("That cell is already marked, try again");
+            return true;
+        }
+        return false;
     }
 
     private boolean isPositionInBounds(int number) {
