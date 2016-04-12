@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Collections;
+
 public class Board {
 
     private char[] cells;
@@ -45,6 +47,7 @@ public class Board {
     public char[][] columns() {
         columns = new char[3][];
         System.arraycopy(rows, 0, columns, 0, 3);
+//        Transpose array
             for(int i=0;i<3;i++){
                 for(int j=i+1;j<3;j++){
                     columns[i][j] = (char) (columns[i][j] + columns[j][i]);
@@ -53,6 +56,39 @@ public class Board {
                 }
             }
         return columns;
+    }
+
+    public char[][] diagonals() {
+        return new char[][]{leftDiagonal(), rightDiagonal()};
+    }
+
+    public char[] rightDiagonal() {
+        for(int i=0;i<3;i++) {
+            int start = 0;
+            int end = 2;
+            char temp;
+            while (start < end)
+            {
+                temp = rows[i][start];
+                rows[i][start] = rows[i][end];
+                rows[i][end] = temp;
+                start++;
+                end--;
+            }
+        }
+        char[] right = new char[3];
+        for(int i=0;i<3;i++) {
+            right[i] = rows[i][i];
+        }
+        return right;
+    }
+
+    public char[] leftDiagonal() {
+        char[] left = new char[3];
+        for(int i=0;i<3;i++) {
+            left[i] = rows[i][i];
+        }
+        return left;
     }
 
 }
