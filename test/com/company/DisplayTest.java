@@ -66,7 +66,7 @@ public class DisplayTest {
     }
 
     @Test
-    public void willNotAllowaMarkedCelltobeMarked() {
+    public void willNotAllowAMarkedCellToBeMarked() {
         Board board = new Board();
         createMockUserInput("1 1 2");
         display.processMark(board, 'X');

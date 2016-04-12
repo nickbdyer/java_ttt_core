@@ -35,15 +35,15 @@ public class Display {
         output.println("Please choose a number between 1-9");
         while (true) {
             int number = getNumber();
-            if (isPositionInBounds(number)) {
-                if (isPositionMarkable(number, board)) {
-                    return number;
-                } else {
-                    output.println("That cell is already marked, try again");
-                }
-            } else {
+            if (!isPositionInBounds(number)) {
                 output.println("That is not a valid position");
+                continue;
             }
+            if (!isPositionMarkable(number, board)) {
+                output.println("That cell is already marked, try again");
+                continue;
+            }
+            return number;
         }
     }
 
