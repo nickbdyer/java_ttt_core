@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class Board {
 
     private char[] cells;
@@ -32,12 +34,9 @@ public class Board {
     }
 
     public char[][] rows() {
-        char[] row1 = new char[3];
-        char[] row2 = new char[3];
-        char[] row3 = new char[3];
-        System.arraycopy(cells, 0, row1, 0, width);
-        System.arraycopy(cells, 3, row2, 0, width);
-        System.arraycopy(cells, 6, row3, 0, width);
+        char[] row1 = Arrays.copyOfRange(cells, 0, 3);
+        char[] row2 = Arrays.copyOfRange(cells, 3, 6);
+        char[] row3 = Arrays.copyOfRange(cells, 6, 9);
         rows = new char[][]{row1, row2, row3};
         return rows;
     }
