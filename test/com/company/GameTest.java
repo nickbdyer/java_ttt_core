@@ -3,11 +3,6 @@ package com.company;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
-
 import static junit.framework.TestCase.assertTrue;
 
 public class GameTest {
@@ -19,15 +14,8 @@ public class GameTest {
     @Before
     public void setUp() {
         game = new Game();
-        OutputStream outputStream = new ByteArrayOutputStream();
-        display = new DisplaySpy(new Scanner(""), new PrintStream(outputStream));
+        display = new DisplaySpy();
         board = new BoardSpy();
-    }
-
-    @Test
-    public void setsUpGame() {
-        game.run(display, board);
-        assertTrue(display.wasShowBoardCalled);
     }
 
     @Test

@@ -20,14 +20,14 @@ public class DisplayTest {
     private Display display;
     private Scanner sc;
 
-    private void createMockUserInput(String input) {
-        sc = new Scanner(input);
-        display = new Display(sc, new PrintStream(outContent));
-    }
-
     @Before
     public void setUp() {
         board = new Board();
+    }
+
+    private void createMockUserInput(String input) {
+        sc = new Scanner(input);
+        display = new Display(sc, new PrintStream(outContent));
     }
 
     @Test

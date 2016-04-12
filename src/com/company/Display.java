@@ -56,12 +56,10 @@ public class Display {
     }
 
     private int getNumber() {
-        int number;
         while (!input.hasNextInt()) {
             output.println("That is not a valid input");
             input.next();
         }
-        number = input.nextInt();
-        return number;
+        return input.nextInt();
     }
 }

@@ -1,18 +1,12 @@
 package com.company;
 
-import com.company.Board;
-import com.company.Display;
-
-import java.io.PrintStream;
-import java.util.Scanner;
-
 public class DisplaySpy extends Display {
 
     public boolean wasShowBoardCalled = false;
     public boolean wasProcessMarkCalled = false;
 
-    public DisplaySpy(Scanner input, PrintStream output) {
-        super(input, output);
+    public DisplaySpy() {
+        super(null, null);
     }
 
     @Override

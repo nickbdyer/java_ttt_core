@@ -38,7 +38,6 @@ public class BoardTest {
     public void boardKnowsIfCellIsMarked() {
         board.mark(1, 'X');
         assertFalse(board.isCellEmpty(1));
-        assertTrue(board.isCellEmpty(2));
     }
 
     @Test
