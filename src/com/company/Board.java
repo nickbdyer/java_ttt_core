@@ -1,7 +1,5 @@
 package com.company;
 
-import java.util.Collections;
-
 public class Board {
 
     private char[] cells;
