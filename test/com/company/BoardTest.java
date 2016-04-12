@@ -49,4 +49,14 @@ public class BoardTest {
         board.mark(1, 'X');
         assertFalse(board.isCellEmpty(1));
     }
+
+    @Test
+    public void knowsItsRows() {
+        assertArrayEquals(new char[][]{{'1', '2', '3'}, {'4','5','6',}, {'7','8','9'}}, board.rows());
+    }
+
+    @Test
+    public void knowsItsColumns() {
+        assertArrayEquals(new char[][]{{'1','4','7'}, {'2','5','8'}, {'3','6','9'}}, board.columns());
+    }
 }
