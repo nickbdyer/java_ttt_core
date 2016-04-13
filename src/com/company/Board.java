@@ -1,38 +1,45 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Board {
 
-    private char[] cells;
+    private List<Character> cells;
     private int size;
     private char winningMark;
 
     public Board() {
-        this.cells = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
-        this.size = cells.length;
+        this.cells = Arrays.asList('1', '2', '3', '4', '5', '6', '7', '8', '9');
+        this.size = cells.size();
     }
 
     public char[] showCells() {
-        return cells;
+        char[] results = new char[9];
+        for(int i=0;i<9;i++) {
+            char cell = this.cells.get(i);
+            results[i] = cell;
+        }
+        return results;
     }
 
     public char getMarkAt(int position) {
-        return cells[position - 1];
+        return this.showCells()[position - 1];
     }
 
     public void mark(int position, char mark) {
-        cells[position - 1] = mark;
+        this.cells.set(position - 1, mark);
     }
 
     public boolean isCellEmpty(int position) {
-        return Character.isDigit(cells[position - 1]);
+        return Character.isDigit(this.showCells()[position - 1]);
     }
 
     public char[][] rows() {
-        char[] row1 = Arrays.copyOfRange(cells, 0, 3);
-        char[] row2 = Arrays.copyOfRange(cells, 3, 6);
-        char[] row3 = Arrays.copyOfRange(cells, 6, 9);
+        char[] row1 = Arrays.copyOfRange(this.showCells(), 0, 3);
+        char[] row2 = Arrays.copyOfRange(this.showCells(), 3, 6);
+        char[] row3 = Arrays.copyOfRange(this.showCells(), 6, 9);
         return new char[][]{row1, row2, row3};
     }
 
@@ -57,7 +64,7 @@ public class Board {
         return new char[][]{leftDiagonal(), rightDiagonal()};
     }
 
-    public char[] rightDiagonal() {
+    private char[] rightDiagonal() {
         char[][] rows = rows();
         flipBoard(rows);
         char[] right = new char[3];
@@ -87,7 +94,7 @@ public class Board {
         }
     }
 
-    public char[] leftDiagonal() {
+    private char[] leftDiagonal() {
         char[][] rows = rows();
         char[] left = new char[3];
         for(int i=0;i<3;i++) {
@@ -100,7 +107,7 @@ public class Board {
         return concatenateArrays(rows(), columns(), diagonals());
     }
 
-    public char[][] concatenateArrays(char[][] first, char[][]... rest) {
+    private char[][] concatenateArrays(char[][] first, char[][]... rest) {
         int totalLength = first.length;
         for (char[][] array : rest) {
             totalLength += array.length;
@@ -134,7 +141,7 @@ public class Board {
     }
 
     public boolean isFull() {
-        for(int i=1;i<cells.length;i++) {
+        for(int i=1;i<this.showCells().length;i++) {
             if (isCellEmpty(i)) {
                 return false;
             }

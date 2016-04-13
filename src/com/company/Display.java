@@ -77,4 +77,8 @@ public class Display {
         String mark = Character.toString(board.getWinningMark());
         output.println(mark + " has won!");
     }
+
+    public void announceDraw() {
+        output.println("It's a Draw!");
+    }
 }

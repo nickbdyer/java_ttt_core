@@ -103,4 +103,12 @@ public class DisplayTest {
         display.announceWinner(board);
         assertThat(outContent.toString(), containsString("O has won!"));
     }
+
+    @Test
+    public void willShowDrawMessage() {
+        createMockUserInput("");
+        display.announceDraw();
+        assertThat(outContent.toString(), containsString("It's a Draw!"));
+
+    }
 }

@@ -137,7 +137,7 @@ public class BoardTest {
     }
 
     @Test
-    public void knowsIfXHasOne() {
+    public void knowsIfXHasWon() {
         board.mark(1, 'X');
         board.mark(5, 'X');
         board.mark(9, 'X');
@@ -145,7 +145,7 @@ public class BoardTest {
     }
 
     @Test
-    public void knowsIfOHasOne() {
+    public void knowsIfOHasWon() {
         board.mark(1, 'O');
         board.mark(5, 'O');
         board.mark(9, 'O');
