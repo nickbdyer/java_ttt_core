@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Board {
@@ -100,42 +101,53 @@ public class Board {
     }
 
     private char[] rightDiagonal() {
-        char[][] rows = rows();
+        List<List<Character>> rows = new ArrayList<List<Character>>();
+        List<Character> row1 = cells.subList(0, 3);
+        List<Character> row2 = cells.subList(3, 6);
+        List<Character> row3 = cells.subList(6, 9);
+        rows.add(row1);
+        rows.add(row2);
+        rows.add(row3);
+
         flipBoard(rows);
-        char[] right = new char[3];
+
+        List<Character> right = new ArrayList<Character>();
         for(int i=0;i<3;i++) {
-            right[i] = rows[i][i];
+            right.add(rows.get(i).get(i));
         }
-        return right;
+        char[] rightchars = new char[3];
+        for(int i=0;i<3;i++) {
+            char cell = right.get(i);
+            rightchars[i] = cell;
+        }
+        return rightchars;
     }
 
-    private void flipBoard(char[][] rows) {
+    private void flipBoard(List<List<Character>> rows) {
         for(int i=0;i<3;i++) {
-            reverseArray(rows[i]);
-        }
-    }
-
-    private void reverseArray(char[] row) {
-        int start = 0;
-        int end = 2;
-        char temp;
-        while (start < end)
-        {
-            temp = row[start];
-            row[start] = row[end];
-            row[end] = temp;
-            start++;
-            end--;
+            Collections.reverse(rows.get(i));
         }
     }
 
     private char[] leftDiagonal() {
-        char[][] rows = rows();
-        char[] left = new char[3];
+        List<List<Character>> rows = new ArrayList<List<Character>>();
+        List<Character> row1 = cells.subList(0, 3);
+        List<Character> row2 = cells.subList(3, 6);
+        List<Character> row3 = cells.subList(6, 9);
+        rows.add(row1);
+        rows.add(row2);
+        rows.add(row3);
+
+        List<Character> left = new ArrayList<Character>();
         for(int i=0;i<3;i++) {
-            left[i] = rows[i][i];
+            left.add(rows.get(i).get(i));
         }
-        return left;
+        char[] leftchars = new char[3];
+        for(int i=0;i<3;i++) {
+            char cell = left.get(i);
+            leftchars[i] = cell;
+        }
+        return leftchars;
     }
 
     public char[][] possibleCombinations() {
