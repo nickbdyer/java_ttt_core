@@ -6,12 +6,10 @@ public class Board {
 
     private char[] cells;
     private int size;
-    private int width;
 
     public Board() {
         this.cells = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
         this.size = cells.length;
-        this.width = (int) Math.sqrt(this.size);
     }
 
     public char[] showCells() {
@@ -134,6 +132,11 @@ public class Board {
     }
 
     public boolean isFull() {
+        for(int i=1;i<cells.length;i++) {
+            if (isCellEmpty(i)) {
+                return false;
+            }
+        }
         return true;
     }
 

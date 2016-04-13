@@ -89,10 +89,18 @@ public class BoardTest {
     }
 
     @Test
-    public void knowsIfTheBoardIsFull() {
+    public void knowsIfItIsFull() {
         for(int i=1;i<10;i++) {
             board.mark(i, 'X');
         }
         assertTrue(board.isFull());
+    }
+
+    @Test
+    public void knowsIfItIsNotFull() {
+        for(int i=1;i<5;i++) {
+            board.mark(i, 'X');
+        }
+        assertFalse(board.isFull());
     }
 }
