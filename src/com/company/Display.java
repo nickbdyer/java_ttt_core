@@ -72,4 +72,9 @@ public class Display {
         }
         return input.nextInt();
     }
+
+    public void announceWinner(Board board) {
+        String mark = Character.toString(board.getWinningMark());
+        output.println(mark + " has won!");
+    }
 }
