@@ -141,7 +141,10 @@ public class Board {
     }
 
     public boolean isADraw() {
-        return true;
+        if (isFull() && !hasAWinner()) {
+            return true;
+        }
+        return false;
     }
-    
+
 }

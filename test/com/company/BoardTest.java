@@ -110,6 +110,13 @@ public class BoardTest {
         assertTrue(board.isADraw());
     }
 
+    @Test
+    public void knowsIfItIsNotADraw() {
+        for(int i=1;i<10;i++) {
+            board.mark(i, 'X');
+        }
+        assertFalse(board.isADraw());
+    }
     private void createDrawCondition() {
         board.mark(1, 'X');
         board.mark(2, 'X');
