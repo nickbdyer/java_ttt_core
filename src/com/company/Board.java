@@ -25,15 +25,15 @@ public class Board {
     }
 
     public char getMarkAt(int position) {
-        return this.showCells()[position - 1];
+        return cells.get(position - 1);
     }
 
     public void mark(int position, char mark) {
-        this.cells.set(position - 1, mark);
+        cells.set(position - 1, mark);
     }
 
     public boolean isCellEmpty(int position) {
-        return Character.isDigit(this.showCells()[position - 1]);
+        return Character.isDigit(cells.get(position - 1));
     }
 
     public char[][] rows() {
