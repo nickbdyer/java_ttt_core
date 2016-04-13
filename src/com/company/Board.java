@@ -115,4 +115,21 @@ public class Board {
         return result;
     }
 
+    public boolean hasAWinner() {
+        for (char[] combo : possibleCombinations()) {
+            if (hasAllMatchingElements(combo)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasAllMatchingElements(char[] array) {
+        for(int i=1;i<array.length;i++) {
+            if (array[0] != array[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

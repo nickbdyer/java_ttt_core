@@ -73,4 +73,18 @@ public class BoardTest {
         board.mark(5, 'X');
         assertArrayEquals(new char[][]{{'1', '2', '3'}, {'4', 'X', '6',}, {'7', '8', '9'}, {'1', '4', '7'}, {'2', 'X', '8'}, {'3', '6', '9'}, {'1', 'X', '9'}, {'3', 'X', '7'}}, board.possibleCombinations());
     }
+
+    @Test
+    public void knowsIfThereIsAWinner() {
+        board.mark(1, 'X');
+        board.mark(5, 'X');
+        board.mark(9, 'X');
+        assertTrue(board.hasAWinner());
+    }
+
+    @Test
+    public void knowsIfThereIsNotAWinner() {
+        board.mark(1, 'X');
+        assertFalse(board.hasAWinner());
+    }
 }
