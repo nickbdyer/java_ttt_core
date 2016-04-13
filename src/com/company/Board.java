@@ -7,14 +7,11 @@ public class Board {
     private char[] cells;
     private int size;
     private int width;
-    private char[][] rows;
-    private char[][] columns;
 
     public Board() {
         this.cells = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
         this.size = cells.length;
         this.width = (int) Math.sqrt(this.size);
-        this.rows = rows();
     }
 
     public char[] showCells() {
@@ -37,21 +34,23 @@ public class Board {
         char[] row1 = Arrays.copyOfRange(cells, 0, 3);
         char[] row2 = Arrays.copyOfRange(cells, 3, 6);
         char[] row3 = Arrays.copyOfRange(cells, 6, 9);
-        rows = new char[][]{row1, row2, row3};
-        return rows;
+        return new char[][]{row1, row2, row3};
     }
 
     public char[][] columns() {
-        columns = new char[3][];
-        System.arraycopy(rows, 0, columns, 0, 3);
-//        Transpose array
-            for(int i=0;i<3;i++){
-                for(int j=i+1;j<3;j++){
-                    columns[i][j] = (char) (columns[i][j] + columns[j][i]);
-                    columns[j][i] = (char) (columns[i][j] - columns[j][i]);
-                    columns[i][j] = (char) (columns[i][j] - columns[j][i]);
-                }
+        char[][] columns = new char[3][];
+        System.arraycopy(rows(), 0, columns, 0, 3);
+        return transpose2DArray(columns);
+    }
+
+    private char[][] transpose2DArray(char[][] columns) {
+        for(int i=0;i<3;i++){
+            for(int j=i+1;j<3;j++){
+                columns[i][j] = (char) (columns[i][j] + columns[j][i]);
+                columns[j][i] = (char) (columns[i][j] - columns[j][i]);
+                columns[i][j] = (char) (columns[i][j] - columns[j][i]);
             }
+        }
         return columns;
     }
 
@@ -60,19 +59,8 @@ public class Board {
     }
 
     public char[] rightDiagonal() {
-        for(int i=0;i<3;i++) {
-            int start = 0;
-            int end = 2;
-            char temp;
-            while (start < end)
-            {
-                temp = rows[i][start];
-                rows[i][start] = rows[i][end];
-                rows[i][end] = temp;
-                start++;
-                end--;
-            }
-        }
+        char[][] rows = rows();
+        flipBoard(rows);
         char[] right = new char[3];
         for(int i=0;i<3;i++) {
             right[i] = rows[i][i];
@@ -80,7 +68,28 @@ public class Board {
         return right;
     }
 
+    private void flipBoard(char[][] rows) {
+        for(int i=0;i<3;i++) {
+            reverseArray(rows[i]);
+        }
+    }
+
+    private void reverseArray(char[] row) {
+        int start = 0;
+        int end = 2;
+        char temp;
+        while (start < end)
+        {
+            temp = row[start];
+            row[start] = row[end];
+            row[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
     public char[] leftDiagonal() {
+        char[][] rows = rows();
         char[] left = new char[3];
         for(int i=0;i<3;i++) {
             left[i] = rows[i][i];

@@ -52,16 +52,19 @@ public class BoardTest {
 
     @Test
     public void knowsItsRows() {
-        assertArrayEquals(new char[][]{{'1', '2', '3'}, {'4', '5', '6',}, {'7', '8', '9'}}, board.rows());
+        board.mark(5, 'X');
+        assertArrayEquals(new char[][]{{'1', '2', '3'}, {'4', 'X', '6',}, {'7', '8', '9'}}, board.rows());
     }
 
     @Test
     public void knowsItsColumns() {
-        assertArrayEquals(new char[][]{{'1', '4', '7'}, {'2', '5', '8'}, {'3', '6', '9'}}, board.columns());
+        board.mark(5, 'X');
+        assertArrayEquals(new char[][]{{'1', '4', '7'}, {'2', 'X', '8'}, {'3', '6', '9'}}, board.columns());
     }
 
     @Test
     public void knowsItsDiagonals() {
-        assertArrayEquals(new char[][]{{'1','5','9'}, {'3','5','7'}}, board.diagonals());
+        board.mark(5, 'X');
+        assertArrayEquals(new char[][]{{'1','X','9'}, {'3','X','7'}}, board.diagonals());
     }
 }
