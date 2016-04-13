@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,28 +37,63 @@ public class Board {
     }
 
     public char[][] rows() {
-        char[] row1 = Arrays.copyOfRange(this.showCells(), 0, 3);
-        char[] row2 = Arrays.copyOfRange(this.showCells(), 3, 6);
-        char[] row3 = Arrays.copyOfRange(this.showCells(), 6, 9);
-        return new char[][]{row1, row2, row3};
+        char[] row1char = new char[3];
+        char[] row2char = new char[3];
+        char[] row3char = new char[3];
+        List<Character> row1 = cells.subList(0, 3);
+        List<Character> row2 = cells.subList(3, 6);
+        List<Character> row3 = cells.subList(6, 9);
+        for (int i=0;i<3;i++) {
+            char cell1 = row1.get(i);
+            char cell2 = row2.get(i);
+            char cell3 = row3.get(i);
+            row1char[i] = cell1;
+            row2char[i] = cell2;
+            row3char[i] = cell3;
+        }
+        return new char[][]{row1char, row2char, row3char};
     }
 
     public char[][] columns() {
-        char[][] columns = new char[3][];
-        System.arraycopy(rows(), 0, columns, 0, 3);
-        return transpose2DArray(columns);
+        List<List<Character>> rows = new ArrayList<List<Character>>();
+        List<Character> row1 = cells.subList(0, 3);
+        List<Character> row2 = cells.subList(3, 6);
+        List<Character> row3 = cells.subList(6, 9);
+        rows.add(row1);
+        rows.add(row2);
+        rows.add(row3);
+
+        List<List<Character>> columns = transpose(rows);
+
+//        Convert to char[][] temporarily
+        char[] col1char = new char[3];
+        char[] col2char = new char[3];
+        char[] col3char = new char[3];
+
+        for (int i=0;i<3;i++) {
+            char cell1 = columns.get(0).get(i);
+            char cell2 = columns.get(1).get(i);
+            char cell3 = columns.get(2).get(i);
+            col1char[i] = cell1;
+            col2char[i] = cell2;
+            col3char[i] = cell3;
+        }
+        return new char[][]{col1char, col2char, col3char};
     }
 
-    private char[][] transpose2DArray(char[][] columns) {
-        for(int i=0;i<3;i++){
-            for(int j=i+1;j<3;j++){
-                columns[i][j] = (char) (columns[i][j] + columns[j][i]);
-                columns[j][i] = (char) (columns[i][j] - columns[j][i]);
-                columns[i][j] = (char) (columns[i][j] - columns[j][i]);
+    private static <T> List<List<T>> transpose(List<List<T>> table) {
+        List<List<T>> ret = new ArrayList<List<T>>();
+        final int N = table.get(0).size();
+        for (int i = 0; i < N; i++) {
+            List<T> col = new ArrayList<T>();
+            for (List<T> row : table) {
+                col.add(row.get(i));
             }
+            ret.add(col);
         }
-        return columns;
+        return ret;
     }
+
 
     public char[][] diagonals() {
         return new char[][]{leftDiagonal(), rightDiagonal()};
