@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,15 +24,15 @@ public class Board {
     }
 
     public char getMarkAt(int position) {
-        return cells.get(position - 1);
+        return cells.get(position);
     }
 
     public void mark(int position, char mark) {
-        cells.set(position - 1, mark);
+        cells.set(position, mark);
     }
 
     public boolean isCellEmpty(int position) {
-        return Character.isDigit(cells.get(position - 1));
+        return Character.isDigit(cells.get(position));
     }
 
     public char[][] rows() {

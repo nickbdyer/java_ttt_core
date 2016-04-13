@@ -37,7 +37,7 @@ public class Display {
             int position = getNumber();
             if (outOfBounds(position) || alreadyMarked(board, position))
                 continue;
-            return position;
+            return position - 1;
         }
     }
 
@@ -50,7 +50,7 @@ public class Display {
     }
 
     private boolean alreadyMarked(Board board, int number) {
-        if (!isPositionMarkable(number, board)) {
+        if (!isPositionMarkable(number - 1, board)) {
             output.println("That cell is already marked, try again");
             return true;
         }

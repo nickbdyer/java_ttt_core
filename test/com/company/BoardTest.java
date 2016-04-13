@@ -24,19 +24,19 @@ public class BoardTest {
 
     @Test
     public void canShowTheStateOfIndividualCell() {
-        assertEquals('1', board.getMarkAt(1));
+        assertEquals('1', board.getMarkAt(0));
     }
 
     @Test
     public void canBeMarkedWithX() {
-        board.mark(4, 'X');
-        assertEquals('X', board.getMarkAt(4));
+        board.mark(3, 'X');
+        assertEquals('X', board.getMarkAt(3));
     }
 
     @Test
     public void canBeMarkedWithO() {
-        board.mark(2, 'O');
-        assertEquals('O', board.getMarkAt(2));
+        board.mark(1, 'O');
+        assertEquals('O', board.getMarkAt(1));
     }
 
     @Test
@@ -46,58 +46,58 @@ public class BoardTest {
 
     @Test
     public void knowsIfCellIsNotEmpty() {
-        board.mark(1, 'X');
-        assertFalse(board.isCellEmpty(1));
+        board.mark(0, 'X');
+        assertFalse(board.isCellEmpty(0));
     }
 
     @Test
     public void knowsItsRows() {
-        board.mark(5, 'X');
+        board.mark(4, 'X');
         assertArrayEquals(new char[][]{{'1', '2', '3'}, {'4', 'X', '6',}, {'7', '8', '9'}}, board.rows());
     }
 
     @Test
     public void knowsItsColumns() {
-        board.mark(5, 'X');
+        board.mark(4, 'X');
         assertArrayEquals(new char[][]{{'1', '4', '7'}, {'2', 'X', '8'}, {'3', '6', '9'}}, board.columns());
     }
 
     @Test
     public void knowsItsDiagonals() {
-        board.mark(5, 'X');
+        board.mark(4, 'X');
         assertArrayEquals(new char[][]{{'1','X','9'}, {'3','X','7'}}, board.diagonals());
     }
 
     @Test
     public void knowsAllPossibleCombinations() {
-        board.mark(5, 'X');
+        board.mark(4, 'X');
         assertArrayEquals(new char[][]{{'1', '2', '3'}, {'4', 'X', '6',}, {'7', '8', '9'}, {'1', '4', '7'}, {'2', 'X', '8'}, {'3', '6', '9'}, {'1', 'X', '9'}, {'3', 'X', '7'}}, board.possibleCombinations());
     }
 
     @Test
     public void knowsIfThereIsAXWinner() {
-        board.mark(1, 'X');
-        board.mark(5, 'X');
-        board.mark(9, 'X');
+        board.mark(0, 'X');
+        board.mark(4, 'X');
+        board.mark(8, 'X');
         assertTrue(board.hasAWinner());
     }
 
     @Test
     public void knowsIfThereIsAOWinner() {
-        board.mark(1, 'O');
-        board.mark(5, 'O');
-        board.mark(9, 'O');
+        board.mark(0, 'O');
+        board.mark(4, 'O');
+        board.mark(8, 'O');
         assertTrue(board.hasAWinner());
     }
     @Test
     public void knowsIfThereIsNotAWinner() {
-        board.mark(1, 'X');
+        board.mark(0, 'X');
         assertFalse(board.hasAWinner());
     }
 
     @Test
     public void knowsIfItIsFull() {
-        for(int i=1;i<10;i++) {
+        for(int i=0;i<9;i++) {
             board.mark(i, 'X');
         }
         assertTrue(board.isFull());
@@ -119,36 +119,36 @@ public class BoardTest {
 
     @Test
     public void knowsIfItIsNotADraw() {
-        for(int i=1;i<10;i++) {
+        for(int i=0;i<9;i++) {
             board.mark(i, 'X');
         }
         assertFalse(board.isADraw());
     }
     private void createDrawCondition() {
+        board.mark(0, 'X');
         board.mark(1, 'X');
-        board.mark(2, 'X');
+        board.mark(2, 'O');
         board.mark(3, 'O');
         board.mark(4, 'O');
-        board.mark(5, 'O');
+        board.mark(5, 'X');
         board.mark(6, 'X');
-        board.mark(7, 'X');
-        board.mark(8, 'O');
-        board.mark(9, 'X');
+        board.mark(7, 'O');
+        board.mark(8, 'X');
     }
 
     @Test
     public void knowsIfXHasWon() {
-        board.mark(1, 'X');
-        board.mark(5, 'X');
-        board.mark(9, 'X');
+        board.mark(0, 'X');
+        board.mark(4, 'X');
+        board.mark(8, 'X');
         assertEquals('X', board.getWinningMark());
     }
 
     @Test
     public void knowsIfOHasWon() {
-        board.mark(1, 'O');
-        board.mark(5, 'O');
-        board.mark(9, 'O');
+        board.mark(0, 'O');
+        board.mark(4, 'O');
+        board.mark(8, 'O');
         assertEquals('O', board.getWinningMark());
     }
 }
