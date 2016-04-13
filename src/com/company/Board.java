@@ -140,4 +140,8 @@ public class Board {
         return true;
     }
 
+    public boolean isADraw() {
+        return true;
+    }
+    
 }

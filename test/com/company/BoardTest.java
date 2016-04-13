@@ -103,4 +103,22 @@ public class BoardTest {
         }
         assertFalse(board.isFull());
     }
+
+    @Test
+    public void knowsIfItIsADraw() {
+        createDrawCondition();
+        assertTrue(board.isADraw());
+    }
+
+    private void createDrawCondition() {
+        board.mark(1, 'X');
+        board.mark(2, 'X');
+        board.mark(3, 'O');
+        board.mark(4, 'O');
+        board.mark(5, 'O');
+        board.mark(6, 'X');
+        board.mark(7, 'X');
+        board.mark(8, 'O');
+        board.mark(9, 'X');
+    }
 }
