@@ -75,13 +75,20 @@ public class BoardTest {
     }
 
     @Test
-    public void knowsIfThereIsAWinner() {
+    public void knowsIfThereIsAXWinner() {
         board.mark(1, 'X');
         board.mark(5, 'X');
         board.mark(9, 'X');
         assertTrue(board.hasAWinner());
     }
 
+    @Test
+    public void knowsIfThereIsAOWinner() {
+        board.mark(1, 'O');
+        board.mark(5, 'O');
+        board.mark(9, 'O');
+        assertTrue(board.hasAWinner());
+    }
     @Test
     public void knowsIfThereIsNotAWinner() {
         board.mark(1, 'X');
@@ -127,5 +134,21 @@ public class BoardTest {
         board.mark(7, 'X');
         board.mark(8, 'O');
         board.mark(9, 'X');
+    }
+
+    @Test
+    public void knowsIfXHasOne() {
+        board.mark(1, 'X');
+        board.mark(5, 'X');
+        board.mark(9, 'X');
+        assertEquals('X', board.getWinningMark());
+    }
+
+    @Test
+    public void knowsIfOHasOne() {
+        board.mark(1, 'O');
+        board.mark(5, 'O');
+        board.mark(9, 'O');
+        assertEquals('O', board.getWinningMark());
     }
 }

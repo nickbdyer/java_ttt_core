@@ -6,6 +6,7 @@ public class Board {
 
     private char[] cells;
     private int size;
+    private char winningMark;
 
     public Board() {
         this.cells = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -116,6 +117,7 @@ public class Board {
     public boolean hasAWinner() {
         for (char[] combo : possibleCombinations()) {
             if (hasAllMatchingElements(combo)) {
+                winningMark = combo[0];
                 return true;
             }
         }
@@ -147,4 +149,8 @@ public class Board {
         return false;
     }
 
+    public char getWinningMark() {
+        hasAWinner();
+        return winningMark;
+    }
 }
