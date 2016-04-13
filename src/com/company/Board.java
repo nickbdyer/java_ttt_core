@@ -97,4 +97,22 @@ public class Board {
         return left;
     }
 
+    public char[][] possibleCombinations() {
+        return concatenateArrays(rows(), columns(), diagonals());
+    }
+
+    public char[][] concatenateArrays(char[][] first, char[][]... rest) {
+        int totalLength = first.length;
+        for (char[][] array : rest) {
+            totalLength += array.length;
+        }
+        char[][] result = Arrays.copyOf(first, totalLength);
+        int offset = first.length;
+        for (char[][] array : rest) {
+            System.arraycopy(array, 0, result, offset, array.length);
+            offset += array.length;
+        }
+        return result;
+    }
+
 }
