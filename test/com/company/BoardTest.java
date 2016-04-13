@@ -87,4 +87,12 @@ public class BoardTest {
         board.mark(1, 'X');
         assertFalse(board.hasAWinner());
     }
+
+    @Test
+    public void knowsIfTheBoardIsFull() {
+        for(int i=1;i<10;i++) {
+            board.mark(i, 'X');
+        }
+        assertTrue(board.isFull());
+    }
 }
