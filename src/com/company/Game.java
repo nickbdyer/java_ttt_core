@@ -23,10 +23,6 @@ public class Game {
         return mark;
     }
 
-    private boolean isMarkNull(Character mark) {
-        return mark == null;
-    }
-
     public boolean isOver(Board board) {
         return (board.hasAWinner() || board.isADraw());
     }
