@@ -4,6 +4,8 @@ public class DisplaySpy extends Display {
 
     public boolean wasShowBoardCalled = false;
     public boolean wasProcessMarkCalled = false;
+    public boolean wasAnnounceWinCalled = false;
+    public boolean wasAnnounceDrawCalled = false;
 
     public DisplaySpy() {
         super(null, null);
@@ -19,5 +21,13 @@ public class DisplaySpy extends Display {
         wasProcessMarkCalled = true;
     }
 
+    @Override
+    public void announceWinner(Board board) {
+        wasAnnounceWinCalled = true;
+    }
 
+    @Override
+    public void announceDraw() {
+        wasAnnounceDrawCalled = true;
+    }
 }

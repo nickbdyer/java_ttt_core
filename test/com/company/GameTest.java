@@ -18,10 +18,38 @@ public class GameTest {
         board = new BoardSpy();
     }
 
+//    @Test
+//    public void canStartItself() {
+//        game.run(display, board);
+//        assertTrue(display.wasShowBoardCalled);
+//        assertTrue(display.wasProcessMarkCalled);
+//    }
+
     @Test
-    public void gameLoopRuns() {
+    public void knowsWhenTheGameIsOverDueToDraw() {
+        board.setADraw(true);
         game.run(display, board);
-        assertTrue(display.wasShowBoardCalled);
-        assertTrue(display.wasProcessMarkCalled);
+        assertTrue(game.isOver(board));
+    }
+
+    @Test
+    public void knowsWhenTheGameIsOverDueToWinCondition() {
+        board.setHasAWinner(true);
+        game.run(display, board);
+        assertTrue(game.isOver(board));
+    }
+
+    @Test
+    public void gameWillCallDrawGameOverStatement() {
+        board.setADraw(true);
+        game.run(display, board);
+        assertTrue(display.wasAnnounceDrawCalled);
+    }
+
+    @Test
+    public void gameWillCallWinGameOverStatement() {
+        board.setHasAWinner(true);
+        game.run(display, board);
+        assertTrue(display.wasAnnounceWinCalled);
     }
 }
