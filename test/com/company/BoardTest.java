@@ -52,30 +52,6 @@ public class BoardTest {
     }
 
     @Test
-    public void knowsItsRows() {
-        board.mark(4, 'X');
-        assertEquals(Arrays.asList(Arrays.asList('1', '2', '3'), Arrays.asList('4', 'X', '6'), Arrays.asList('7', '8', '9')), board.rows());
-    }
-
-    @Test
-    public void knowsItsColumns() {
-        board.mark(4, 'X');
-        assertEquals(Arrays.asList(Arrays.asList('1', '4', '7'), Arrays.asList('2', 'X', '8'), Arrays.asList('3', '6', '9')), board.columns());
-    }
-
-    @Test
-    public void knowsItsDiagonals() {
-        board.mark(4, 'X');
-        assertEquals(Arrays.asList(Arrays.asList('1','X','9'), Arrays.asList('3','X','7')), board.diagonals());
-    }
-
-    @Test
-    public void knowsAllPossibleCombinations() {
-        board.mark(4, 'X');
-        assertEquals(Arrays.asList(Arrays.asList('1', '2', '3'), Arrays.asList('4', 'X', '6'), Arrays.asList('7', '8', '9'), Arrays.asList('1', '4', '7'), Arrays.asList('2', 'X', '8'), Arrays.asList('3', '6', '9'), Arrays.asList('1', 'X', '9'), Arrays.asList('3', 'X', '7')), board.possibleCombinations());
-    }
-
-    @Test
     public void knowsIfThereIsAXWinner() {
         board.mark(0, 'X');
         board.mark(4, 'X');
@@ -90,6 +66,7 @@ public class BoardTest {
         board.mark(8, 'O');
         assertTrue(board.hasAWinner());
     }
+
     @Test
     public void knowsIfThereIsNotAWinner() {
         board.mark(0, 'X');
@@ -125,6 +102,7 @@ public class BoardTest {
         }
         assertFalse(board.isADraw());
     }
+
     private void createDrawCondition() {
         board.mark(0, 'X');
         board.mark(1, 'X');
