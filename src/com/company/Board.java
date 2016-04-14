@@ -16,13 +16,8 @@ public class Board {
         this.size = cells.size();
     }
 
-    public char[] showCells() {
-        char[] results = new char[9];
-        for(int i=0;i<9;i++) {
-            char cell = this.cells.get(i);
-            results[i] = cell;
-        }
-        return results;
+    public List<Character> showCells() {
+        return cells;
     }
 
     public char getMarkAt(int position) {
@@ -37,25 +32,18 @@ public class Board {
         return Character.isDigit(cells.get(position));
     }
 
-    public char[][] rows() {
-        char[] row1char = new char[3];
-        char[] row2char = new char[3];
-        char[] row3char = new char[3];
+    public List<List<Character>> rows() {
+        List<List<Character>> rows = new ArrayList<List<Character>>();
         List<Character> row1 = cells.subList(0, 3);
         List<Character> row2 = cells.subList(3, 6);
         List<Character> row3 = cells.subList(6, 9);
-        for (int i=0;i<3;i++) {
-            char cell1 = row1.get(i);
-            char cell2 = row2.get(i);
-            char cell3 = row3.get(i);
-            row1char[i] = cell1;
-            row2char[i] = cell2;
-            row3char[i] = cell3;
-        }
-        return new char[][]{row1char, row2char, row3char};
+        rows.add(row1);
+        rows.add(row2);
+        rows.add(row3);
+        return rows;
     }
 
-    public char[][] columns() {
+    public List<List<Character>> columns() {
         List<List<Character>> rows = new ArrayList<List<Character>>();
         List<Character> row1 = cells.subList(0, 3);
         List<Character> row2 = cells.subList(3, 6);
@@ -66,20 +54,7 @@ public class Board {
 
         List<List<Character>> columns = transpose(rows);
 
-//        Convert to char[][] temporarily
-        char[] col1char = new char[3];
-        char[] col2char = new char[3];
-        char[] col3char = new char[3];
-
-        for (int i=0;i<3;i++) {
-            char cell1 = columns.get(0).get(i);
-            char cell2 = columns.get(1).get(i);
-            char cell3 = columns.get(2).get(i);
-            col1char[i] = cell1;
-            col2char[i] = cell2;
-            col3char[i] = cell3;
-        }
-        return new char[][]{col1char, col2char, col3char};
+        return columns;
     }
 
     private static <T> List<List<T>> transpose(List<List<T>> table) {
@@ -96,11 +71,14 @@ public class Board {
     }
 
 
-    public char[][] diagonals() {
-        return new char[][]{leftDiagonal(), rightDiagonal()};
+    public List<List<Character>> diagonals() {
+        List<List<Character>> diagonals = new ArrayList<List<Character>>();
+        diagonals.add(leftDiagonal());
+        diagonals.add(rightDiagonal());
+        return diagonals;
     }
 
-    private char[] rightDiagonal() {
+    private List<Character> rightDiagonal() {
         List<List<Character>> rows = new ArrayList<List<Character>>();
         List<Character> row1 = cells.subList(0, 3);
         List<Character> row2 = cells.subList(3, 6);
@@ -115,12 +93,8 @@ public class Board {
         for(int i=0;i<3;i++) {
             right.add(rows.get(i).get(i));
         }
-        char[] rightchars = new char[3];
-        for(int i=0;i<3;i++) {
-            char cell = right.get(i);
-            rightchars[i] = cell;
-        }
-        return rightchars;
+        flipBoard(rows);
+        return right;
     }
 
     private void flipBoard(List<List<Character>> rows) {
@@ -129,7 +103,7 @@ public class Board {
         }
     }
 
-    private char[] leftDiagonal() {
+    private List<Character> leftDiagonal() {
         List<List<Character>> rows = new ArrayList<List<Character>>();
         List<Character> row1 = cells.subList(0, 3);
         List<Character> row2 = cells.subList(3, 6);
@@ -142,45 +116,31 @@ public class Board {
         for(int i=0;i<3;i++) {
             left.add(rows.get(i).get(i));
         }
-        char[] leftchars = new char[3];
-        for(int i=0;i<3;i++) {
-            char cell = left.get(i);
-            leftchars[i] = cell;
-        }
-        return leftchars;
+        return left;
     }
 
-    public char[][] possibleCombinations() {
-        return concatenateArrays(rows(), columns(), diagonals());
+    public List<List<Character>> possibleCombinations() {
+        List<List<Character>> combinedList = new ArrayList<List<Character>>();
+        combinedList.addAll(rows());
+        combinedList.addAll(columns());
+        combinedList.addAll(diagonals());
+        return combinedList;
     }
 
-    private char[][] concatenateArrays(char[][] first, char[][]... rest) {
-        int totalLength = first.length;
-        for (char[][] array : rest) {
-            totalLength += array.length;
-        }
-        char[][] result = Arrays.copyOf(first, totalLength);
-        int offset = first.length;
-        for (char[][] array : rest) {
-            System.arraycopy(array, 0, result, offset, array.length);
-            offset += array.length;
-        }
-        return result;
-    }
 
     public boolean hasAWinner() {
-        for (char[] combo : possibleCombinations()) {
+        for (List<Character> combo : possibleCombinations()) {
             if (hasAllMatchingElements(combo)) {
-                winningMark = combo[0];
+                winningMark = combo.get(0);
                 return true;
             }
         }
         return false;
     }
 
-    private boolean hasAllMatchingElements(char[] array) {
-        for(int i=1;i<array.length;i++) {
-            if (array[0] != array[i]) {
+    private boolean hasAllMatchingElements(List<Character> array) {
+        for(int i=1;i<array.size();i++) {
+            if (array.get(0) != array.get(i)) {
                 return false;
             }
         }
@@ -188,7 +148,7 @@ public class Board {
     }
 
     public boolean isFull() {
-        for(int i=1;i<this.showCells().length;i++) {
+        for(int i=1;i<cells.size();i++) {
             if (isCellEmpty(i)) {
                 return false;
             }

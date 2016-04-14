@@ -3,10 +3,11 @@ package com.company;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertArrayEquals;
 
 public class BoardTest {
 
@@ -19,7 +20,7 @@ public class BoardTest {
 
     @Test
     public void canShowItsFullCurrentState() {
-        assertArrayEquals(new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'}, board.showCells());
+        assertEquals(Arrays.asList('1', '2', '3', '4', '5', '6', '7', '8', '9'), board.showCells());
     }
 
     @Test
@@ -53,25 +54,25 @@ public class BoardTest {
     @Test
     public void knowsItsRows() {
         board.mark(4, 'X');
-        assertArrayEquals(new char[][]{{'1', '2', '3'}, {'4', 'X', '6',}, {'7', '8', '9'}}, board.rows());
+        assertEquals(Arrays.asList(Arrays.asList('1', '2', '3'), Arrays.asList('4', 'X', '6'), Arrays.asList('7', '8', '9')), board.rows());
     }
 
     @Test
     public void knowsItsColumns() {
         board.mark(4, 'X');
-        assertArrayEquals(new char[][]{{'1', '4', '7'}, {'2', 'X', '8'}, {'3', '6', '9'}}, board.columns());
+        assertEquals(Arrays.asList(Arrays.asList('1', '4', '7'), Arrays.asList('2', 'X', '8'), Arrays.asList('3', '6', '9')), board.columns());
     }
 
     @Test
     public void knowsItsDiagonals() {
         board.mark(4, 'X');
-        assertArrayEquals(new char[][]{{'1','X','9'}, {'3','X','7'}}, board.diagonals());
+        assertEquals(Arrays.asList(Arrays.asList('1','X','9'), Arrays.asList('3','X','7')), board.diagonals());
     }
 
     @Test
     public void knowsAllPossibleCombinations() {
         board.mark(4, 'X');
-        assertArrayEquals(new char[][]{{'1', '2', '3'}, {'4', 'X', '6',}, {'7', '8', '9'}, {'1', '4', '7'}, {'2', 'X', '8'}, {'3', '6', '9'}, {'1', 'X', '9'}, {'3', 'X', '7'}}, board.possibleCombinations());
+        assertEquals(Arrays.asList(Arrays.asList('1', '2', '3'), Arrays.asList('4', 'X', '6'), Arrays.asList('7', '8', '9'), Arrays.asList('1', '4', '7'), Arrays.asList('2', 'X', '8'), Arrays.asList('3', '6', '9'), Arrays.asList('1', 'X', '9'), Arrays.asList('3', 'X', '7')), board.possibleCombinations());
     }
 
     @Test

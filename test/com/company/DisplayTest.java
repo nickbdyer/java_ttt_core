@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import static junit.framework.TestCase.assertEquals;
@@ -53,7 +54,7 @@ public class DisplayTest {
         display.processMark(board, 'X');
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
-        assertArrayEquals(new char[]{'X', '2', '3', '4', '5', '6', '7', '8', '9'}, board.showCells());
+        assertEquals(Arrays.asList('X', '2', '3', '4', '5', '6', '7', '8', '9'), board.showCells());
     }
 
     @Test
@@ -62,7 +63,7 @@ public class DisplayTest {
         display.processMark(board, 'X');
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid position"));
-        assertArrayEquals(new char[]{'1', '2', '3', '4', 'X', '6', '7', '8', '9'}, board.showCells());
+        assertEquals(Arrays.asList('1', '2', '3', '4', 'X', '6', '7', '8', '9'), board.showCells());
     }
 
     @Test
@@ -73,7 +74,7 @@ public class DisplayTest {
         display.processMark(board, 'O');
         sc.close();
         assertThat(outContent.toString(), containsString("That cell is already marked, try again"));
-        assertArrayEquals(new char[]{'X', 'O', '3', '4', '5', '6', '7', '8', '9'}, board.showCells());
+        assertEquals(Arrays.asList('X', 'O', '3', '4', '5', '6', '7', '8', '9'), board.showCells());
     }
 
     @Test

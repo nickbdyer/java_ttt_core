@@ -21,7 +21,7 @@ public class Display {
     public void showBoard(Board board) {
         String liveboard = BOARDTEMPLATE;
         for (int i = 0; i < 9; i++) {
-            liveboard = liveboard.replaceFirst("#", Character.toString(board.showCells()[i]));
+            liveboard = liveboard.replaceFirst("#", Character.toString(board.showCells().get(i)));
         }
         output.println(liveboard);
     }
