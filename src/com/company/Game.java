@@ -3,19 +3,19 @@ package com.company;
 public class Game {
 
     public void run(Display display, Board board) {
-        Character mark = null;
+        Character mark = 'O';
         while (!isOver(board)) {
             mark = swapMarks(mark);
-            display.processMark(board, mark);
             display.showBoard(board);
+            display.processMark(board, mark);
+
         }
+        display.showBoard(board);
         announceGameOver(board, display);
     }
 
     private Character swapMarks(Character mark) {
-        boolean b = new Character('O') == mark;
-        boolean markNull = isMarkNull(mark);
-        if (b || markNull){
+        if (mark == 'O'){
             mark = 'X';
         } else {
             mark = 'O';
