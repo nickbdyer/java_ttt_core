@@ -7,6 +7,7 @@ import java.util.List;
 class Lines {
 
     private List<Character> cells;
+    private char winningMark;
 
     public Lines(List<Character> cells) {
         this.cells = cells;
@@ -95,5 +96,34 @@ class Lines {
         combinedList.addAll(diagonals());
         return combinedList;
     }
+
+    public char getWinningMark() {
+        lineExistsWithMatchingElements();
+        return winningMark;
+    }
+
+    public boolean hasAWinner() {
+        return lineExistsWithMatchingElements();
+    }
+
+    private boolean lineExistsWithMatchingElements() {
+        for (List<Character> line : possibleCombinations()) {
+            if (hasAllMatchingElements(line)) {
+                winningMark = line.get(0);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasAllMatchingElements(List<Character> array) {
+        for(int i=1;i<array.size();i++) {
+            if (array.get(0) != array.get(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 }
