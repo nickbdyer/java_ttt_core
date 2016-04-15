@@ -1,9 +1,17 @@
 package com.company;
 
-public interface Player {
+public abstract class Player {
 
-    public void markBoard(int position);
+    private Character mark;
 
-    public void getMark();
+    public abstract void markBoard(int position);
+
+    public void setMark(Character mark) {
+        this.mark = mark;
+    }
+
+    public Character getMark() {
+        return mark;
+    }
 
 }
