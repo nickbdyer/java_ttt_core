@@ -2,15 +2,15 @@ package com.company;
 
 public abstract class Player {
 
-    private Character mark;
+    private char mark;
 
     public abstract void markBoard(int position);
 
-    public void setMark(Character mark) {
+    public void setMark(char mark) {
         this.mark = mark;
     }
 
-    public Character getMark() {
+    public char getMark() {
         return mark;
     }
 
