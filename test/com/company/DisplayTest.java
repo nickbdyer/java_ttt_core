@@ -36,7 +36,7 @@ public class DisplayTest {
         createMockUserInput("");
         display.showBoard(board);
         sc.close();
-        assertEquals(" 1 | 2 | 3 \n---|---|---\n 4 | 5 | 6 \n---|---|---\n 7 | 8 | 9 \n", outContent.toString());
+        assertEquals(" 1 | 2 | 3 \n---|---|---\n 4 | 5 | 6 \n---|---|---\n 7 | 8 | 9 \n\n", outContent.toString());
     }
 
     @Test

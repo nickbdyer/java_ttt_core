@@ -9,7 +9,7 @@ public class Display {
                                               + "---|---|---\n"
                                               + " # | # | # \n"
                                               + "---|---|---\n"
-                                              + " # | # | # ";
+                                              + " # | # | # \n";
     private final Scanner input;
     private final PrintStream output;
 
