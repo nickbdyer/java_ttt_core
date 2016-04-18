@@ -7,7 +7,8 @@ import java.util.List;
 public class DumbComputer extends Player {
 
     @Override
-    public void markBoard(Display display, Board board) {
+    public void markBoard(UserInterface userInterface, Board board) {
+        userInterface.displayComputerPlayingMessage();
         board.mark(generateMove(board), getMark());
     }
 

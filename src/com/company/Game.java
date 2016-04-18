@@ -6,14 +6,14 @@ public class Game {
     private Player player2;
     private Player currentPlayer;
 
-    public void run(Display display, Board board, Player human, Player computer) {
+    public void run(UserInterface userInterface, Board board, Player human, Player computer) {
         setUp(human, computer);
         while (!isOver(board)) {
-            display.showBoard(board);
-            promptTurn(currentPlayer, board, display);
+            userInterface.showBoard(board);
+            promptTurn(currentPlayer, board, userInterface);
         }
-        display.showBoard(board);
-        announceGameOver(board, display);
+        userInterface.showBoard(board);
+        announceGameOver(board, userInterface);
     }
 
     public void setUp(Player player1, Player player2) {
@@ -28,11 +28,11 @@ public class Game {
         return (board.hasAWinner() || board.isADraw());
     }
 
-    private void announceGameOver(Board board, Display display) {
+    private void announceGameOver(Board board, UserInterface userInterface) {
         if (board.isADraw()) {
-            display.announceDraw();
+            userInterface.announceDraw();
         } else if (board.hasAWinner()) {
-            display.announceWinner(board);
+            userInterface.announceWinner(board);
         }
     }
 
@@ -52,8 +52,8 @@ public class Game {
         return currentPlayer;
     }
 
-    public void promptTurn(Player player, Board board, Display display) {
-        player.markBoard(display, board);
+    public void promptTurn(Player player, Board board, UserInterface userInterface) {
+        player.markBoard(userInterface, board);
         swapPlayers();
     }
 }

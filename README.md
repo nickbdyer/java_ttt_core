@@ -24,7 +24,7 @@ $ java com.company.Main
 ```shell
 $ cd test/
 $ java -cp .:../vendor/junit-4.12.jar:../vendor/hamcrest-core-1.3.jar:../src org.junit.runner.JUnitCore com.company.BoardTest;
-$ java -cp .:../vendor/junit-4.12.jar:../vendor/hamcrest-core-1.3.jar:../src org.junit.runner.JUnitCore com.company.DisplayTest;
+$ java -cp .:../vendor/junit-4.12.jar:../vendor/hamcrest-core-1.3.jar:../src org.junit.runner.JUnitCore com.company.UserInterfaceTest;
 $ java -cp .:../vendor/junit-4.12.jar:../vendor/hamcrest-core-1.3.jar:../src org.junit.runner.JUnitCore com.company.GameTest;
 ```
 

@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class GameTest {
 
     private Game game;
-    private DisplaySpy display;
+    private UserInterfaceSpy display;
     private BoardSpy board;
     private Human player1;
     private Human player2;
@@ -17,7 +17,7 @@ public class GameTest {
     @Before
     public void setUp() {
         game = new Game();
-        display = new DisplaySpy();
+        display = new UserInterfaceSpy();
         board = new BoardSpy();
         player1 = new Human();
         player2 = new Human();

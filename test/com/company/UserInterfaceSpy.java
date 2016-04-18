@@ -1,13 +1,13 @@
 package com.company;
 
-public class DisplaySpy extends Display {
+public class UserInterfaceSpy extends UserInterface {
 
     public boolean wasShowBoardCalled = false;
     public boolean wasProcessMarkCalled = false;
     public boolean wasAnnounceWinCalled = false;
     public boolean wasAnnounceDrawCalled = false;
 
-    public DisplaySpy() {
+    public UserInterfaceSpy() {
         super(null, null);
     }
 
@@ -30,4 +30,7 @@ public class DisplaySpy extends Display {
     public void announceDraw() {
         wasAnnounceDrawCalled = true;
     }
+
+    @Override
+    public void displayComputerPlayingMessage() {}
 }

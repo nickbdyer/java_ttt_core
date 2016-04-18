@@ -3,7 +3,7 @@ package com.company;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class Display {
+public class UserInterface {
 
     private static final String BOARDTEMPLATE = " # | # | # \n"
                                               + "---|---|---\n"
@@ -13,7 +13,7 @@ public class Display {
     private final Scanner input;
     private final PrintStream output;
 
-    public Display(Scanner input, PrintStream output) {
+    public UserInterface(Scanner input, PrintStream output) {
         this.input = input;
         this.output = output;
     }
@@ -80,5 +80,9 @@ public class Display {
 
     public void announceDraw() {
         output.println("It's a Draw!");
+    }
+
+    public void displayComputerPlayingMessage() {
+        output.println("The computer player is thinking...");
     }
 }

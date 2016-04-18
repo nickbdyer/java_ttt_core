@@ -3,20 +3,13 @@ package com.company;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Scanner;
+
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class DumbComputerTest {
-
-//    @Test
-//    public void canMarkTheBoard() {
-//        DumbComputer tron = new DumbComputer();
-//        Board board = new Board();
-//        DisplaySpy display = new DisplaySpy();
-//        tron.setMark('O');
-//        tron.markBoard(display, board);
-//        assertEquals('O', board.getMarkAt(3));
-//    }
 
     @Test
     public void canGenerateValidMoveDecisionOnEmptyBoard() {
@@ -28,11 +21,13 @@ public class DumbComputerTest {
     @Test
     public void canGenerateValidMoveDecisionOnPartiallyFullBoard() {
         DumbComputer hal9000 = new DumbComputer();
+        UserInterfaceSpy ui = new UserInterfaceSpy();
         Board board = new Board();
         for(int i=1;i<9;i++) {
             board.mark(i, 'X');
         }
         assertTrue(board.isCellEmpty(0));
-        assertEquals(0, hal9000.generateMove(board));
+        hal9000.markBoard(ui, board);
+        assertFalse(board.isCellEmpty(0));
     }
 }
