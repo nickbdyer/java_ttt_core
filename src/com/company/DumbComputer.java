@@ -3,13 +3,12 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class DumbComputer extends Player {
 
     @Override
-    public void markBoard(int position, Board board) {
-        board.mark(3, getMark());
+    public void markBoard(Display display, Board board) {
+        board.mark(generateMove(board), getMark());
     }
 
     public int generateMove(Board board) {
