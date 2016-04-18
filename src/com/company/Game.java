@@ -10,7 +10,7 @@ public class Game {
         setUp(human, computer);
         while (!isOver(board)) {
             display.showBoard(board);
-            currentPlayer.markBoard(display, board);
+            promptTurn(currentPlayer, board, display);
         }
         display.showBoard(board);
         announceGameOver(board, display);
