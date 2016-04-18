@@ -23,8 +23,7 @@ public class DumbComputerTest {
         Board board = new Board();
         assertTrue(board.isCellEmpty(hal9000.generateMove(board)));
     }
-
-    @Ignore
+    
     @Test
     public void canGenerateValidMoveDecisionOnPartiallyFullBoard() {
         DumbComputer hal9000 = new DumbComputer();
