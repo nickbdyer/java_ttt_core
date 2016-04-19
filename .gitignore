@@ -48,3 +48,8 @@ fabric.properties
 
 ### Intellij Patch ###
 *.iml
+
+### Class Files ###
+
+/src/com/company/*.class
+/test/com/company/*.class
