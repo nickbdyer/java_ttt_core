@@ -12,20 +12,17 @@ $ cd java_ttt/
 
 ###Compile
 ```shell
-$ javac -cp .:vendor/junit-4.12.jar:vendor/hamcrest-core-1.3.jar src/com/company/*.java test/com/company/*.java
+$ gradle build
 ```
 
 ###Run Program
 ```shell
-$ java com.company.Main
+$ java -jar build/libs/java_ttt.jar
 ```
 
 ###Test Program
 ```shell
-$ cd test/
-$ java -cp .:../vendor/junit-4.12.jar:../vendor/hamcrest-core-1.3.jar:../src org.junit.runner.JUnitCore com.company.BoardTest;
-$ java -cp .:../vendor/junit-4.12.jar:../vendor/hamcrest-core-1.3.jar:../src org.junit.runner.JUnitCore com.company.UserInterfaceTest;
-$ java -cp .:../vendor/junit-4.12.jar:../vendor/hamcrest-core-1.3.jar:../src org.junit.runner.JUnitCore com.company.GameTest;
+$ open reports/tests/index.html
 ```
 
 
