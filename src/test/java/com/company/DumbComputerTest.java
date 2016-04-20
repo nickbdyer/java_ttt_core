@@ -1,9 +1,6 @@
 package com.company;
 
-import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.Scanner;
 
 import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
@@ -15,7 +12,7 @@ public class DumbComputerTest {
     public void canGenerateValidMoveDecisionOnEmptyBoard() {
         DumbComputer hal9000 = new DumbComputer();
         Board board = new Board();
-        assertTrue(board.isCellEmpty(hal9000.generateMove(board)));
+        assertTrue(board.isCellEmpty(hal9000.generateMove(board.availableMoves())));
     }
 
     @Test

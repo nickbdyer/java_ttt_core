@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,5 +50,15 @@ public class Board {
 
     public char getWinningMark() {
         return new Lines(cells).getWinningMark();
+    }
+
+    public List<Integer> availableMoves() {
+        List<Integer> availableMoves = new ArrayList<Integer>();
+        for (int i=0;i<cells.size();i++) {
+            if (Character.isDigit(cells.get(i))) {
+                availableMoves.add(i);
+            }
+        }
+        return availableMoves;
     }
 }
