@@ -3,8 +3,12 @@ package com.company;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.company.Player.*;
+import static com.company.Player.Mark.*;
+import static com.company.Player.Mark.EMPTY;
 import static junit.framework.TestCase.assertEquals;
 
 public class LinesTest {
@@ -13,27 +17,27 @@ public class LinesTest {
 
     @Before
     public void setUp() throws Exception {
-        lines = new Lines(Arrays.asList('1', '2', '3', '4', 'X', '6', '7', '8', '9'));
+        lines = new Lines(new ArrayList<Mark>(Arrays.asList(EMPTY, EMPTY, EMPTY, EMPTY, X, EMPTY, EMPTY, EMPTY, EMPTY)));
     }
 
     @Test
     public void knowsItsRows() {
-        assertEquals(Arrays.asList(Arrays.asList('1', '2', '3'), Arrays.asList('4', 'X', '6'), Arrays.asList('7', '8', '9')), lines.rows());
+        assertEquals(Arrays.asList(Arrays.asList(EMPTY, EMPTY, EMPTY), Arrays.asList(EMPTY, X, EMPTY), Arrays.asList(EMPTY, EMPTY, EMPTY)), lines.rows());
     }
 
     @Test
     public void knowsItsColumns() {
-        assertEquals(Arrays.asList(Arrays.asList('1', '4', '7'), Arrays.asList('2', 'X', '8'), Arrays.asList('3', '6', '9')), lines.columns());
+        assertEquals(Arrays.asList(Arrays.asList(EMPTY, EMPTY, EMPTY), Arrays.asList(EMPTY, X, EMPTY), Arrays.asList(EMPTY, EMPTY, EMPTY)), lines.columns());
     }
 
     @Test
     public void knowsItsDiagonals() {
-        assertEquals(Arrays.asList(Arrays.asList('1','X','9'), Arrays.asList('3','X','7')), lines.diagonals());
+        assertEquals(Arrays.asList(Arrays.asList(EMPTY, X, EMPTY), Arrays.asList(EMPTY, X, EMPTY)), lines.diagonals());
     }
 
     @Test
     public void knowsAllPossibleCombinations() {
-        assertEquals(Arrays.asList(Arrays.asList('1', '2', '3'), Arrays.asList('4', 'X', '6'), Arrays.asList('7', '8', '9'), Arrays.asList('1', '4', '7'), Arrays.asList('2', 'X', '8'), Arrays.asList('3', '6', '9'), Arrays.asList('1', 'X', '9'), Arrays.asList('3', 'X', '7')), lines.possibleCombinations());
+        assertEquals(Arrays.asList(Arrays.asList(EMPTY, EMPTY, EMPTY), Arrays.asList(EMPTY, X, EMPTY), Arrays.asList(EMPTY, EMPTY, EMPTY), Arrays.asList(EMPTY, EMPTY, EMPTY), Arrays.asList(EMPTY, X, EMPTY), Arrays.asList(EMPTY, EMPTY, EMPTY), Arrays.asList(EMPTY, X, EMPTY), Arrays.asList(EMPTY, X, EMPTY)), lines.possibleCombinations());
     }
 
 }

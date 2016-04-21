@@ -17,7 +17,7 @@ public class UserInterfaceSpy extends UserInterface {
     }
 
     @Override
-    public void processMark(Board board, char mark) {
+    public void processMark(Board board, Player.Mark mark) {
         wasProcessMarkCalled = true;
     }
 

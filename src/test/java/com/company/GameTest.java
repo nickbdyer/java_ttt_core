@@ -7,6 +7,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import static com.company.Player.Mark.O;
+import static com.company.Player.Mark.X;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
@@ -24,14 +26,14 @@ public class GameTest {
         game = new Game();
         ui = new UserInterfaceSpy();
         board = new BoardSpy();
-        player1 = new Human('X');
-        player2 = new Human('O');
+        player1 = new Human(X);
+        player2 = new Human(O);
     }
 
     @Test
     public void canStartItself() {
-        DumbComputer comp1 = new DumbComputer('X');
-        DumbComputer comp2 = new DumbComputer('O');
+        DumbComputer comp1 = new DumbComputer(X);
+        DumbComputer comp2 = new DumbComputer(O);
         Board board = new Board();
         UserInterface newui = new UserInterface(new Scanner(""), new PrintStream(outContent));
         game.run(newui, board, comp1, comp2);

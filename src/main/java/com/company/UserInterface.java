@@ -3,6 +3,8 @@ package com.company;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import static com.company.Player.Mark.EMPTY;
+
 public class UserInterface {
 
     private static final String BOARDTEMPLATE = " # | # | # \n"
@@ -21,12 +23,16 @@ public class UserInterface {
     public void showBoard(Board board) {
         String liveboard = BOARDTEMPLATE;
         for (int i = 0; i < 9; i++) {
-            liveboard = liveboard.replaceFirst("#", Character.toString(board.showCells().get(i)));
+            if (board.showCells().get(i) == EMPTY) {
+                liveboard = liveboard.replaceFirst("#", Integer.toString(i + 1));
+            } else {
+                liveboard = liveboard.replaceFirst("#", String.valueOf(board.showCells().get(i)));
+            }
         }
         output.println(liveboard);
     }
 
-    public void processMark(Board board, char mark) {
+    public void processMark(Board board, Player.Mark mark) {
         int validatedNumber = getValidPosition(board);
         board.mark(validatedNumber, mark);
     }
@@ -74,7 +80,7 @@ public class UserInterface {
     }
 
     public void announceWinner(Board board) {
-        String mark = Character.toString(board.getWinningMark());
+        String mark = String.valueOf(board.getWinningMark());
         output.println(mark + " has won!");
     }
 

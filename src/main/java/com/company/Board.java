@@ -1,31 +1,37 @@
 package com.company;
 
+import com.company.Player.Mark;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static com.company.Player.Mark.EMPTY;
 
 public class Board {
 
-    private List<Character> cells;
+    private ArrayList<Mark> cells;
 
     public Board() {
-        this.cells = Arrays.asList('1', '2', '3', '4', '5', '6', '7', '8', '9');
+        this.cells = new ArrayList<Mark>();
+        for (int i=0;i<9;i++) {
+            this.cells.add(EMPTY);
+        }
     }
 
-    public List<Character> showCells() {
+    public List<Mark> showCells() {
         return cells;
     }
 
-    public char getMarkAt(int position) {
+    public Mark getMarkAt(int position) {
         return cells.get(position);
     }
 
-    public void mark(int position, char mark) {
+    public void mark(int position, Mark mark) {
         cells.set(position, mark);
     }
 
     public boolean isCellEmpty(int position) {
-        return !Character.isLetter(cells.get(position));
+        return cells.get(position) == EMPTY;
     }
 
     public boolean hasAWinner() {
@@ -48,14 +54,14 @@ public class Board {
         return false;
     }
 
-    public char getWinningMark() {
+    public Mark getWinningMark() {
         return new Lines(cells).getWinningMark();
     }
 
     public List<Integer> availableMoves() {
         List<Integer> availableMoves = new ArrayList<Integer>();
         for (int i=0;i<cells.size();i++) {
-            if (!Character.isLetter(cells.get(i))) {
+            if (isCellEmpty(i)) {
                 availableMoves.add(i);
             }
         }

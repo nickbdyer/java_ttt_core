@@ -5,9 +5,9 @@ import java.util.List;
 
 public class DumbComputer implements Player {
 
-    private char mark;
+    private Mark mark;
 
-    public DumbComputer(char mark) {
+    public DumbComputer(Mark mark) {
         this.mark = mark;
     }
 
@@ -22,7 +22,7 @@ public class DumbComputer implements Player {
         return availableMoves.get(0);
     }
 
-    public char getMark() {
+    public Mark getMark() {
         return mark;
     }
 

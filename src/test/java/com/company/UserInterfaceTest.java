@@ -8,6 +8,9 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static com.company.Player.Mark.EMPTY;
+import static com.company.Player.Mark.O;
+import static com.company.Player.Mark.X;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -43,7 +46,7 @@ public class UserInterfaceTest {
     public void canProcessMark() {
         BoardSpy board = new BoardSpy();
         createMockUserInput("1");
-        userInterface.processMark(board, 'X');
+        userInterface.processMark(board, X);
         sc.close();
         assertTrue(board.wasMarkCalled);
     }
@@ -51,41 +54,41 @@ public class UserInterfaceTest {
     @Test
     public void willRejectNonDigitEntry() {
         createMockUserInput("g 1");
-        userInterface.processMark(board, 'X');
+        userInterface.processMark(board, X);
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
-        assertEquals(Arrays.asList('X', '2', '3', '4', '5', '6', '7', '8', '9'), board.showCells());
+        assertEquals(Arrays.asList(X, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.showCells());
     }
 
     @Test
     public void willRejectOutOfBoundsEntry() {
         createMockUserInput("23 5");
-        userInterface.processMark(board, 'X');
+        userInterface.processMark(board, X);
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid position"));
-        assertEquals(Arrays.asList('1', '2', '3', '4', 'X', '6', '7', '8', '9'), board.showCells());
+        assertEquals(Arrays.asList(EMPTY, EMPTY, EMPTY, EMPTY, X, EMPTY, EMPTY, EMPTY, EMPTY), board.showCells());
     }
 
     @Test
     public void willNotAllowAMarkedCellToBeMarked() {
         Board board = new Board();
         createMockUserInput("1 1 2");
-        userInterface.processMark(board, 'X');
-        userInterface.processMark(board, 'O');
+        userInterface.processMark(board, X);
+        userInterface.processMark(board, O);
         sc.close();
         assertThat(outContent.toString(), containsString("That cell is already marked, try again"));
-        assertEquals(Arrays.asList('X', 'O', '3', '4', '5', '6', '7', '8', '9'), board.showCells());
+        assertEquals(Arrays.asList(X, O, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.showCells());
     }
 
     @Test
     public void willShowWinningMessageX() {
         Board board = new Board();
         createMockUserInput("1 4 2 5 3");
-        userInterface.processMark(board, 'X');
-        userInterface.processMark(board, 'O');
-        userInterface.processMark(board, 'X');
-        userInterface.processMark(board, 'O');
-        userInterface.processMark(board, 'X');
+        userInterface.processMark(board, X);
+        userInterface.processMark(board, O);
+        userInterface.processMark(board, X);
+        userInterface.processMark(board, O);
+        userInterface.processMark(board, X);
         sc.close();
         userInterface.announceWinner(board);
         assertThat(outContent.toString(), containsString("X has won!"));
@@ -95,11 +98,11 @@ public class UserInterfaceTest {
     public void willShowWinningMessageO() {
         Board board = new Board();
         createMockUserInput("1 4 2 5 3");
-        userInterface.processMark(board, 'O');
-        userInterface.processMark(board, 'X');
-        userInterface.processMark(board, 'O');
-        userInterface.processMark(board, 'X');
-        userInterface.processMark(board, 'O');
+        userInterface.processMark(board, O);
+        userInterface.processMark(board, X);
+        userInterface.processMark(board, O);
+        userInterface.processMark(board, X);
+        userInterface.processMark(board, O);
         sc.close();
         userInterface.announceWinner(board);
         assertThat(outContent.toString(), containsString("O has won!"));

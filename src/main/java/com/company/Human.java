@@ -2,9 +2,9 @@ package com.company;
 
 public class Human implements Player {
 
-    private char mark;
+    private Mark mark;
 
-    public Human(char mark) {
+    public Human(Mark mark) {
         this.mark = mark;
     }
 
@@ -13,7 +13,7 @@ public class Human implements Player {
         userInterface.processMark(board, getMark());
     }
 
-    public char getMark() {
+    public Mark getMark() {
         return mark;
     }
 }

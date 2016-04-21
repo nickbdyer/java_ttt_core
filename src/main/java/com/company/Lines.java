@@ -4,27 +4,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.company.Player.*;
+import static com.company.Player.Mark.EMPTY;
+
 class Lines {
 
-    private List<Character> cells;
-    private char winningMark;
+    private ArrayList<Mark> cells;
+    private Mark winningMark;
 
-    public Lines(List<Character> cells) {
+    public Lines(ArrayList<Mark> cells) {
         this.cells = cells;
     }
 
-    protected List<List<Character>> rows() {
-        List<List<Character>> rows = new ArrayList<List<Character>>();
-        List<Character> row1 = cells.subList(0, 3);
-        List<Character> row2 = cells.subList(3, 6);
-        List<Character> row3 = cells.subList(6, 9);
+    protected List<List<Mark>> rows() {
+        List<List<Mark>> rows = new ArrayList<>();
+        List<Mark> row1 = cells.subList(0, 3);
+        List<Mark> row2 = cells.subList(3, 6);
+        List<Mark> row3 = cells.subList(6, 9);
         rows.add(row1);
         rows.add(row2);
         rows.add(row3);
         return rows;
     }
 
-    protected List<List<Character>> columns() {
+    protected List<List<Mark>> columns() {
         return transpose(rows());
     }
 
@@ -41,25 +44,25 @@ class Lines {
         return ret;
     }
 
-    protected List<List<Character>> diagonals() {
-        List<List<Character>> diagonals = new ArrayList<List<Character>>();
+    protected List<List<Mark>> diagonals() {
+        List<List<Mark>> diagonals = new ArrayList<>();
         diagonals.add(leftDiagonal());
         diagonals.add(rightDiagonal());
         return diagonals;
     }
 
-    private List<Character> rightDiagonal() {
-        List<List<Character>> rows = new ArrayList<List<Character>>();
-        List<Character> row1 = cells.subList(0, 3);
-        List<Character> row2 = cells.subList(3, 6);
-        List<Character> row3 = cells.subList(6, 9);
+    private List<Mark> rightDiagonal() {
+        List<List<Mark>> rows = new ArrayList<>();
+        List<Mark> row1 = cells.subList(0, 3);
+        List<Mark> row2 = cells.subList(3, 6);
+        List<Mark> row3 = cells.subList(6, 9);
         rows.add(row1);
         rows.add(row2);
         rows.add(row3);
 
         flipBoard(rows);
 
-        List<Character> right = new ArrayList<Character>();
+        List<Mark> right = new ArrayList<>();
         for(int i=0;i<3;i++) {
             right.add(rows.get(i).get(i));
         }
@@ -67,37 +70,37 @@ class Lines {
         return right;
     }
 
-    private void flipBoard(List<List<Character>> rows) {
+    private void flipBoard(List<List<Mark>> rows) {
         for(int i=0;i<3;i++) {
             Collections.reverse(rows.get(i));
         }
     }
 
-    private List<Character> leftDiagonal() {
-        List<List<Character>> rows = new ArrayList<List<Character>>();
-        List<Character> row1 = cells.subList(0, 3);
-        List<Character> row2 = cells.subList(3, 6);
-        List<Character> row3 = cells.subList(6, 9);
+    private List<Mark> leftDiagonal() {
+        List<List<Mark>> rows = new ArrayList<>();
+        List<Mark> row1 = cells.subList(0, 3);
+        List<Mark> row2 = cells.subList(3, 6);
+        List<Mark> row3 = cells.subList(6, 9);
         rows.add(row1);
         rows.add(row2);
         rows.add(row3);
 
-        List<Character> left = new ArrayList<Character>();
+        List<Mark> left = new ArrayList<>();
         for(int i=0;i<3;i++) {
             left.add(rows.get(i).get(i));
         }
         return left;
     }
 
-    public List<List<Character>> possibleCombinations() {
-        List<List<Character>> combinedList = new ArrayList<List<Character>>();
+    public List<List<Mark>> possibleCombinations() {
+        List<List<Mark>> combinedList = new ArrayList<>();
         combinedList.addAll(rows());
         combinedList.addAll(columns());
         combinedList.addAll(diagonals());
         return combinedList;
     }
 
-    public char getWinningMark() {
+    public Mark getWinningMark() {
         lineExistsWithMatchingElements();
         return winningMark;
     }
@@ -107,7 +110,7 @@ class Lines {
     }
 
     private boolean lineExistsWithMatchingElements() {
-        for (List<Character> line : possibleCombinations()) {
+        for (List<Mark> line : possibleCombinations()) {
             if (hasAllMatchingElements(line)) {
                 winningMark = line.get(0);
                 return true;
@@ -116,9 +119,9 @@ class Lines {
         return false;
     }
 
-    private boolean hasAllMatchingElements(List<Character> array) {
+    private boolean hasAllMatchingElements(List<Mark> array) {
         for(int i=1;i<array.size();i++) {
-            if (array.get(0) != array.get(i)) {
+            if (array.get(0) != array.get(i) || array.get(0) == EMPTY) {
                 return false;
             }
         }
