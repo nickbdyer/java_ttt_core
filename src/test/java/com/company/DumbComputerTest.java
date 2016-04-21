@@ -9,13 +9,6 @@ import static org.junit.Assert.assertTrue;
 public class DumbComputerTest {
 
     @Test
-    public void canGenerateValidMoveDecisionOnEmptyBoard() {
-        DumbComputer hal9000 = new DumbComputer();
-        Board board = new Board();
-        assertTrue(board.isCellEmpty(hal9000.generateMove(board.availableMoves())));
-    }
-
-    @Test
     public void canGenerateValidMoveDecisionOnPartiallyFullBoard() {
         DumbComputer hal9000 = new DumbComputer();
         UserInterfaceSpy ui = new UserInterfaceSpy();

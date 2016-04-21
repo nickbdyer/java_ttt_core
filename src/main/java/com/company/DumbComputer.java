@@ -11,7 +11,7 @@ public class DumbComputer extends Player {
         board.mark(generateMove(board.availableMoves()), getMark());
     }
 
-     int generateMove(List<Integer> availableMoves) {
+     private int generateMove(List<Integer> availableMoves) {
         Collections.shuffle(availableMoves);
         return availableMoves.get(0);
     }
