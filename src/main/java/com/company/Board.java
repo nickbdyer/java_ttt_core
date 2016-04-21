@@ -25,7 +25,7 @@ public class Board {
     }
 
     public boolean isCellEmpty(int position) {
-        return Character.isDigit(cells.get(position));
+        return !Character.isLetter(cells.get(position));
     }
 
     public boolean hasAWinner() {
@@ -55,7 +55,7 @@ public class Board {
     public List<Integer> availableMoves() {
         List<Integer> availableMoves = new ArrayList<Integer>();
         for (int i=0;i<cells.size();i++) {
-            if (Character.isDigit(cells.get(i))) {
+            if (!Character.isLetter(cells.get(i))) {
                 availableMoves.add(i);
             }
         }
