@@ -1,5 +1,6 @@
 package com.company;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -13,19 +14,24 @@ import static org.junit.Assert.assertEquals;
 
 public class HumanTest {
 
+    private Human nick;
+
+    @Before
+    public void setUp() throws Exception {
+        nick = new Human(X);
+    }
+
     @Test
     public void canRetrieveItsMark() {
-        Human nick = new Human(X);
         assertEquals(X, nick.getMark());
     }
 
     @Test
     public void canMarkTheBoard() {
-        Human nick = new Human(O);
         Board board = new Board();
         UserInterface ui = new UserInterface(new Scanner("1"), new PrintStream(new ByteArrayOutputStream()));
         nick.markBoard(ui, board);
-        assertEquals(O, board.getMarkAt(0));
+        assertEquals(X, board.getMarkAt(0));
     }
 
 
