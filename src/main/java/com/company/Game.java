@@ -11,45 +11,41 @@ public class Game {
         this.player2 = player2;
     }
 
-    public void run(UserInterface userInterface, Board board) {
+    public void play(UserInterface userInterface, Board board) {
         while (!isOver(board)) {
             userInterface.showBoard(board);
             promptTurn(currentPlayer, board, userInterface);
         }
-        userInterface.showBoard(board);
-        announceGameOver(board, userInterface);
+        endGame(board, userInterface);
     }
 
     public boolean isOver(Board board) {
         return (board.hasWinner() || board.isDraw());
     }
 
-    private void announceGameOver(Board board, UserInterface userInterface) {
+    public void promptTurn(Player player, Board board, UserInterface userInterface) {
+        player.markBoard(userInterface, board);
+        swapPlayers();
+    }
+
+    private void endGame(Board board, UserInterface userInterface) {
+        userInterface.showBoard(board);
         if (board.isDraw()) {
             userInterface.announceDraw();
-        } else if (board.hasWinner()) {
+        } else {
             userInterface.announceWinner(board);
         }
     }
 
-    public void setCurrentPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
     private void swapPlayers() {
         if (currentPlayer == player1) {
-            setCurrentPlayer(player2);
+            currentPlayer = player2;
         } else {
-            setCurrentPlayer(player1);
+            currentPlayer = player1;
         }
     }
 
     public Player getCurrentPlayer() {
         return currentPlayer;
-    }
-
-    public void promptTurn(Player player, Board board, UserInterface userInterface) {
-        player.markBoard(userInterface, board);
-        swapPlayers();
     }
 }

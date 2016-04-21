@@ -37,35 +37,35 @@ public class GameTest {
         Game game = new Game(comp1, comp2);
         Board board = new Board();
         UserInterface newui = new UserInterface(new Scanner(""), new PrintStream(outContent));
-        game.run(newui, board);
+        game.play(newui, board);
         assertTrue(game.isOver(board));
     }
 
     @Test
     public void knowsWhenTheGameIsOverDueToDraw() {
         board.setADraw(true);
-        game.run(ui, board);
+        game.play(ui, board);
         assertTrue(game.isOver(board));
     }
 
     @Test
     public void knowsWhenTheGameIsOverDueToWinCondition() {
         board.setHasAWinner(true);
-        game.run(ui, board);
+        game.play(ui, board);
         assertTrue(game.isOver(board));
     }
 
     @Test
     public void gameWillCallDrawGameOverStatement() {
         board.setADraw(true);
-        game.run(ui, board);
+        game.play(ui, board);
         assertTrue(ui.wasAnnounceDrawCalled);
     }
 
     @Test
     public void gameWillCallWinGameOverStatement() {
         board.setHasAWinner(true);
-        game.run(ui, board);
+        game.play(ui, board);
         assertTrue(ui.wasAnnounceWinCalled);
     }
 
