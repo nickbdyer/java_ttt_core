@@ -10,8 +10,7 @@ public class DumbComputerTest {
 
     @Test
     public void canGenerateValidMoveDecisionOnPartiallyFullBoard() {
-        DumbComputer hal9000 = new DumbComputer();
-        hal9000.setMark('O');
+        DumbComputer hal9000 = new DumbComputer('O');
         UserInterfaceSpy ui = new UserInterfaceSpy();
         Board board = new Board();
         for(int i=1;i<9;i++) {

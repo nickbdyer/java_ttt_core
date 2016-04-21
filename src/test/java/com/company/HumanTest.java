@@ -9,8 +9,7 @@ public class HumanTest {
 
     @Test
     public void canRetrieveItsMark() {
-        Human nick = new Human();
-        nick.setMark('X');
+        Human nick = new Human('X');
         assertEquals('X', nick.getMark());
     }
 

@@ -24,14 +24,14 @@ public class GameTest {
         game = new Game();
         ui = new UserInterfaceSpy();
         board = new BoardSpy();
-        player1 = new Human();
-        player2 = new Human();
+        player1 = new Human('X');
+        player2 = new Human('O');
     }
 
     @Test
     public void canStartItself() {
-        DumbComputer comp1 = new DumbComputer();
-        DumbComputer comp2 = new DumbComputer();
+        DumbComputer comp1 = new DumbComputer('X');
+        DumbComputer comp2 = new DumbComputer('O');
         Board board = new Board();
         UserInterface newui = new UserInterface(new Scanner(""), new PrintStream(outContent));
         game.run(newui, board, comp1, comp2);
