@@ -17,8 +17,8 @@ public class DumbComputerTest {
         for(int i=1;i<9;i++) {
             board.mark(i, X);
         }
-        assertTrue(board.isCellEmpty(0));
+        assertTrue(board.isEmptyCell(0));
         hal9000.markBoard(ui, board);
-        assertFalse(board.isCellEmpty(0));
+        assertFalse(board.isEmptyCell(0));
     }
 }

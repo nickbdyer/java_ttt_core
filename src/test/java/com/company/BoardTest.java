@@ -22,36 +22,36 @@ public class BoardTest {
     }
 
     @Test
-    public void canShowItsFullCurrentState() {
-        assertEquals(Arrays.asList(EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.showCells());
+    public void showsCurrentState() {
+        assertEquals(Arrays.asList(EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
     }
 
     @Test
-    public void canShowTheStateOfIndividualCell() {
+    public void showsSpecificCellState() {
         assertEquals(EMPTY, board.getMarkAt(0));
     }
 
     @Test
-    public void canBeMarkedWithX() {
+    public void marksWithX() {
         board.mark(3, X);
         assertEquals(X, board.getMarkAt(3));
     }
 
     @Test
-    public void canBeMarkedWithO() {
+    public void marksWithO() {
         board.mark(1, O);
         assertEquals(O, board.getMarkAt(1));
     }
 
     @Test
     public void knowsIfCellIsEmpty() {
-        assertTrue(board.isCellEmpty(1));
+        assertTrue(board.isEmptyCell(1));
     }
 
     @Test
     public void knowsIfCellIsNotEmpty() {
         board.mark(0, X);
-        assertFalse(board.isCellEmpty(0));
+        assertFalse(board.isEmptyCell(0));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class BoardTest {
         board.mark(0, X);
         board.mark(4, X);
         board.mark(8, X);
-        assertTrue(board.hasAWinner());
+        assertTrue(board.hasWinner());
     }
 
     @Test
@@ -67,13 +67,13 @@ public class BoardTest {
         board.mark(0, O);
         board.mark(4, O);
         board.mark(8, O);
-        assertTrue(board.hasAWinner());
+        assertTrue(board.hasWinner());
     }
 
     @Test
     public void knowsIfThereIsNotAWinner() {
         board.mark(0, X);
-        assertFalse(board.hasAWinner());
+        assertFalse(board.hasWinner());
     }
 
     @Test
@@ -95,7 +95,7 @@ public class BoardTest {
     @Test
     public void knowsIfItIsADraw() {
         createDrawCondition();
-        assertTrue(board.isADraw());
+        assertTrue(board.isDraw());
     }
 
     @Test
@@ -103,7 +103,7 @@ public class BoardTest {
         for(int i=0;i<9;i++) {
             board.mark(i, X);
         }
-        assertFalse(board.isADraw());
+        assertFalse(board.isDraw());
     }
 
     private void createDrawCondition() {

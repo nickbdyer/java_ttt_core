@@ -23,10 +23,10 @@ public class UserInterface {
     public void showBoard(Board board) {
         String liveboard = BOARDTEMPLATE;
         for (int i = 0; i < 9; i++) {
-            if (board.showCells().get(i) == EMPTY) {
+            if (board.getCells().get(i) == EMPTY) {
                 liveboard = liveboard.replaceFirst("#", Integer.toString(i + 1));
             } else {
-                liveboard = liveboard.replaceFirst("#", String.valueOf(board.showCells().get(i)));
+                liveboard = liveboard.replaceFirst("#", String.valueOf(board.getCells().get(i)));
             }
         }
         output.println(liveboard);
@@ -68,7 +68,7 @@ public class UserInterface {
     }
 
     private boolean isPositionMarkable(int number, Board board) {
-        return (board.isCellEmpty(number));
+        return (board.isEmptyCell(number));
     }
 
     private int getNumber() {

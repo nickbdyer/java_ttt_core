@@ -23,13 +23,13 @@ public class Game {
     }
 
     public boolean isOver(Board board) {
-        return (board.hasAWinner() || board.isADraw());
+        return (board.hasWinner() || board.isDraw());
     }
 
     private void announceGameOver(Board board, UserInterface userInterface) {
-        if (board.isADraw()) {
+        if (board.isDraw()) {
             userInterface.announceDraw();
-        } else if (board.hasAWinner()) {
+        } else if (board.hasWinner()) {
             userInterface.announceWinner(board);
         }
     }

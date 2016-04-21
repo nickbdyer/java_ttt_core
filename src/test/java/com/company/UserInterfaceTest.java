@@ -57,7 +57,7 @@ public class UserInterfaceTest {
         userInterface.processMark(board, X);
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
-        assertEquals(Arrays.asList(X, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.showCells());
+        assertEquals(Arrays.asList(X, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class UserInterfaceTest {
         userInterface.processMark(board, X);
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid position"));
-        assertEquals(Arrays.asList(EMPTY, EMPTY, EMPTY, EMPTY, X, EMPTY, EMPTY, EMPTY, EMPTY), board.showCells());
+        assertEquals(Arrays.asList(EMPTY, EMPTY, EMPTY, EMPTY, X, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class UserInterfaceTest {
         userInterface.processMark(board, O);
         sc.close();
         assertThat(outContent.toString(), containsString("That cell is already marked, try again"));
-        assertEquals(Arrays.asList(X, O, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.showCells());
+        assertEquals(Arrays.asList(X, O, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
     }
 
     @Test

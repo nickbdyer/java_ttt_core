@@ -12,13 +12,13 @@ public class Board {
     private ArrayList<Mark> cells;
 
     public Board() {
-        this.cells = new ArrayList<Mark>();
+        this.cells = new ArrayList<>();
         for (int i=0;i<9;i++) {
             this.cells.add(EMPTY);
         }
     }
 
-    public List<Mark> showCells() {
+    public List<Mark> getCells() {
         return cells;
     }
 
@@ -30,25 +30,25 @@ public class Board {
         cells.set(position, mark);
     }
 
-    public boolean isCellEmpty(int position) {
+    public boolean isEmptyCell(int position) {
         return cells.get(position) == EMPTY;
     }
 
-    public boolean hasAWinner() {
+    public boolean hasWinner() {
         return new Lines(cells).hasAWinner();
     }
 
     public boolean isFull() {
         for(int i=1;i<cells.size();i++) {
-            if (isCellEmpty(i)) {
+            if (isEmptyCell(i)) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean isADraw() {
-        if (isFull() && !hasAWinner()) {
+    public boolean isDraw() {
+        if (isFull() && !hasWinner()) {
             return true;
         }
         return false;
@@ -59,9 +59,9 @@ public class Board {
     }
 
     public List<Integer> availableMoves() {
-        List<Integer> availableMoves = new ArrayList<Integer>();
+        List<Integer> availableMoves = new ArrayList<>();
         for (int i=0;i<cells.size();i++) {
-            if (isCellEmpty(i)) {
+            if (isEmptyCell(i)) {
                 availableMoves.add(i);
             }
         }

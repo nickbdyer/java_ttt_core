@@ -12,12 +12,12 @@ public class BoardSpy extends Board {
     }
 
     @Override
-    public boolean hasAWinner() {
+    public boolean hasWinner() {
         return hasAWinner;
     }
 
     @Override
-    public boolean isADraw() {
+    public boolean isDraw() {
         return isADraw;
     }
 
