@@ -8,7 +8,7 @@ import static com.company.Player.Mark.X;
 public class Main {
 
     public static void main(String[] args) {
-        new Game().run(new UserInterface(new Scanner(System.in), System.out), new Board(), new Human(X), new DumbComputer(O));
+        new Game(new Human(X), new DumbComputer(O)).run(new UserInterface(new Scanner(System.in), System.out), new Board());
     }
 
 }

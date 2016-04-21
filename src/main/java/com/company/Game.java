@@ -6,20 +6,18 @@ public class Game {
     private Player player2;
     private Player currentPlayer;
 
-    public void run(UserInterface userInterface, Board board, Player human, Player computer) {
-        setUp(human, computer);
+    public Game(Player player1, Player player2) {
+        this.player1 = currentPlayer = player1;
+        this.player2 = player2;
+    }
+
+    public void run(UserInterface userInterface, Board board) {
         while (!isOver(board)) {
             userInterface.showBoard(board);
             promptTurn(currentPlayer, board, userInterface);
         }
         userInterface.showBoard(board);
         announceGameOver(board, userInterface);
-    }
-
-    public void setUp(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
-        setCurrentPlayer(player1);
     }
 
     public boolean isOver(Board board) {
