@@ -10,21 +10,28 @@ import static com.company.Player.Mark.EMPTY;
 class Lines {
 
     private ArrayList<Mark> cells;
+    private int size;
+    private int width;
     private Mark winningMark;
 
     public Lines(ArrayList<Mark> cells) {
         this.cells = cells;
+        this.size = cells.size();
+        this.width = (int) Math.sqrt(size);
     }
 
     protected List<List<Mark>> rows() {
         List<List<Mark>> rows = new ArrayList<>();
-        List<Mark> row1 = cells.subList(0, 3);
-        List<Mark> row2 = cells.subList(3, 6);
-        List<Mark> row3 = cells.subList(6, 9);
-        rows.add(row1);
-        rows.add(row2);
-        rows.add(row3);
+        for (int i=0;i<3;i++) {
+            rows.add(makeRow(i));
+        }
         return rows;
+    }
+
+    private List<Mark> makeRow(int rowNumber) {
+        int lowerBound = rowNumber * width;
+        int upperBound = lowerBound + width;
+        return cells.subList(lowerBound, upperBound);
     }
 
     protected List<List<Mark>> columns() {
