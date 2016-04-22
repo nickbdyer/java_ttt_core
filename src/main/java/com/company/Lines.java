@@ -30,7 +30,7 @@ class Lines {
 
     protected List<List<Mark>> rows() {
         List<List<Mark>> rows = new ArrayList<>();
-        for (int i=0;i<3;i++) {
+        for (int i = 0; i < 3; i++) {
             rows.add(makeRow(i));
         }
         return rows;
@@ -73,7 +73,7 @@ class Lines {
         List<List<Mark>> rows = rows();
 
         List<Mark> leftDiagonal = new ArrayList<>();
-        for(int i=0;i<width;i++) {
+        for (int i = 0; i < width; i++) {
             leftDiagonal.add(rows.get(i).get(i));
         }
         return leftDiagonal;
@@ -84,17 +84,18 @@ class Lines {
         flipBoard(rows);
 
         List<Mark> right = new ArrayList<>();
-        for(int i=0;i<width;i++) {
+        for (int i = 0; i < width; i++) {
             right.add(rows.get(i).get(i));
         }
         return right;
     }
 
     private void flipBoard(List<List<Mark>> rows) {
-        for(int i=0;i<width;i++) {
+        for (int i = 0; i < width; i++) {
             Collections.reverse(rows.get(i));
         }
     }
+
 
     public Mark getWinningMark() {
         checkLinesForAllMatchingElements();
@@ -116,7 +117,7 @@ class Lines {
     }
 
     private boolean hasAllMatchingElements(List<Mark> array) {
-        for(int i=1;i<array.size();i++) {
+        for (int i = 1; i < array.size(); i++) {
             if (array.get(0) != array.get(i) || array.get(0) == EMPTY) {
                 return false;
             }

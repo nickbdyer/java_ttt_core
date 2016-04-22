@@ -38,6 +38,10 @@ public class Board {
         return new Lines(cells).hasAWinner();
     }
 
+    public Mark getWinningMark() {
+        return new Lines(cells).getWinningMark();
+    }
+
     public boolean isFull() {
         for(int i=1;i<cells.size();i++) {
             if (isEmptyCell(i)) {
@@ -52,10 +56,6 @@ public class Board {
             return true;
         }
         return false;
-    }
-
-    public Mark getWinningMark() {
-        return new Lines(cells).getWinningMark();
     }
 
     public List<Integer> availableMoves() {
