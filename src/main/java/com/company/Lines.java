@@ -3,18 +3,18 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static com.company.Player.*;
 import static com.company.Player.Mark.EMPTY;
 
 class Lines {
 
-    private ArrayList<Mark> cells;
+    private List<Mark> cells;
     private int size;
     private int width;
-    private Mark winningMark;
 
-    public Lines(ArrayList<Mark> cells) {
+    public Lines(List<Mark> cells) {
         this.cells = cells;
         this.size = cells.size();
         this.width = (int) Math.sqrt(size);
@@ -96,24 +96,11 @@ class Lines {
         }
     }
 
-
-    public Mark getWinningMark() {
-        checkLinesForAllMatchingElements();
-        return winningMark;
-    }
-
-    public boolean hasAWinner() {
-        return checkLinesForAllMatchingElements();
-    }
-
-    private boolean checkLinesForAllMatchingElements() {
-        for (List<Mark> line : possibleCombinations()) {
-            if (hasAllMatchingElements(line)) {
-                winningMark = line.get(0);
-                return true;
-            }
-        }
-        return false;
+    public Optional<Mark> winner() {
+        return possibleCombinations().stream()
+                .filter(line -> hasAllMatchingElements(line))
+                .findFirst()
+                .map(line -> line.get(0));
     }
 
     private boolean hasAllMatchingElements(List<Mark> array) {
@@ -124,6 +111,5 @@ class Lines {
         }
         return true;
     }
-
 
 }

@@ -35,11 +35,11 @@ public class Board {
     }
 
     public boolean hasWinner() {
-        return new Lines(cells).hasAWinner();
+        return new Lines(cells).winner().isPresent();
     }
 
     public Mark getWinningMark() {
-        return new Lines(cells).getWinningMark();
+        return new Lines(cells).winner().get();
     }
 
     public boolean isFull() {

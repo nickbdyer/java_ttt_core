@@ -20,7 +20,7 @@ public class Game {
     }
 
     public boolean isOver(Board board) {
-        return (board.hasWinner() || board.isDraw());
+        return board.hasWinner() || board.isDraw();
     }
 
     public void promptTurn(Player player, Board board, UserInterface userInterface) {
