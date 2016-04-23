@@ -105,11 +105,19 @@ class Lines {
 
     private boolean hasAllMatchingElements(List<Mark> array) {
         for (int i = 1; i < array.size(); i++) {
-            if (array.get(0) != array.get(i) || array.get(0) == EMPTY) {
+            if (cellIsNotMatching(array, i) || isEmptyCell(array)) {
                 return false;
             }
         }
         return true;
+    }
+
+    private boolean cellIsNotMatching(List<Mark> array, int i) {
+        return array.get(0) != array.get(i);
+    }
+
+    private boolean isEmptyCell(List<Mark> array) {
+        return array.get(0) == EMPTY;
     }
 
 }
