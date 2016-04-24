@@ -105,7 +105,7 @@ class Lines {
 
     private boolean hasAllMatchingElements(List<Mark> array) {
         for (int i = 1; i < array.size(); i++) {
-            if (cellIsNotMatching(array, i) || isEmptyCell(array)) {
+            if (cellIsNotMatching(array, i) || array.contains(EMPTY)) {
                 return false;
             }
         }
@@ -114,10 +114,6 @@ class Lines {
 
     private boolean cellIsNotMatching(List<Mark> array, int i) {
         return array.get(0) != array.get(i);
-    }
-
-    private boolean isEmptyCell(List<Mark> array) {
-        return array.get(0) == EMPTY;
     }
 
 }
