@@ -12,6 +12,8 @@ public class PlayerFactory {
     public List<Player> create(int option) {
         if (option == 1) {
             return Arrays.asList(new Human(X), new Human(O));
+        } else if (option == 2) {
+            return Arrays.asList(new Human(X), new DumbComputer(O));
         }
         return new ArrayList<>();
     }

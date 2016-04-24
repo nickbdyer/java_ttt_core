@@ -17,4 +17,10 @@ public class PlayerFactoryTest {
         PlayerFactory pfactory = new PlayerFactory();
         assertEquals(Arrays.asList(new Human(X), new Human(O)), pfactory.create(1));
     }
+
+    @Test
+    public void canCreateAHumanAndComputerPlayer() {
+        PlayerFactory playerFactory = new PlayerFactory();
+        assertEquals(Arrays.asList(new Human(X), new DumbComputer(O)), playerFactory.create(2));
+    }
 }
