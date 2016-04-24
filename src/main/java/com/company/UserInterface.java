@@ -91,4 +91,8 @@ public class UserInterface {
     public void displayComputerPlayingMessage() {
         output.println("The computer player is thinking...");
     }
+
+    public void showMenu() {
+        output.print("Please choose the game type:\n 1) Human vs Human \n");
+    }
 }

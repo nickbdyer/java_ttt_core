@@ -121,4 +121,11 @@ public class UserInterfaceTest {
         userInterface.displayComputerPlayingMessage();
         assertThat(outContent.toString(), containsString("The computer player is thinking..."));
     }
+
+    @Test
+    public void willShowGameTypeOptions() {
+        createMockUserInput("");
+        userInterface.showMenu();
+        assertThat(outContent.toString(), containsString("Please choose the game type:\n 1) Human vs Human \n"));
+    }
 }
