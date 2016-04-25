@@ -103,7 +103,7 @@ public class UserInterface {
         return (number >= lowerBound && number <= upperBound);
     }
 
-    public void displayMoveInstructions() {
+    private void displayMoveInstructions() {
         output.println("Please choose a number between 1-9");
     }
 
@@ -120,7 +120,7 @@ public class UserInterface {
         output.println("The computer player is thinking...");
     }
 
-    public void displayGameChoiceMenu() {
+    void displayGameChoiceMenu() {
         output.print("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer");
     }
 
