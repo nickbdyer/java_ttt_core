@@ -48,7 +48,7 @@ public class UserInterface {
     }
 
     private boolean outOfBounds(int number) {
-        if (!isPositionInBounds(number)) {
+        if (!isPositionInBounds(number, 1, 9)) {
             output.println("That is not a valid position");
             return true;
         }
@@ -63,8 +63,8 @@ public class UserInterface {
         return false;
     }
 
-    private boolean isPositionInBounds(int number) {
-        return (number >= 1 && number <= 9);
+    private boolean isPositionInBounds(int number, int lowerBound, int upperBound) {
+        return (number >= lowerBound && number <= upperBound);
     }
 
     private boolean isPositionMarkable(int number, Board board) {
@@ -93,6 +93,24 @@ public class UserInterface {
     }
 
     public void showMenu() {
-        output.print("Please choose the game type:\n 1) Human vs Human \n");
+        output.print("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer");
+    }
+
+    public int getGameChoice() {
+        while (true) {
+            int number = getNumber();
+            if (validGameChoice(number)) {
+                continue;
+            }
+            return number;
+        }
+    }
+
+    private boolean validGameChoice(int choice) {
+        if (!isPositionInBounds(choice, 1, 2)) {
+            output.println("That is not a valid selection");
+            return true;
+        }
+        return false;
     }
 }
