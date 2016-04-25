@@ -15,12 +15,14 @@ public class PlayerFactoryTest {
     @Test
     public void canCreateTwoHumanPlayers() {
         PlayerFactory pfactory = new PlayerFactory();
-        assertEquals(Arrays.asList(new Human(X), new Human(O)), pfactory.create(1));
+        assertTrue(pfactory.create(1).get(0) instanceof Human);
+        assertTrue(pfactory.create(1).get(1) instanceof Human);
     }
 
     @Test
     public void canCreateAHumanAndComputerPlayer() {
-        PlayerFactory playerFactory = new PlayerFactory();
-        assertEquals(Arrays.asList(new Human(X), new DumbComputer(O)), playerFactory.create(2));
+        PlayerFactory pfactory = new PlayerFactory();
+        assertTrue(pfactory.create(2).get(0) instanceof Human);
+        assertTrue(pfactory.create(2).get(1) instanceof DumbComputer);
     }
 }
