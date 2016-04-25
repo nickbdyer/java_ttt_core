@@ -65,7 +65,7 @@ public class UserInterface {
 
     private int getNumber() {
         while (!input.hasNextInt()) {
-            output.println("That is not a valid input");
+            displayInvalidInput();
             input.next();
         }
         return input.nextInt();
@@ -73,7 +73,7 @@ public class UserInterface {
 
     private boolean outOfBounds(Board board, int number) {
         if (!isPositionInBounds(number, 1, board.getCells().size())) {
-            output.println("That is not a valid position");
+            displayInvalidPosition();
             return true;
         }
         return false;
@@ -81,7 +81,7 @@ public class UserInterface {
 
     private boolean alreadyMarked(Board board, int number) {
         if (!isPositionMarkable(number - 1, board)) {
-            output.println("That cell is already marked, try again");
+            displayPositionOccupied();
             return true;
         }
         return false;
@@ -93,7 +93,7 @@ public class UserInterface {
 
     private boolean validGameChoice(int choice) {
         if (!isPositionInBounds(choice, 1, 2)) {
-            output.println("That is not a valid selection");
+            displayInvalidSelection();
             return true;
         }
         return false;
@@ -121,7 +121,23 @@ public class UserInterface {
     }
 
     void displayGameChoiceMenu() {
-        output.print("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer");
+        output.println("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer");
+    }
+
+    private void displayInvalidInput() {
+        output.println("That is not a valid input");
+    }
+
+    private void displayInvalidSelection() {
+        output.println("That is not a valid selection");
+    }
+
+    private void displayInvalidPosition() {
+        output.println("That is not a valid position");
+    }
+
+    private void displayPositionOccupied() {
+        output.println("That cell is already marked, try again");
     }
 
 }
