@@ -2,12 +2,6 @@ package com.company;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import static com.company.Player.Mark.O;
-import static com.company.Player.Mark.X;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class PlayerFactoryTest {
