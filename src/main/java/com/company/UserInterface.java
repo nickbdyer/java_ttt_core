@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.Player.Mark;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -32,19 +34,41 @@ public class UserInterface {
         output.println(liveboard);
     }
 
-    public void processMark(Board board, Player.Mark mark) {
-        int validatedNumber = getValidPosition(board);
-        board.mark(validatedNumber, mark);
+    public void makeMove(Board board, Mark mark) {
+        displayMoveInstructions();
+        board.mark(getValidPosition(board), mark);
+    }
+
+    public int makeGameChoice() {
+        displayGameChoiceMenu();
+        return getGameChoice();
     }
 
     private int getValidPosition(Board board) {
-        output.println("Please choose a number between 1-9");
         while (true) {
             int position = getNumber();
             if (outOfBounds(board, position) || alreadyMarked(board, position))
                 continue;
             return position - 1;
         }
+    }
+
+    private int getGameChoice() {
+        while (true) {
+            int number = getNumber();
+            if (validGameChoice(number)) {
+                continue;
+            }
+            return number;
+        }
+    }
+
+    private int getNumber() {
+        while (!input.hasNextInt()) {
+            output.println("That is not a valid input");
+            input.next();
+        }
+        return input.nextInt();
     }
 
     private boolean outOfBounds(Board board, int number) {
@@ -63,47 +87,8 @@ public class UserInterface {
         return false;
     }
 
-    private boolean isPositionInBounds(int number, int lowerBound, int upperBound) {
-        return (number >= lowerBound && number <= upperBound);
-    }
-
     private boolean isPositionMarkable(int number, Board board) {
         return (board.isEmptyCell(number));
-    }
-
-    private int getNumber() {
-        while (!input.hasNextInt()) {
-            output.println("That is not a valid input");
-            input.next();
-        }
-        return input.nextInt();
-    }
-
-    public void announceWinner(Board board) {
-        String mark = String.valueOf(board.getWinningMark());
-        output.println(mark + " has won!");
-    }
-
-    public void announceDraw() {
-        output.println("It's a Draw!");
-    }
-
-    public void displayComputerPlayingMessage() {
-        output.println("The computer player is thinking...");
-    }
-
-    public void showMenu() {
-        output.print("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer");
-    }
-
-    public int getGameChoice() {
-        while (true) {
-            int number = getNumber();
-            if (validGameChoice(number)) {
-                continue;
-            }
-            return number;
-        }
     }
 
     private boolean validGameChoice(int choice) {
@@ -113,4 +98,30 @@ public class UserInterface {
         }
         return false;
     }
+
+    private boolean isPositionInBounds(int number, int lowerBound, int upperBound) {
+        return (number >= lowerBound && number <= upperBound);
+    }
+
+    public void displayMoveInstructions() {
+        output.println("Please choose a number between 1-9");
+    }
+
+    public void displayWinner(Board board) {
+        String mark = String.valueOf(board.getWinningMark());
+        output.println(mark + " has won!");
+    }
+
+    public void displayDraw() {
+        output.println("It's a Draw!");
+    }
+
+    public void displayComputerThinking() {
+        output.println("The computer player is thinking...");
+    }
+
+    public void displayGameChoiceMenu() {
+        output.print("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer");
+    }
+
 }

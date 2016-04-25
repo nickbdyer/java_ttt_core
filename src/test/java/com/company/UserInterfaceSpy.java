@@ -17,20 +17,20 @@ public class UserInterfaceSpy extends UserInterface {
     }
 
     @Override
-    public void processMark(Board board, Player.Mark mark) {
+    public void makeMove(Board board, Player.Mark mark) {
         wasProcessMarkCalled = true;
     }
 
     @Override
-    public void announceWinner(Board board) {
+    public void displayWinner(Board board) {
         wasAnnounceWinCalled = true;
     }
 
     @Override
-    public void announceDraw() {
+    public void displayDraw() {
         wasAnnounceDrawCalled = true;
     }
 
     @Override
-    public void displayComputerPlayingMessage() {}
+    public void displayComputerThinking() {}
 }

@@ -45,7 +45,7 @@ public class UserInterfaceTest {
     public void canProcessMark() {
         BoardSpy board = new BoardSpy();
         createMockUserInput("1");
-        userInterface.processMark(board, X);
+        userInterface.makeMove(board, X);
         sc.close();
         assertTrue(board.wasMarkCalled);
     }
@@ -53,7 +53,7 @@ public class UserInterfaceTest {
     @Test
     public void willRejectNonDigitEntry() {
         createMockUserInput("g 1");
-        userInterface.processMark(board, X);
+        userInterface.makeMove(board, X);
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
         assertEquals(Arrays.asList(X, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
@@ -62,7 +62,7 @@ public class UserInterfaceTest {
     @Test
     public void willRejectOutOfBoundsEntry() {
         createMockUserInput("23 5");
-        userInterface.processMark(board, X);
+        userInterface.makeMove(board, X);
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid position"));
         assertEquals(Arrays.asList(EMPTY, EMPTY, EMPTY, EMPTY, X, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
@@ -72,8 +72,8 @@ public class UserInterfaceTest {
     public void willNotAllowAMarkedCellToBeMarked() {
         Board board = new Board();
         createMockUserInput("1 1 2");
-        userInterface.processMark(board, X);
-        userInterface.processMark(board, O);
+        userInterface.makeMove(board, X);
+        userInterface.makeMove(board, O);
         sc.close();
         assertThat(outContent.toString(), containsString("That cell is already marked, try again"));
         assertEquals(Arrays.asList(X, O, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
@@ -83,13 +83,13 @@ public class UserInterfaceTest {
     public void willShowWinningMessageX() {
         Board board = new Board();
         createMockUserInput("1 4 2 5 3");
-        userInterface.processMark(board, X);
-        userInterface.processMark(board, O);
-        userInterface.processMark(board, X);
-        userInterface.processMark(board, O);
-        userInterface.processMark(board, X);
+        userInterface.makeMove(board, X);
+        userInterface.makeMove(board, O);
+        userInterface.makeMove(board, X);
+        userInterface.makeMove(board, O);
+        userInterface.makeMove(board, X);
         sc.close();
-        userInterface.announceWinner(board);
+        userInterface.displayWinner(board);
         assertThat(outContent.toString(), containsString("X has won!"));
     }
 
@@ -97,41 +97,41 @@ public class UserInterfaceTest {
     public void willShowWinningMessageO() {
         Board board = new Board();
         createMockUserInput("1 4 2 5 3");
-        userInterface.processMark(board, O);
-        userInterface.processMark(board, X);
-        userInterface.processMark(board, O);
-        userInterface.processMark(board, X);
-        userInterface.processMark(board, O);
+        userInterface.makeMove(board, O);
+        userInterface.makeMove(board, X);
+        userInterface.makeMove(board, O);
+        userInterface.makeMove(board, X);
+        userInterface.makeMove(board, O);
         sc.close();
-        userInterface.announceWinner(board);
+        userInterface.displayWinner(board);
         assertThat(outContent.toString(), containsString("O has won!"));
     }
 
     @Test
     public void willShowDrawMessage() {
         createMockUserInput("");
-        userInterface.announceDraw();
+        userInterface.displayDraw();
         assertThat(outContent.toString(), containsString("It's a Draw!"));
     }
 
     @Test
     public void willShowComputerPlayingMessage() {
         createMockUserInput("");
-        userInterface.displayComputerPlayingMessage();
+        userInterface.displayComputerThinking();
         assertThat(outContent.toString(), containsString("The computer player is thinking..."));
     }
 
     @Test
     public void willShowGameTypeOptions() {
         createMockUserInput("");
-        userInterface.showMenu();
+        userInterface.displayGameChoiceMenu();
         assertThat(outContent.toString(), containsString("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer"));
     }
 
     @Test
     public void willValidateGameChoice() {
         createMockUserInput("4 h 1");
-        userInterface.getGameChoice();
+        userInterface.makeGameChoice();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
     }
 }

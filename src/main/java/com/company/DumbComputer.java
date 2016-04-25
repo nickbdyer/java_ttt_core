@@ -13,7 +13,7 @@ public class DumbComputer implements Player {
 
     @Override
     public void markBoard(UserInterface userInterface, Board board) {
-        userInterface.displayComputerPlayingMessage();
+        userInterface.displayComputerThinking();
         board.mark(generateMove(board.availableMoves()), getMark());
     }
 

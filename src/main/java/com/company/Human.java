@@ -10,7 +10,7 @@ public class Human implements Player {
 
     @Override
     public void markBoard(UserInterface ui, Board board) {
-        ui.processMark(board, getMark());
+        ui.makeMove(board, getMark());
     }
 
     public Mark getMark() {

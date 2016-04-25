@@ -38,9 +38,9 @@ public class Game {
     private void endGame(Board board, UserInterface userInterface) {
         userInterface.showBoard(board);
         if (board.isDraw()) {
-            userInterface.announceDraw();
+            userInterface.displayDraw();
         } else {
-            userInterface.announceWinner(board);
+            userInterface.displayWinner(board);
         }
     }
 
