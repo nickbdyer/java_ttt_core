@@ -41,14 +41,14 @@ public class UserInterface {
         output.println("Please choose a number between 1-9");
         while (true) {
             int position = getNumber();
-            if (outOfBounds(position) || alreadyMarked(board, position))
+            if (outOfBounds(board, position) || alreadyMarked(board, position))
                 continue;
             return position - 1;
         }
     }
 
-    private boolean outOfBounds(int number) {
-        if (!isPositionInBounds(number, 1, 9)) {
+    private boolean outOfBounds(Board board, int number) {
+        if (!isPositionInBounds(number, 1, board.getCells().size())) {
             output.println("That is not a valid position");
             return true;
         }
