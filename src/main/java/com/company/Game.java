@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.List;
+
 public class Game {
 
     private Player player1;
@@ -9,6 +11,11 @@ public class Game {
     public Game(Player player1, Player player2) {
         this.player1 = currentPlayer = player1;
         this.player2 = player2;
+    }
+
+    public Game(List<Player> players) {
+        this.player1 = currentPlayer = players.get(0);
+        this.player2 = players.get(1);
     }
 
     public void play(UserInterface userInterface, Board board) {
