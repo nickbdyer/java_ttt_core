@@ -87,6 +87,9 @@ class Lines {
         for (int i = 0; i < width; i++) {
             right.add(rows.get(i).get(i));
         }
+
+        flipBoard(rows);
+
         return right;
     }
 
