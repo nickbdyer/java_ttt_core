@@ -34,5 +34,4 @@ public class HumanTest {
         assertEquals(X, board.getMarkAt(0));
     }
 
-
 }

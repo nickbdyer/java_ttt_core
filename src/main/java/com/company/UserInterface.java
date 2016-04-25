@@ -79,16 +79,16 @@ public class UserInterface {
         return false;
     }
 
-    private boolean alreadyMarked(Board board, int number) {
-        if (!isPositionMarkable(number - 1, board)) {
+    private boolean alreadyMarked(Board board, int position) {
+        if (!isPositionMarkable(position - 1, board)) {
             displayPositionOccupied();
             return true;
         }
         return false;
     }
 
-    private boolean isPositionMarkable(int number, Board board) {
-        return (board.isEmptyCell(number));
+    private boolean isPositionMarkable(int position, Board board) {
+        return (board.isEmptyCell(position));
     }
 
     private boolean validGameChoice(int choice) {
