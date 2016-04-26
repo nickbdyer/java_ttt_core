@@ -113,7 +113,7 @@ public class UserInterface {
     }
 
     public void displayGameChoiceMenu() {
-        output.println("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer");
+        output.println("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer \n 3) Computer vs Human \n 4) Computer vs Computer");
     }
 
     public void displayInvalidInput() {

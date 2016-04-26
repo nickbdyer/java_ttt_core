@@ -124,7 +124,7 @@ public class UserInterfaceTest {
     public void willShowGameTypeOptions() {
         createMockUserInput("");
         userInterface.displayGameChoiceMenu();
-        assertThat(outContent.toString(), containsString("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer"));
+        assertThat(outContent.toString(), containsString("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer \n 3) Computer vs Human \n 4) Computer vs Computer"));
     }
 
     @Test
