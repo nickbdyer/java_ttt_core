@@ -3,7 +3,6 @@ package com.company;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import static com.company.GameType.HvsH;
 import static com.company.Mark.EMPTY;
 
 public class UserInterface {
@@ -40,12 +39,7 @@ public class UserInterface {
 
     public GameType makeGameChoice() {
         displayGameChoiceMenu();
-        for (GameType type : GameType.values()) {
-            if (getGameChoice() == type.value) {
-              return type;
-            }
-        }
-        return HvsH;
+        return GameType.values()[getGameChoice() - 1];
     }
 
     private int getValidPosition(Board board) {
@@ -93,7 +87,7 @@ public class UserInterface {
     }
 
     private boolean validGameChoice(int choice) {
-        if (!isPositionInBounds(choice, 1, 2)) {
+        if (!isPositionInBounds(choice, 1, GameType.values().length)) {
             displayInvalidSelection();
             return false;
         }

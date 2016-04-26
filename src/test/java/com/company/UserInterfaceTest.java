@@ -131,7 +131,7 @@ public class UserInterfaceTest {
 
     @Test
     public void willValidateGameChoice() {
-        createMockUserInput("4 h 1");
+        createMockUserInput("7 h 1");
         userInterface.makeGameChoice();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
     }
