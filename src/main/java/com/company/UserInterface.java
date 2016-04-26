@@ -54,13 +54,11 @@ public class UserInterface {
     }
 
     private int getGameChoice() {
-        while (true) {
-            int number = getNumber();
-            if (validGameChoice(number)) {
-                continue;
-            }
-            return number;
-        }
+        int number;
+        do {
+            number = getNumber();
+        } while (!validGameChoice(number));
+        return number;
     }
 
     private int getNumber() {
@@ -94,9 +92,9 @@ public class UserInterface {
     private boolean validGameChoice(int choice) {
         if (!isPositionInBounds(choice, 1, 2)) {
             displayInvalidSelection();
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     private boolean isPositionInBounds(int number, int lowerBound, int upperBound) {

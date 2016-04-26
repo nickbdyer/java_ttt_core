@@ -4,18 +4,12 @@ import java.util.List;
 
 public class Game {
 
-    private Player player1;
-    private Player player2;
+    private List<Player> players;
     private Player currentPlayer;
 
-    public Game(Player player1, Player player2) {
-        this.player1 = currentPlayer = player1;
-        this.player2 = player2;
-    }
-
     public Game(List<Player> players) {
-        this.player1 = currentPlayer = players.get(0);
-        this.player2 = players.get(1);
+        this.players = players;
+        this.currentPlayer = players.get(0);
     }
 
     public void play(UserInterface userInterface, Board board) {
@@ -45,14 +39,10 @@ public class Game {
     }
 
     private void swapPlayers() {
-        if (currentPlayer == player1) {
-            currentPlayer = player2;
+        if (currentPlayer == players.get(0)) {
+            currentPlayer = players.get(1);
         } else {
-            currentPlayer = player1;
+            currentPlayer = players.get(0);
         }
-    }
-
-    public Player getCurrentPlayer() {
-        return currentPlayer;
     }
 }

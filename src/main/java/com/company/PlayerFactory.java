@@ -14,7 +14,9 @@ public class PlayerFactory {
             return Arrays.asList(new Human(X), new Human(O));
         } else if (option == 2) {
             return Arrays.asList(new Human(X), new DumbComputer(O));
-        }
+        } else if (option == 3) {
+            return Arrays.asList(new DumbComputer(X), new DumbComputer(O));
+    }
         return new ArrayList<>();
     }
 

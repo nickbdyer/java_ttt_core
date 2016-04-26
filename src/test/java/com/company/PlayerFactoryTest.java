@@ -19,4 +19,11 @@ public class PlayerFactoryTest {
         assertTrue(pfactory.create(2).get(0) instanceof Human);
         assertTrue(pfactory.create(2).get(1) instanceof DumbComputer);
     }
+
+    @Test
+    public void canCreateTwoComputerPlayers() {
+        PlayerFactory pfactory = new PlayerFactory();
+        assertTrue(pfactory.create(3).get(0) instanceof DumbComputer);
+        assertTrue(pfactory.create(3).get(1) instanceof DumbComputer);
+    }
 }
