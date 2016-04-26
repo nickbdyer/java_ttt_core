@@ -22,7 +22,7 @@ public class UserInterface {
         this.output = output;
     }
 
-    public void showBoard(Board board) {
+    public void displayBoard(Board board) {
         String liveboard = BOARDTEMPLATE;
         for (int i = 0; i < 9; i++) {
             if (board.getCells().get(i) == EMPTY) {
@@ -100,7 +100,7 @@ public class UserInterface {
         return (number >= lowerBound && number <= upperBound);
     }
 
-    private void displayMoveInstructions() {
+    public void displayMoveInstructions() {
         output.println("Please choose a number between 1-9");
     }
 
@@ -117,23 +117,23 @@ public class UserInterface {
         output.println("The computer player is thinking...");
     }
 
-    void displayGameChoiceMenu() {
+    public void displayGameChoiceMenu() {
         output.println("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer");
     }
 
-    private void displayInvalidInput() {
+    public void displayInvalidInput() {
         output.println("That is not a valid input");
     }
 
-    private void displayInvalidSelection() {
+    public void displayInvalidSelection() {
         output.println("That is not a valid selection");
     }
 
-    private void displayInvalidPosition() {
+    public void displayInvalidPosition() {
         output.println("That is not a valid position");
     }
 
-    private void displayPositionOccupied() {
+    public void displayPositionOccupied() {
         output.println("That cell is already marked, try again");
     }
 

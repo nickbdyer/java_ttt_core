@@ -12,7 +12,7 @@ public class UserInterfaceSpy extends UserInterface {
     }
 
     @Override
-    public void showBoard(Board board) {
+    public void displayBoard(Board board) {
         wasShowBoardCalled = true;
     }
 

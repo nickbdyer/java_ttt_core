@@ -14,7 +14,7 @@ public class Game {
 
     public void play(UserInterface userInterface, Board board) {
         while (!isOver(board)) {
-            userInterface.showBoard(board);
+            userInterface.displayBoard(board);
             promptTurn(board, userInterface);
         }
         endGame(board, userInterface);
@@ -30,7 +30,7 @@ public class Game {
     }
 
     private void endGame(Board board, UserInterface userInterface) {
-        userInterface.showBoard(board);
+        userInterface.displayBoard(board);
         if (board.isDraw()) {
             userInterface.displayDraw();
         } else {
