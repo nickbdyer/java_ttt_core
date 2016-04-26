@@ -9,8 +9,8 @@ public class Human implements Player {
     }
 
     @Override
-    public void markBoard(UserInterface ui, Board board) {
-        ui.makeMove(board, getMark());
+    public int choosePosition(UserInterface ui, Board board) {
+        return ui.getNumber();
     }
 
     public Mark getMark() {

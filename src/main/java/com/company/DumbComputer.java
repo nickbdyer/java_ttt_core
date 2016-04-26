@@ -12,9 +12,9 @@ public class DumbComputer implements Player {
     }
 
     @Override
-    public void markBoard(UserInterface userInterface, Board board) {
+    public int choosePosition(UserInterface userInterface, Board board) {
         userInterface.displayComputerThinking();
-        board.mark(generateMove(board.availableMoves()), getMark());
+        return generateMove(board.availableMoves());
     }
 
      private int generateMove(List<Integer> availableMoves) {

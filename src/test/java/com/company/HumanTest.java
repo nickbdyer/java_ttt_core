@@ -28,8 +28,7 @@ public class HumanTest {
     public void canMarkTheBoard() {
         Board board = new Board();
         UserInterface ui = new UserInterface(new Scanner("1"), new PrintStream(new ByteArrayOutputStream()));
-        nick.markBoard(ui, board);
-        assertEquals(X, board.getMarkAt(0));
+        assertEquals(1, nick.choosePosition(ui, board));
     }
 
 }

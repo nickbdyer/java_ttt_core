@@ -61,6 +61,34 @@ public class GameTest {
         assertEquals(O, board.getMarkAt(1));
     }
 
+    @Test
+    public void willRejectOutOfBoundsEntry() {
+        makeMultipleMoves(5, "23 1 4 2 5 3");
+        game.endGame(board, ui);
+        assertThat(outContent.toString(), containsString("That is not a valid position"));
+    }
+
+    @Test
+    public void willNotAllowAMarkedCellToBeMarked() {
+        makeMultipleMoves(5, "1 1 4 2 5 3");
+        game.endGame(board, ui);
+        assertThat(outContent.toString(), containsString("That is not a valid position"));
+    }
+
+    @Test
+    public void willShowWinningMessageX() {
+        makeMultipleMoves(5, "1 4 2 5 3");
+        game.endGame(board, ui);
+        assertThat(outContent.toString(), containsString("X has won!"));
+    }
+
+    @Test
+    public void willShowWinningMessageO() {
+        makeMultipleMoves(6, "1 4 2 5 8 6");
+        game.endGame(board, ui);
+        assertThat(outContent.toString(), containsString("O has won!"));
+    }
+
     private void makeMultipleMoves(int numberOfMoves, String positions) {
         ui = new UserInterface(new Scanner(positions), new PrintStream(outContent));
         for (int i=0;i<numberOfMoves;i++) {

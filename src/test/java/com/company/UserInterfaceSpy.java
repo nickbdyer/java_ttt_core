@@ -17,11 +17,6 @@ public class UserInterfaceSpy extends UserInterface {
     }
 
     @Override
-    public void makeMove(Board board, Mark mark) {
-        wasProcessMarkCalled = true;
-    }
-
-    @Override
     public void displayWinner(Board board) {
         wasAnnounceWinCalled = true;
     }

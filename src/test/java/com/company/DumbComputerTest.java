@@ -27,8 +27,7 @@ public class DumbComputerTest {
         Board board = new Board();
         leaveOneBoardCellEmpty(board);
 
-        hal9000.markBoard(ui, board);
-        assertEquals(O, board.getMarkAt(0));
+        assertEquals(0, hal9000.choosePosition(ui, board));
     }
 
     private void leaveOneBoardCellEmpty(Board board) {

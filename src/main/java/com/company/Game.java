@@ -16,9 +16,18 @@ public class Game {
         return board.hasWinner() || board.isDraw();
     }
 
-    public void promptTurn(Board board, UserInterface userInterface) {
-        currentPlayer.markBoard(userInterface, board);
+    public void promptTurn(Board board, UserInterface ui) {
+        board.mark(getValidPosition(ui, board), currentPlayer.getMark());
         swapPlayers();
+    }
+
+    private int getValidPosition(UserInterface ui, Board board) {
+        int position = currentPlayer.choosePosition(ui, board) - 1;
+        while (!board.availableMoves().contains(position)) {
+            ui.displayInvalidPosition();
+            position = currentPlayer.choosePosition(ui, board) - 1;
+        }
+        return position;
     }
 
     public void endGame(Board board, UserInterface userInterface) {

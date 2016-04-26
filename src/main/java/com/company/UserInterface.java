@@ -20,22 +20,12 @@ public class UserInterface {
         this.output = output;
     }
 
-    public void displayBoard(Board board) {
-        String liveboard = BOARDTEMPLATE;
-        for (int i = 0; i < 9; i++) {
-            if (board.getCells().get(i) == EMPTY) {
-                liveboard = liveboard.replaceFirst("#", Integer.toString(i + 1));
-            } else {
-                liveboard = liveboard.replaceFirst("#", String.valueOf(board.getCells().get(i)));
-            }
+    public int getNumber() {
+        while (!input.hasNextInt()) {
+            displayInvalidInput();
+            input.next();
         }
-        clearScreen();
-        output.println(liveboard);
-    }
-
-    public void makeMove(Board board, Mark mark) {
-        displayMoveInstructions();
-        board.mark(getValidPosition(board), mark);
+        return input.nextInt();
     }
 
     public GameType makeGameChoice() {
@@ -52,25 +42,21 @@ public class UserInterface {
         return number - 1;
     }
 
-    private int getNumber() {
-        while (!input.hasNextInt()) {
-            displayInvalidInput();
-            input.next();
-        }
-        return input.nextInt();
-    }
-
     private boolean validGameChoice(int choice) {
         return (choice >= 1 && choice <= GameType.values().length);
     }
 
-    private int getValidPosition(Board board) {
-        int position = getNumber() - 1;
-        while (!board.availableMoves().contains(position)) {
-            displayInvalidPosition();
-            position = getNumber() - 1;
+    public void displayBoard(Board board) {
+        String liveboard = BOARDTEMPLATE;
+        for (int i = 0; i < 9; i++) {
+            if (board.getCells().get(i) == EMPTY) {
+                liveboard = liveboard.replaceFirst("#", Integer.toString(i + 1));
+            } else {
+                liveboard = liveboard.replaceFirst("#", String.valueOf(board.getCells().get(i)));
+            }
         }
-        return position;
+        clearScreen();
+        output.println(liveboard);
     }
 
     public void displayMoveInstructions() {
@@ -110,7 +96,7 @@ public class UserInterface {
         output.println("Would you like to play again (y/n)?");
     }
 
-    public void clearScreen() {
+    private void clearScreen() {
         output.print("\033[H\033[2J");
         output.flush();
     }

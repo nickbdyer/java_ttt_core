@@ -5,15 +5,10 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.Scanner;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
-
-import static com.company.Mark.*;
 
 public class UserInterfaceTest {
 
@@ -41,70 +36,14 @@ public class UserInterfaceTest {
     }
 
     @Test
-    public void canProcessMark() {
-        BoardSpy board = new BoardSpy();
-        createMockUserInput("1");
-        userInterface.makeMove(board, X);
-        sc.close();
-        assertTrue(board.wasMarkCalled);
-    }
-
-    @Test
     public void willRejectNonDigitEntry() {
         createMockUserInput("g 1");
-        userInterface.makeMove(board, X);
+        userInterface.getNumber();
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
-        assertEquals(Arrays.asList(X, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
     }
 
-    @Test
-    public void willRejectOutOfBoundsEntry() {
-        createMockUserInput("23 5");
-        userInterface.makeMove(board, X);
-        sc.close();
-        assertThat(outContent.toString(), containsString("That is not a valid position"));
-        assertEquals(Arrays.asList(EMPTY, EMPTY, EMPTY, EMPTY, X, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
-    }
 
-    @Test
-    public void willNotAllowAMarkedCellToBeMarked() {
-        Board board = new Board();
-        createMockUserInput("1 1 2");
-        userInterface.makeMove(board, X);
-        userInterface.makeMove(board, O);
-        sc.close();
-        assertThat(outContent.toString(), containsString("That is not a valid position"));
-        assertEquals(Arrays.asList(X, O, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
-    }
-
-    @Test
-    public void willShowWinningMessageX() {
-        Board board = new Board();
-        createMockUserInput("1 4 2 5 3");
-        userInterface.makeMove(board, X);
-        userInterface.makeMove(board, O);
-        userInterface.makeMove(board, X);
-        userInterface.makeMove(board, O);
-        userInterface.makeMove(board, X);
-        sc.close();
-        userInterface.displayWinner(board);
-        assertThat(outContent.toString(), containsString("X has won!"));
-    }
-
-    @Test
-    public void willShowWinningMessageO() {
-        Board board = new Board();
-        createMockUserInput("1 4 2 5 3");
-        userInterface.makeMove(board, O);
-        userInterface.makeMove(board, X);
-        userInterface.makeMove(board, O);
-        userInterface.makeMove(board, X);
-        userInterface.makeMove(board, O);
-        sc.close();
-        userInterface.displayWinner(board);
-        assertThat(outContent.toString(), containsString("O has won!"));
-    }
 
     @Test
     public void willShowDrawMessage() {

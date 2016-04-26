@@ -2,7 +2,7 @@ package com.company;
 
 public interface Player {
 
-    void markBoard(UserInterface userInterface, Board board);
+    int choosePosition(UserInterface userInterface, Board board);
 
     Mark getMark();
 
