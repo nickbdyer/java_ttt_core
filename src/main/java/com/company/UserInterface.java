@@ -45,12 +45,11 @@ public class UserInterface {
     }
 
     private int getValidPosition(Board board) {
-        while (true) {
-            int position = getNumber();
-            if (outOfBounds(board, position) || alreadyMarked(board, position))
-                continue;
-            return position - 1;
-        }
+        int position;
+        do {
+            position = getNumber();
+        } while (outOfBounds(board, position) || alreadyMarked(board, position));
+        return position - 1;
     }
 
     private int getGameChoice() {
