@@ -67,9 +67,8 @@ public class GameTest {
     public void gameKnowsWhosTurnItIs() {
         Game game = new Game(new PlayerFactory().create(1));
         Board board = new Board();
-        UserInterface ui = new UserInterface(new Scanner("1 2"), new PrintStream(outContent));
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
+        UserInterface ui = new UserInterface(new Scanner("1 2 4 5 7"), new PrintStream(outContent));
+        game.play(ui, board);
         assertEquals(X, board.getMarkAt(0));
         assertEquals(O, board.getMarkAt(1));
     }

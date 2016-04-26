@@ -24,7 +24,7 @@ public class Game {
         return board.hasWinner() || board.isDraw();
     }
 
-    public void promptTurn(Board board, UserInterface userInterface) {
+    private void promptTurn(Board board, UserInterface userInterface) {
         currentPlayer.markBoard(userInterface, board);
         swapPlayers();
     }
