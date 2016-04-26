@@ -61,39 +61,16 @@ public class UserInterface {
     }
 
     private boolean validGameChoice(int choice) {
-        return isPositionInBounds(choice, 1, GameType.values().length);
+        return (choice >= 1 && choice <= GameType.values().length);
     }
 
     private int getValidPosition(Board board) {
-        int position;
-        do {
-            position = getNumber();
-        } while (outOfBounds(board, position) || alreadyMarked(board, position));
-        return position - 1;
-    }
-
-    private boolean outOfBounds(Board board, int number) {
-        if (!isPositionInBounds(number, 1, board.getCells().size())) {
+        int position = getNumber() - 1;
+        while (!board.availableMoves().contains(position)) {
             displayInvalidPosition();
-            return true;
+            position = getNumber() - 1;
         }
-        return false;
-    }
-
-    private boolean alreadyMarked(Board board, int position) {
-        if (!isPositionMarkable(position - 1, board)) {
-            displayPositionOccupied();
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isPositionMarkable(int position, Board board) {
-        return (board.isEmptyCell(position));
-    }
-
-    private boolean isPositionInBounds(int number, int lowerBound, int upperBound) {
-        return (number >= lowerBound && number <= upperBound);
+        return position;
     }
 
     public void displayMoveInstructions() {
@@ -127,10 +104,6 @@ public class UserInterface {
 
     public void displayInvalidPosition() {
         output.println("That is not a valid position");
-    }
-
-    public void displayPositionOccupied() {
-        output.println("That cell is already marked, try again");
     }
 
     public void displayReplayQuery() {

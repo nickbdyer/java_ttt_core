@@ -74,7 +74,7 @@ public class UserInterfaceTest {
         userInterface.makeMove(board, X);
         userInterface.makeMove(board, O);
         sc.close();
-        assertThat(outContent.toString(), containsString("That cell is already marked, try again"));
+        assertThat(outContent.toString(), containsString("That is not a valid position"));
         assertEquals(Arrays.asList(X, O, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
     }
 
