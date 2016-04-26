@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import static com.company.GameType.HvsH;
 import static com.company.Mark.O;
 import static com.company.Mark.X;
 import static junit.framework.TestCase.assertTrue;
@@ -23,7 +24,7 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        game = new Game(new PlayerFactory().create(1));
+        game = new Game(new PlayerFactory().create(HvsH));
         board = new Board();
     }
 

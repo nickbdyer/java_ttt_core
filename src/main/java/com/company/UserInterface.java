@@ -3,6 +3,7 @@ package com.company;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import static com.company.GameType.HvsH;
 import static com.company.Mark.EMPTY;
 
 public class UserInterface {
@@ -37,9 +38,14 @@ public class UserInterface {
         board.mark(getValidPosition(board), mark);
     }
 
-    public int makeGameChoice() {
+    public GameType makeGameChoice() {
         displayGameChoiceMenu();
-        return getGameChoice();
+        for (GameType type : GameType.values()) {
+            if (getGameChoice() == type.value) {
+              return type;
+            }
+        }
+        return HvsH;
     }
 
     private int getValidPosition(Board board) {

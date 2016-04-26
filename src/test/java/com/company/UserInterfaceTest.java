@@ -8,13 +8,14 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static com.company.Mark.EMPTY;
-import static com.company.Mark.O;
-import static com.company.Mark.X;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
+
+import static com.company.Mark.EMPTY;
+import static com.company.Mark.O;
+import static com.company.Mark.X;
 
 public class UserInterfaceTest {
 

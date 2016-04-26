@@ -2,28 +2,31 @@ package com.company;
 
 import org.junit.Test;
 
+import java.util.List;
+
+import static com.company.GameType.*;
 import static org.junit.Assert.assertTrue;
 
 public class PlayerFactoryTest {
 
     @Test
     public void canCreateTwoHumanPlayers() {
-        PlayerFactory pfactory = new PlayerFactory();
-        assertTrue(pfactory.create(1).get(0) instanceof Human);
-        assertTrue(pfactory.create(1).get(1) instanceof Human);
+        List<Player> players = new PlayerFactory().create(HvsH);
+        assertTrue(players.get(0) instanceof Human);
+        assertTrue(players.get(1) instanceof Human);
     }
 
     @Test
     public void canCreateAHumanAndComputerPlayer() {
-        PlayerFactory pfactory = new PlayerFactory();
-        assertTrue(pfactory.create(2).get(0) instanceof Human);
-        assertTrue(pfactory.create(2).get(1) instanceof DumbComputer);
+        List<Player> players = new PlayerFactory().create(HvsAi);
+        assertTrue(players.get(0) instanceof Human);
+        assertTrue(players.get(1) instanceof DumbComputer);
     }
 
     @Test
     public void canCreateTwoComputerPlayers() {
-        PlayerFactory pfactory = new PlayerFactory();
-        assertTrue(pfactory.create(3).get(0) instanceof DumbComputer);
-        assertTrue(pfactory.create(3).get(1) instanceof DumbComputer);
+        List<Player> players = new PlayerFactory().create(AivsAi);
+        assertTrue(players.get(0) instanceof DumbComputer);
+        assertTrue(players.get(1) instanceof DumbComputer);
     }
 }

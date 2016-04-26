@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.company.Mark.O;
-import static com.company.Mark.X;
+import static com.company.GameType.*;
+import static com.company.Mark.*;
 
 public class PlayerFactory {
 
-    public List<Player> create(int option) {
-        if (option == 1) {
+    public List<Player> create(GameType type) {
+        if (type == HvsH) {
             return Arrays.asList(new Human(X), new Human(O));
-        } else if (option == 2) {
+        } else if (type == HvsAi) {
             return Arrays.asList(new Human(X), new DumbComputer(O));
-        } else if (option == 3) {
+        } else if (type == AivsAi) {
             return Arrays.asList(new DumbComputer(X), new DumbComputer(O));
     }
         return new ArrayList<>();
