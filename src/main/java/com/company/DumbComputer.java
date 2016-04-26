@@ -19,7 +19,12 @@ public class DumbComputer implements Player {
 
      private int generateMove(List<Integer> availableMoves) {
         Collections.shuffle(availableMoves);
-        return availableMoves.get(0);
+         try {
+             Thread.sleep(1000);
+         } catch (InterruptedException e) {
+             Thread.currentThread().interrupt();
+         }
+         return availableMoves.get(0);
     }
 
     public Mark getMark() {

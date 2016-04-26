@@ -29,6 +29,7 @@ public class UserInterface {
                 liveboard = liveboard.replaceFirst("#", String.valueOf(board.getCells().get(i)));
             }
         }
+        clearScreen();
         output.println(liveboard);
     }
 
@@ -134,5 +135,10 @@ public class UserInterface {
 
     public void displayReplayQuery() {
         output.println("Would you like to play again (y/n)?");
+    }
+
+    public void clearScreen() {
+        output.print("\033[H\033[2J");
+        output.flush();
     }
 }
