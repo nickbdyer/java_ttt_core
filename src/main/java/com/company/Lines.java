@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static com.company.Player.*;
-import static com.company.Player.Mark.EMPTY;
+import static com.company.Mark.EMPTY;
+
 
 class Lines {
 

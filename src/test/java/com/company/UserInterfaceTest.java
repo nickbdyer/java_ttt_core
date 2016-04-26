@@ -8,9 +8,9 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static com.company.Player.Mark.EMPTY;
-import static com.company.Player.Mark.O;
-import static com.company.Player.Mark.X;
+import static com.company.Mark.EMPTY;
+import static com.company.Mark.O;
+import static com.company.Mark.X;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.containsString;

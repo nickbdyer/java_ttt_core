@@ -3,11 +3,9 @@ package com.company;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.company.Player.Mark.O;
-import static com.company.Player.Mark.X;
+import static com.company.Mark.O;
+import static com.company.Mark.X;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class DumbComputerTest {
 

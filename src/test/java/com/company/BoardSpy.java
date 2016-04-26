@@ -7,7 +7,7 @@ public class BoardSpy extends Board {
     private boolean isADraw;
 
     @Override
-    public void mark(int position, Player.Mark mark) {
+    public void mark(int position, Mark mark) {
         wasMarkCalled = true;
     }
 

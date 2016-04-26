@@ -7,8 +7,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import static com.company.Player.Mark.O;
-import static com.company.Player.Mark.X;
+import static com.company.Mark.O;
+import static com.company.Mark.X;
 import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;

@@ -1,11 +1,9 @@
 package com.company;
 
-import com.company.Player.Mark;
-
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import static com.company.Player.Mark.EMPTY;
+import static com.company.Mark.EMPTY;
 
 public class UserInterface {
 

@@ -1,11 +1,9 @@
 package com.company;
 
-import com.company.Player.Mark;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.company.Player.Mark.EMPTY;
+import static com.company.Mark.EMPTY;
 
 public class Board {
 

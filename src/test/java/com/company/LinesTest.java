@@ -6,9 +6,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static com.company.Player.*;
-import static com.company.Player.Mark.*;
-import static com.company.Player.Mark.EMPTY;
+import static com.company.Mark.EMPTY;
+import static com.company.Mark.X;
 import static junit.framework.TestCase.assertEquals;
 
 public class LinesTest {

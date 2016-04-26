@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.company.Player.Mark.O;
-import static com.company.Player.Mark.X;
+import static com.company.Mark.O;
+import static com.company.Mark.X;
 
 public class PlayerFactory {
 

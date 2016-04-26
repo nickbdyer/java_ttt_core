@@ -5,9 +5,9 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static com.company.Player.Mark.EMPTY;
-import static com.company.Player.Mark.O;
-import static com.company.Player.Mark.X;
+import static com.company.Mark.EMPTY;
+import static com.company.Mark.O;
+import static com.company.Mark.X;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
