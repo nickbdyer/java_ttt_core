@@ -18,89 +18,52 @@ public class GameTest {
 
     private Game game;
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private UserInterfaceSpy ui;
-    private BoardSpy board;
+    private Board board;
+    private UserInterface ui;
 
     @Before
     public void setUp() {
         game = new Game(new PlayerFactory().create(1));
-        ui = new UserInterfaceSpy();
-        board = new BoardSpy();
+        board = new Board();
     }
 
     @Test
     public void canStartItself() {
-        Game game = new Game(new PlayerFactory().create(1));
-        Board board = new Board();
-        UserInterface ui = new UserInterface(new Scanner("1 2 4 5 7"), new PrintStream(outContent));
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
+        makeMultipleMoves(5, "1 2 4 5 7");
         assertTrue(game.isOver(board));
     }
 
     @Test
     public void knowsWhenTheGameIsOverDueToDraw() {
-        Game game = new Game(new PlayerFactory().create(1));
-        Board board = new Board();
-        UserInterface ui = new UserInterface(new Scanner("1 2 4 5 8 7 3 6 9"), new PrintStream(outContent));
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
+        makeMultipleMoves(9, "1 2 4 5 8 7 3 6 9");
         assertTrue(game.isOver(board));
     }
 
     @Test
     public void gameWillCallDrawGameOverStatement() {
-        Game game = new Game(new PlayerFactory().create(1));
-        Board board = new Board();
-        UserInterface ui = new UserInterface(new Scanner("1 2 4 5 8 7 3 6 9"), new PrintStream(outContent));
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
+        makeMultipleMoves(9, "1 2 4 5 8 7 3 6 9");
         game.endGame(board,ui);
         assertThat(outContent.toString(), containsString("It's a Draw!"));
     }
 
     @Test
     public void gameWillCallWinGameOverStatement() {
-        Game game = new Game(new PlayerFactory().create(1));
-        Board board = new Board();
-        UserInterface ui = new UserInterface(new Scanner("1 2 4 5 7"), new PrintStream(outContent));
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
+        makeMultipleMoves(5, "1 2 4 5 7");
         game.endGame(board,ui);
         assertThat(outContent.toString(), containsString("X has won!"));
     }
 
     @Test
     public void gameKnowsWhosTurnItIs() {
-        Game game = new Game(new PlayerFactory().create(1));
-        Board board = new Board();
-        UserInterface ui = new UserInterface(new Scanner("1 2 4 5 7"), new PrintStream(outContent));
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
-        game.promptTurn(board, ui);
+        makeMultipleMoves(5, "1 2 4 5 7");
         assertEquals(X, board.getMarkAt(0));
         assertEquals(O, board.getMarkAt(1));
+    }
+
+    private void makeMultipleMoves(int numberOfMoves, String positions) {
+        ui = new UserInterface(new Scanner(positions), new PrintStream(outContent));
+        for (int i=0;i<numberOfMoves;i++) {
+            game.promptTurn(board, ui);
+        }
     }
 }
