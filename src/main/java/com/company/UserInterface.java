@@ -39,23 +39,16 @@ public class UserInterface {
 
     public GameType makeGameChoice() {
         displayGameChoiceMenu();
-        return GameType.values()[getGameChoice() - 1];
-    }
-
-    private int getValidPosition(Board board) {
-        int position;
-        do {
-            position = getNumber();
-        } while (outOfBounds(board, position) || alreadyMarked(board, position));
-        return position - 1;
+        return GameType.values()[getGameChoice()];
     }
 
     private int getGameChoice() {
-        int number;
-        do {
+        int number = getNumber();
+        while (!validGameChoice(number)) {
+            displayInvalidSelection();
             number = getNumber();
-        } while (!validGameChoice(number));
-        return number;
+        }
+        return number - 1;
     }
 
     private int getNumber() {
@@ -64,6 +57,18 @@ public class UserInterface {
             input.next();
         }
         return input.nextInt();
+    }
+
+    private boolean validGameChoice(int choice) {
+        return isPositionInBounds(choice, 1, GameType.values().length);
+    }
+
+    private int getValidPosition(Board board) {
+        int position;
+        do {
+            position = getNumber();
+        } while (outOfBounds(board, position) || alreadyMarked(board, position));
+        return position - 1;
     }
 
     private boolean outOfBounds(Board board, int number) {
@@ -84,14 +89,6 @@ public class UserInterface {
 
     private boolean isPositionMarkable(int position, Board board) {
         return (board.isEmptyCell(position));
-    }
-
-    private boolean validGameChoice(int choice) {
-        if (!isPositionInBounds(choice, 1, GameType.values().length)) {
-            displayInvalidSelection();
-            return false;
-        }
-        return true;
     }
 
     private boolean isPositionInBounds(int number, int lowerBound, int upperBound) {

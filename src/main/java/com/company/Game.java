@@ -12,7 +12,6 @@ public class Game {
         this.currentPlayer = players.get(0);
     }
 
-
     public boolean isOver(Board board) {
         return board.hasWinner() || board.isDraw();
     }

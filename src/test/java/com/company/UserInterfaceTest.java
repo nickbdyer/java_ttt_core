@@ -13,9 +13,7 @@ import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 
-import static com.company.Mark.EMPTY;
-import static com.company.Mark.O;
-import static com.company.Mark.X;
+import static com.company.Mark.*;
 
 public class UserInterfaceTest {
 
