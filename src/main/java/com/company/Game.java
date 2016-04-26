@@ -15,7 +15,7 @@ public class Game {
     public void play(UserInterface userInterface, Board board) {
         while (!isOver(board)) {
             userInterface.showBoard(board);
-            promptTurn(currentPlayer, board, userInterface);
+            promptTurn(board, userInterface);
         }
         endGame(board, userInterface);
     }
@@ -24,8 +24,8 @@ public class Game {
         return board.hasWinner() || board.isDraw();
     }
 
-    public void promptTurn(Player player, Board board, UserInterface userInterface) {
-        player.markBoard(userInterface, board);
+    public void promptTurn(Board board, UserInterface userInterface) {
+        currentPlayer.markBoard(userInterface, board);
         swapPlayers();
     }
 

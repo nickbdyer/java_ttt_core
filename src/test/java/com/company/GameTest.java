@@ -63,9 +63,14 @@ public class GameTest {
         assertTrue(ui.wasAnnounceWinCalled);
     }
 
-//    @Test
-//    public void gameKnowsWhosTurnItIs() {
-//        game.promptTurn(game.getCurrentPlayer(), board, ui);
-//        assertEquals(player2, game.getCurrentPlayer());
-//    }
+    @Test
+    public void gameKnowsWhosTurnItIs() {
+        Game game = new Game(new PlayerFactory().create(1));
+        Board board = new Board();
+        UserInterface ui = new UserInterface(new Scanner("1 2"), new PrintStream(outContent));
+        game.promptTurn(board, ui);
+        game.promptTurn(board, ui);
+        assertEquals(X, board.getMarkAt(0));
+        assertEquals(O, board.getMarkAt(1));
+    }
 }
