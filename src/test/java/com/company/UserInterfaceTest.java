@@ -134,4 +134,12 @@ public class UserInterfaceTest {
         userInterface.makeGameChoice();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
     }
+
+    @Test
+    public void willAskForReplay() {
+        createMockUserInput("");
+        userInterface.displayReplayQuery();
+        assertThat(outContent.toString(), containsString("Would you like to play again (y/n)?"));
+
+    }
 }

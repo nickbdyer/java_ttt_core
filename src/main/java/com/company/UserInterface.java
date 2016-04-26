@@ -137,4 +137,7 @@ public class UserInterface {
         output.println("That cell is already marked, try again");
     }
 
+    public void displayReplayQuery() {
+        output.println("Would you like to play again (y/n)?");
+    }
 }
