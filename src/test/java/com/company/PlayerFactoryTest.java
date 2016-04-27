@@ -24,6 +24,13 @@ public class PlayerFactoryTest {
     }
 
     @Test
+    public void canCreateAComputerAndHumanPlayer() {
+        List<Player> players = new PlayerFactory().create(AivsH);
+        assertTrue(players.get(0) instanceof DumbComputer);
+        assertTrue(players.get(1) instanceof Human);
+    }
+
+    @Test
     public void canCreateTwoComputerPlayers() {
         List<Player> players = new PlayerFactory().create(AivsAi);
         assertTrue(players.get(0) instanceof DumbComputer);
