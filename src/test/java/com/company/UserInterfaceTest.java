@@ -69,12 +69,12 @@ public class UserInterfaceTest {
     public void willShowGameTypeOptions() {
         createMockUserInput("");
         userInterface.displayGameChoiceMenu();
-        assertThat(outContent.toString(), containsString("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer \n 3) Computer vs Human \n 4) Computer vs Computer"));
+        assertThat(outContent.toString(), containsString("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer \n 3) Computer vs Human \n 4) Computer vs Computer \n 5) Human vs Perfect Computer \n 6) Perfect Computer vs Human \n 7) Perfect Computer vs Perfect Computer \n"));
     }
 
     @Test
     public void willValidateGameChoice() {
-        createMockUserInput("7 h 1");
+        createMockUserInput("9 h 1");
         userInterface.makeGameChoice();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
     }

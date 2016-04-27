@@ -4,5 +4,8 @@ public enum GameType {
     HvsH,
     HvsAi,
     AivsH,
-    AivsAi
+    AivsAi,
+    HvsPAi,
+    PAivsH,
+    PAivsPAi
 }

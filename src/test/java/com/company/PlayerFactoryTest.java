@@ -36,4 +36,25 @@ public class PlayerFactoryTest {
         assertTrue(players.get(0) instanceof DumbComputer);
         assertTrue(players.get(1) instanceof DumbComputer);
     }
+
+    @Test
+    public void canCreateAHumanAndPerfectComputerPlayer() {
+        List<Player> players = new PlayerFactory().create(HvsPAi);
+        assertTrue(players.get(0) instanceof Human);
+        assertTrue(players.get(1) instanceof PerfectComputer);
+    }
+
+    @Test
+    public void canCreateAPerfectComputerAndHumanPlayer() {
+        List<Player> players = new PlayerFactory().create(PAivsH);
+        assertTrue(players.get(0) instanceof PerfectComputer);
+        assertTrue(players.get(1) instanceof Human);
+    }
+
+    @Test
+    public void canCreateTwoPerfectComputerPlayers() {
+        List<Player> players = new PlayerFactory().create(PAivsPAi);
+        assertTrue(players.get(0) instanceof PerfectComputer);
+        assertTrue(players.get(1) instanceof PerfectComputer);
+    }
 }

@@ -90,7 +90,7 @@ public class UserInterface {
     }
 
     public void displayGameChoiceMenu() {
-        output.println("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer \n 3) Computer vs Human \n 4) Computer vs Computer");
+        output.println("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer \n 3) Computer vs Human \n 4) Computer vs Computer \n 5) Human vs Perfect Computer \n 6) Perfect Computer vs Human \n 7) Perfect Computer vs Perfect Computer \n");
     }
 
     public void displayInvalidInput() {

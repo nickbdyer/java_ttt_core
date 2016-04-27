@@ -18,6 +18,12 @@ public class PlayerFactory {
             return Arrays.asList(new DumbComputer(X), new Human(O));
         } else if (type == AivsAi) {
             return Arrays.asList(new DumbComputer(X), new DumbComputer(O));
+        } else if (type == HvsPAi) {
+            return Arrays.asList(new Human(X), new PerfectComputer(O));
+        } else if (type == PAivsH) {
+            return Arrays.asList(new PerfectComputer(X), new Human(O));
+        } else if (type == PAivsPAi) {
+            return Arrays.asList(new PerfectComputer(X), new PerfectComputer(O));
         } else {
             throw new RuntimeException("That is not a game type");
         }
