@@ -28,6 +28,23 @@ public class UserInterface {
         return input.nextInt() - 1;
     }
 
+    private String getString() {
+        while (!input.hasNext()) {
+            displayInvalidInput();
+            input.next();
+        }
+        return input.next();
+    }
+
+    public String getYorN() {
+        String letter = getString();
+        while (!letter.equals("y") && !letter.equals("n")) {
+            displayInvalidInput();
+            letter = getString();
+        }
+        return letter;
+    }
+
     public GameType makeGameChoice() {
         displayGameChoiceMenu();
         return GameType.values()[getGameChoice()];
@@ -99,5 +116,9 @@ public class UserInterface {
     private void clearScreen() {
         output.print("\033[H\033[2J");
         output.flush();
+    }
+
+    public void displayResetNotice() {
+        output.println("Resetting game board!");
     }
 }

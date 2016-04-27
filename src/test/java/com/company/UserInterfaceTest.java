@@ -43,7 +43,13 @@ public class UserInterfaceTest {
         assertThat(outContent.toString(), containsString("That is not a valid input"));
     }
 
-
+    @Test
+    public void willRejectNonYNEntry() {
+        createMockUserInput("g 1 24 n");
+        userInterface.getYorN();
+        sc.close();
+        assertThat(outContent.toString(), containsString("That is not a valid input"));
+    }
 
     @Test
     public void willShowDrawMessage() {
@@ -78,6 +84,14 @@ public class UserInterfaceTest {
         createMockUserInput("");
         userInterface.displayReplayQuery();
         assertThat(outContent.toString(), containsString("Would you like to play again (y/n)?"));
+
+    }
+
+    @Test
+    public void willAnnounceRestart() {
+        createMockUserInput("");
+        userInterface.displayResetNotice();
+        assertThat(outContent.toString(), containsString("Resetting game board!"));
 
     }
 }
