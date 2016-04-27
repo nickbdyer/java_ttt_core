@@ -29,10 +29,6 @@ public class UserInterface {
     }
 
     private String getString() {
-        while (!input.hasNext()) {
-            displayInvalidInput();
-            input.next();
-        }
         return input.next();
     }
 
