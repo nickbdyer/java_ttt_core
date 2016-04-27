@@ -37,7 +37,10 @@ public class Board {
     }
 
     public Mark getWinningMark() {
-        return new Lines(cells).winner().get();
+        if (hasWinner()) {
+            return new Lines(cells).winner().get();
+        }
+        return EMPTY;
     }
 
     public boolean isFull() {
