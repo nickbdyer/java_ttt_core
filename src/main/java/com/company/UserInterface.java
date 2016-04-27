@@ -39,11 +39,11 @@ public class UserInterface {
             displayInvalidSelection();
             number = getNumber();
         }
-        return number - 1;
+        return number;
     }
 
     private boolean validGameChoice(int choice) {
-        return (choice >= 1 && choice <= GameType.values().length);
+        return (choice >= 0 && choice < GameType.values().length);
     }
 
     public void displayBoard(Board board) {
