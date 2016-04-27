@@ -15,7 +15,7 @@ public class GameEngineTest {
     public void canPlayGameThrough() {
         GameEngine engine = new GameEngine();
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        UserInterface ui = new UserInterface(new Scanner("1 1 2 4 5 7"), new PrintStream(outContent));
+        UserInterface ui = new UserInterface(new Scanner("1 1 2 4 5 7 n"), new PrintStream(outContent));
         engine.start(ui);
         assertThat(outContent.toString(), containsString("Would you like to play again (y/n)?"));
     }

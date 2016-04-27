@@ -8,7 +8,17 @@ public class GameEngine {
             game.promptTurn(board, ui);
         }
         game.endGame(board, ui);
+        gameRestart(ui);
+    }
+
+    private void gameRestart(UserInterface ui) {
         ui.displayReplayQuery();
+        if (ui.getYorN().equals("y")) {
+            ui.displayResetNotice();
+            start(ui);
+        } else {
+            System.out.println("Goodbye");
+        }
     }
 
 }
