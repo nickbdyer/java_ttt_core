@@ -14,6 +14,6 @@ public class PerfectComputerTest {
         PerfectComputer tron = new PerfectComputer(X);
         UserInterfaceSpy ui = new UserInterfaceSpy();
         Board board = new Board();
-        assertTrue(Arrays.asList(1, 3, 7, 9).contains(tron.choosePosition(ui, board)));
+        assertTrue(Arrays.asList(0, 2, 6, 8).contains(tron.choosePosition(ui, board)));
     }
 }

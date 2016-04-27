@@ -9,12 +9,12 @@ public class PerfectComputer implements Player{
     }
 
     @Override
-    public int choosePosition(UserInterface userInterface, Board board) {
-        return 1;
+    public Mark getMark() {
+        return mark;
     }
 
     @Override
-    public Mark getMark() {
-        return mark;
+    public int choosePosition(UserInterface userInterface, Board board) {
+        return 0;
     }
 }
