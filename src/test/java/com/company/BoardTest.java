@@ -133,4 +133,10 @@ public class BoardTest {
         board.mark(8, O);
         assertEquals(O, board.getWinningMark());
     }
+
+    @Test
+    public void knowsIfBoardIsEmpty() {
+        Board board = new Board();
+        assertTrue(board.isEmpty());
+    }
 }

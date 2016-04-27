@@ -65,4 +65,8 @@ public class Board {
         }
         return availableMoves;
     }
+
+    public boolean isEmpty() {
+        return (availableMoves().size() == cells.size());
+    }
 }
