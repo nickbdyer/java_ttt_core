@@ -12,8 +12,8 @@ public class DumbComputer implements Player {
     }
 
     @Override
-    public int choosePosition(UserInterface userInterface, Board board) {
-        userInterface.displayComputerThinking();
+    public int choosePosition(UserInterface ui, Board board) {
+        ui.displayComputerThinking();
         return generateMove(board.availableMoves());
     }
 

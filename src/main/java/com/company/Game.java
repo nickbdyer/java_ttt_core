@@ -12,31 +12,32 @@ public class Game {
         this.currentPlayer = players.get(0);
     }
 
-    public boolean isOver(Board board) {
-        return board.hasWinner() || board.isDraw();
-    }
-
     public void promptTurn(Board board, UserInterface ui) {
+        ui.displayBoard(board);
         board.mark(getValidPosition(ui, board), currentPlayer.getMark());
         swapPlayers();
     }
 
     private int getValidPosition(UserInterface ui, Board board) {
-        int position = currentPlayer.choosePosition(ui, board) - 1;
+        int position = currentPlayer.choosePosition(ui, board);
         while (!board.availableMoves().contains(position)) {
             ui.displayInvalidPosition();
-            position = currentPlayer.choosePosition(ui, board) - 1;
+            position = currentPlayer.choosePosition(ui, board);
         }
         return position;
     }
 
-    public void endGame(Board board, UserInterface userInterface) {
-        userInterface.displayBoard(board);
+    public void endGame(Board board, UserInterface ui) {
+        ui.displayBoard(board);
         if (board.isDraw()) {
-            userInterface.displayDraw();
+            ui.displayDraw();
         } else {
-            userInterface.displayWinner(board);
+            ui.displayWinner(board);
         }
+    }
+
+    public boolean isOver(Board board) {
+        return board.hasWinner() || board.isDraw();
     }
 
     private void swapPlayers() {

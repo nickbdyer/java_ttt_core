@@ -25,7 +25,7 @@ public class UserInterface {
             displayInvalidInput();
             input.next();
         }
-        return input.nextInt();
+        return input.nextInt() - 1;
     }
 
     public GameType makeGameChoice() {

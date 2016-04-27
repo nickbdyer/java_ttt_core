@@ -5,7 +5,6 @@ public class GameEngine {
         Game game = new Game(new PlayerFactory().create(ui.makeGameChoice()));
         Board board = new Board();
         while (!game.isOver(board)) {
-            ui.displayBoard(board);
             game.promptTurn(board, ui);
         }
         game.endGame(board, ui);
