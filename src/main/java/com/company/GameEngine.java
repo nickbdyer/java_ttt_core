@@ -17,7 +17,7 @@ public class GameEngine {
             ui.displayResetNotice();
             start(ui);
         } else {
-            System.out.println("Goodbye");
+            return;
         }
     }
 
