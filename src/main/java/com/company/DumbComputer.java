@@ -19,11 +19,6 @@ public class DumbComputer implements Player {
 
      private int generateMove(List<Integer> availableMoves) {
         Collections.shuffle(availableMoves);
-//         try {
-//             Thread.sleep(1000);
-//         } catch (InterruptedException e) {
-//             Thread.currentThread().interrupt();
-//         }
          return availableMoves.get(0);
     }
 
