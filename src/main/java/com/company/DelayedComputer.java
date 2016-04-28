@@ -3,21 +3,18 @@ package com.company;
 public class DelayedComputer implements Player {
 
     private int delay;
+    private Delayer delayer;
     private Player player;
 
-    public DelayedComputer(Player player, int delay) {
+    public DelayedComputer(Player player, Delayer delayer, int delay) {
         this.player = player;
+        this.delayer = delayer;
         this.delay = delay;
     }
 
     @Override
     public int choosePosition(UserInterface ui, Board board) {
-        try {
-            Thread.sleep(delay);
-            ui.displayComputerThinking();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        delayer.sleep(delay);
         return player.choosePosition(ui, board);
     }
 
