@@ -1,11 +1,12 @@
 package com.company;
 
-public class DelayedComputer extends DumbComputer {
+public class DelayedComputer implements Player {
 
     private int delay;
+    private Player player;
 
-    public DelayedComputer(Mark mark, int delay) {
-        super(mark);
+    public DelayedComputer(Player player, int delay) {
+        this.player = player;
         this.delay = delay;
     }
 
@@ -13,9 +14,14 @@ public class DelayedComputer extends DumbComputer {
     public int choosePosition(UserInterface ui, Board board) {
         try {
             Thread.sleep(delay);
+            ui.displayComputerThinking();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        return super.choosePosition(ui, board);
+        return player.choosePosition(ui, board);
+    }
+
+    public Mark getMark() {
+        return player.getMark();
     }
 }

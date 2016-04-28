@@ -16,7 +16,8 @@ public class DelayedComputerTest {
     public void canGenerateMove() {
         UserInterface ui = new UserInterface(new Scanner(""), new PrintStream(new ByteArrayOutputStream()));
         Board board = new Board();
-        DelayedComputer delayedComputer = new DelayedComputer(X,0);
+        DumbComputer dumbComputer = new DumbComputer(X);
+        DelayedComputer delayedComputer = new DelayedComputer(dumbComputer,0);
         delayedComputer.choosePosition(ui, board);
         assertTrue(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8).contains(delayedComputer.choosePosition(ui, board)));
     }
