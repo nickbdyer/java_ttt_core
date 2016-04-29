@@ -1,5 +1,7 @@
-package com.company;
+package com.company.players;
 
+import com.company.Player;
+import com.company.players.*;
 import org.junit.Test;
 
 import java.util.List;

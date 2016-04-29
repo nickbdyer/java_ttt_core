@@ -1,5 +1,7 @@
-package com.company;
+package com.company.players;
 
+import com.company.Board;
+import com.company.UserInterface;
 import org.junit.Before;
 import org.junit.Test;
 

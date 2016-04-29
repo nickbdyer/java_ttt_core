@@ -1,11 +1,16 @@
-package com.company;
+package com.company.players;
+
+import com.company.Board;
+import com.company.Mark;
+import com.company.Player;
+import com.company.UserInterface;
 
 import java.util.*;
 import java.util.Map.Entry;
 
 import static com.company.Mark.*;
 
-public class PerfectComputer implements Player{
+public class PerfectComputer implements Player {
 
     private Mark mark;
     private Map<Integer, Double> scoredMoves;

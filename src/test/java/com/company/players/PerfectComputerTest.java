@@ -1,5 +1,9 @@
-package com.company;
+package com.company.players;
 
+import com.company.Board;
+import com.company.Mark;
+import com.company.UserInterfaceSpy;
+import com.company.players.PerfectComputer;
 import org.junit.Before;
 import org.junit.Test;
 

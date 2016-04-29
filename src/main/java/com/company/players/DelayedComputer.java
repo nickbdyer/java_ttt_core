@@ -1,4 +1,6 @@
-package com.company;
+package com.company.players;
+
+import com.company.*;
 
 public class DelayedComputer implements Player {
 

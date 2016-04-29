@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.players.PlayerFactory;
+
 public class GameEngine {
     public void start(UserInterface ui) {
         Game game = new Game(new PlayerFactory().create(ui.makeGameChoice()));

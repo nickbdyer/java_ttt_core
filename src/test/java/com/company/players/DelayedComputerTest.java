@@ -1,5 +1,11 @@
-package com.company;
+package com.company.players;
 
+import com.company.Board;
+import com.company.UserInterface;
+import com.company.delayers.MockDelayer;
+import com.company.players.DelayedComputer;
+import com.company.players.DumbComputer;
+import com.company.players.PerfectComputer;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;

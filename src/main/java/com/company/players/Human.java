@@ -1,4 +1,9 @@
-package com.company;
+package com.company.players;
+
+import com.company.Board;
+import com.company.Mark;
+import com.company.Player;
+import com.company.UserInterface;
 
 public class Human implements Player {
 

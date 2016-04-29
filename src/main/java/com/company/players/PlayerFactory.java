@@ -1,4 +1,7 @@
-package com.company;
+package com.company.players;
+
+import com.company.GameType;
+import com.company.Player;
 
 import java.util.Arrays;
 import java.util.List;

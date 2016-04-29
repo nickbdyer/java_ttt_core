@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.players.PlayerFactory;
 import org.junit.Before;
 import org.junit.Test;
 

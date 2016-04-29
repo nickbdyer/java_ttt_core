@@ -1,4 +1,6 @@
-package com.company;
+package com.company.delayers;
+
+import com.company.Delayer;
 
 public class ThreadDelayer implements Delayer {
 
