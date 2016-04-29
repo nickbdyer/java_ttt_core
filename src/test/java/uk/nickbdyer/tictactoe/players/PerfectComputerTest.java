@@ -1,19 +1,20 @@
 package uk.nickbdyer.tictactoe.players;
 
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import uk.nickbdyer.tictactoe.Board;
 import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.UserInterfaceSpy;
-import org.junit.Before;
-import org.junit.Test;
+import uk.nickbdyer.tictactoe.exceptions.InvalidMoveException;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static uk.nickbdyer.tictactoe.Mark.EMPTY;
-import static uk.nickbdyer.tictactoe.Mark.O;
-import static uk.nickbdyer.tictactoe.Mark.X;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static uk.nickbdyer.tictactoe.Mark.*;
 
 public class PerfectComputerTest {
 
@@ -27,6 +28,23 @@ public class PerfectComputerTest {
         tron = new PerfectComputer(X);
         ui = new UserInterfaceSpy();
         board = new Board();
+    }
+
+    @Test
+    public void hasMark() {
+        assertEquals(X, tron.getMark());
+    }
+
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
+
+    @Test
+    public void throwsExceptionIfBoardIsFull() {
+        UserInterfaceSpy ui = new UserInterfaceSpy();
+        Board board = new Board();
+        setUpBoard(Arrays.asList(O, O, O, O, O, O, O, O, O), board);
+        exception.expect(InvalidMoveException.class);
+        tron.choosePosition(ui, board);
     }
 
     @Test

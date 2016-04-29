@@ -4,6 +4,7 @@ import uk.nickbdyer.tictactoe.Board;
 import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.Player;
 import uk.nickbdyer.tictactoe.UserInterface;
+import uk.nickbdyer.tictactoe.exceptions.InvalidMoveException;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -27,6 +28,7 @@ public class PerfectComputer implements Player {
 
     @Override
     public int choosePosition(UserInterface userInterface, Board board) {
+        if (board.isFull()) throw new InvalidMoveException();
         if (board.isEmpty()) return chooseRandomCorner();
         resetMoveCalculations();
         makeMoveCalculations(board);
