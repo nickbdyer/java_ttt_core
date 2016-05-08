@@ -58,9 +58,9 @@ public class PerfectComputer implements Player {
             markCell(board, color, cell);
             double val = -negamax(board, depth + 1, -β, -α, -color);
             board.mark(cell, EMPTY);
-            bestValue = Collections.max(Arrays.asList(bestValue, val));
+            bestValue = Math.max(bestValue, val);
             if (depth == 0) scoredMoves.put(cell, bestValue);
-            α = Collections.max(Arrays.asList(α, bestValue));
+            α = Math.max(α, bestValue);
             if (α >= β) break;
         }
         return bestValue;
