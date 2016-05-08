@@ -1,7 +1,5 @@
 #TicTacToe in Java
 
-[![Code Climate](https://codeclimate.com/github/nickbdyer/java_ttt/badges/gpa.svg)](https://codeclimate.com/github/nickbdyer/java_ttt) [![Test Coverage](https://codeclimate.com/github/nickbdyer/java_ttt/badges/coverage.svg)](https://codeclimate.com/github/nickbdyer/java_ttt/coverage)
-
 ###Clone
 
 ```shell
