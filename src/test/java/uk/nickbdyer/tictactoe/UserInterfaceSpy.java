@@ -3,7 +3,6 @@ package uk.nickbdyer.tictactoe;
 public class UserInterfaceSpy extends UserInterface {
 
     public boolean wasShowBoardCalled = false;
-    public boolean wasProcessMarkCalled = false;
     public boolean wasAnnounceWinCalled = false;
     public boolean wasAnnounceDrawCalled = false;
 
@@ -26,6 +25,7 @@ public class UserInterfaceSpy extends UserInterface {
         wasAnnounceDrawCalled = true;
     }
 
-    @Override
-    public void displayComputerThinking() {}
+    @Override public void displayComputerThinking() {
+        // Method called in two tests, but not purpose of test.
+    }
 }
