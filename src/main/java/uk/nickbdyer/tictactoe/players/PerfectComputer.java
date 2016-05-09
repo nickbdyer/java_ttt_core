@@ -70,17 +70,17 @@ public class PerfectComputer implements Player {
         if (color == 1) {
             board.mark(cell, getMark());
         } else {
-            board.mark(cell, opponent_symbol());
+            board.mark(cell, opponentSymbol());
         }
     }
 
-    private Mark opponent_symbol() {
+    private Mark opponentSymbol() {
         return getMark() == X ? O : X;
     }
 
     private double score(Board board, int depth) {
         if (board.getWinningMark() == getMark()) return (10.0 / depth);
-        if (board.getWinningMark() == opponent_symbol()) return (-10.0 / depth);
+        if (board.getWinningMark() == opponentSymbol()) return (-10.0 / depth);
         if (board.isFull()) return 0;
         return 0;
     }
