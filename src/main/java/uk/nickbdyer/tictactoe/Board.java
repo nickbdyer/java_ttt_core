@@ -53,10 +53,7 @@ public class Board {
     }
 
     public boolean isDraw() {
-        if (isFull() && !hasWinner()) {
-            return true;
-        }
-        return false;
+        return isFull() && !hasWinner();
     }
 
     public List<Integer> availableMoves() {
