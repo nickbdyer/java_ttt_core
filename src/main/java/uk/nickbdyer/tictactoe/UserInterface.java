@@ -34,7 +34,7 @@ public class UserInterface {
 
     public String getYorN() {
         String letter = getString();
-        while (!letter.equals("y") && !letter.equals("n")) {
+        while (!"y".equals(letter) && !"n".equals(letter)) {
             displayInvalidInput();
             letter = getString();
         }
