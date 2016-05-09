@@ -11,12 +11,11 @@ import static uk.nickbdyer.tictactoe.Mark.EMPTY;
 class Lines {
 
     private List<Mark> cells;
-    private int size;
     private int width;
 
     public Lines(List<Mark> cells) {
         this.cells = cells;
-        this.size = cells.size();
+        int size = cells.size();
         this.width = (int) Math.sqrt(size);
     }
 
