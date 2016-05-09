@@ -3,9 +3,11 @@ package uk.nickbdyer.tictactoe.players;
 import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Board;
+import uk.nickbdyer.tictactoe.BoardSpy;
 import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.UserInterfaceSpy;
 import uk.nickbdyer.tictactoe.exceptions.InvalidMoveException;
+import uk.nickbdyer.tictactoe.exceptions.NoWinConditionException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -92,6 +94,14 @@ public class PerfectComputerTest {
         for (int i=0;i<9;i++) {
             board.mark(i, marks.get(i));
         }
+    }
+
+    @Test(expected=NoWinConditionException.class)
+    public void throwsExceptionIfCannotScoreBoard() {
+        BoardSpy boardSpy = new BoardSpy();
+        boardSpy.setHasAWinner(true);
+        boardSpy.setEmpty(false);
+        tron.choosePosition(ui, boardSpy);
     }
 
 }

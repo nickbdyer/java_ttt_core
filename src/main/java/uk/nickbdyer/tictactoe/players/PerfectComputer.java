@@ -5,6 +5,7 @@ import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.Player;
 import uk.nickbdyer.tictactoe.UserInterface;
 import uk.nickbdyer.tictactoe.exceptions.InvalidMoveException;
+import uk.nickbdyer.tictactoe.exceptions.NoWinConditionException;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -82,7 +83,7 @@ public class PerfectComputer implements Player {
         if (board.getWinningMark() == getMark()) return (10.0 / depth);
         if (board.getWinningMark() == opponentSymbol()) return (-10.0 / depth);
         if (board.isFull()) return 0;
-        return 0;
+        throw new NoWinConditionException();
     }
 
     private void findBestMove() {

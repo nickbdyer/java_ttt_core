@@ -62,7 +62,7 @@ public class PlayerFactoryTest {
 
     @Test(expected=InvalidGameTypeException.class)
     public void throwsExceptionIfBoardIsFull() {
-        List<Player> players = new PlayerFactory().create(GameType.TEST);
+        new PlayerFactory().create(GameType.TEST);
     }
 
 }
