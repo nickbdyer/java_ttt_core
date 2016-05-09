@@ -1,6 +1,9 @@
 apply plugin: 'java'
-apply plugin: 'jacoco'
-apply plugin: 'coveralls'
+
+plugins {
+    id "com.github.kt3k.coveralls" version "2.6.3"
+    id "jacoco"
+}
 
 jar {
     manifest {
@@ -22,7 +25,6 @@ repositories {
 
 dependencies {
     testCompile 'junit:junit:4.12',
-    classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:0.3.0'
 }
 
 test {
