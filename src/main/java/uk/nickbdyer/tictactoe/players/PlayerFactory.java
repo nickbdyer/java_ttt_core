@@ -3,6 +3,7 @@ package uk.nickbdyer.tictactoe.players;
 import uk.nickbdyer.tictactoe.GameType;
 import uk.nickbdyer.tictactoe.Player;
 import uk.nickbdyer.tictactoe.delayers.ThreadDelayer;
+import uk.nickbdyer.tictactoe.exceptions.InvalidGameTypeException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +29,7 @@ public class PlayerFactory {
         } else if (type == GameType.PAivsPAi) {
             return Arrays.asList(slow(new PerfectComputer(X)), slow(new PerfectComputer(O)));
         } else {
-            throw new RuntimeException("That is not a game type");
+            throw new InvalidGameTypeException();
         }
     }
 
