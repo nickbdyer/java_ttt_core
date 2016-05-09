@@ -1,14 +1,11 @@
 package uk.nickbdyer.tictactoe;
 
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.*;
 
 public class BoardTest {
 
@@ -26,19 +23,19 @@ public class BoardTest {
 
     @Test
     public void showsSpecificCellState() {
-        TestCase.assertEquals(Mark.EMPTY, board.getMarkAt(0));
+        assertEquals(Mark.EMPTY, board.getMarkAt(0));
     }
 
     @Test
     public void marksWithX() {
         board.mark(3, Mark.X);
-        TestCase.assertEquals(Mark.X, board.getMarkAt(3));
+        assertEquals(Mark.X, board.getMarkAt(3));
     }
 
     @Test
     public void marksWithO() {
         board.mark(1, Mark.O);
-        TestCase.assertEquals(Mark.O, board.getMarkAt(1));
+        assertEquals(Mark.O, board.getMarkAt(1));
     }
 
     @Test
@@ -121,7 +118,7 @@ public class BoardTest {
         board.mark(0, Mark.X);
         board.mark(4, Mark.X);
         board.mark(8, Mark.X);
-        TestCase.assertEquals(Mark.X, board.getWinningMark());
+        assertEquals(Mark.X, board.getWinningMark());
     }
 
     @Test
@@ -129,7 +126,7 @@ public class BoardTest {
         board.mark(0, Mark.O);
         board.mark(4, Mark.O);
         board.mark(8, Mark.O);
-        TestCase.assertEquals(Mark.O, board.getWinningMark());
+        assertEquals(Mark.O, board.getWinningMark());
     }
 
     @Test
