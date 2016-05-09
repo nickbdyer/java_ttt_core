@@ -7,5 +7,6 @@ public enum GameType {
     AivsAi,
     HvsPAi,
     PAivsH,
-    PAivsPAi
+    PAivsPAi,
+    TEST
 }

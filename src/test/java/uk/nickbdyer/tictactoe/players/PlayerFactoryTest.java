@@ -3,6 +3,7 @@ package uk.nickbdyer.tictactoe.players;
 import uk.nickbdyer.tictactoe.Player;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.GameType;
+import uk.nickbdyer.tictactoe.exceptions.InvalidGameTypeException;
 
 import java.util.List;
 
@@ -58,4 +59,10 @@ public class PlayerFactoryTest {
         assertTrue(players.get(0) instanceof DelayedComputer);
         assertTrue(players.get(1) instanceof DelayedComputer);
     }
+
+    @Test(expected=InvalidGameTypeException.class)
+    public void throwsExceptionIfBoardIsFull() {
+        List<Player> players = new PlayerFactory().create(GameType.TEST);
+    }
+
 }
