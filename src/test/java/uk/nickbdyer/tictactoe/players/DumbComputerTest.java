@@ -1,9 +1,7 @@
 package uk.nickbdyer.tictactoe.players;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import uk.nickbdyer.tictactoe.Board;
 import uk.nickbdyer.tictactoe.UserInterfaceSpy;
 import uk.nickbdyer.tictactoe.exceptions.InvalidMoveException;
@@ -34,16 +32,12 @@ public class DumbComputerTest {
         assertEquals(8, hal9000.choosePosition(ui, board));
     }
 
-    @Rule
-    public final ExpectedException exception = ExpectedException.none();
-
-    @Test
+    @Test(expected=InvalidMoveException.class)
     public void throwsExceptionIfBoardIsFull() {
         UserInterfaceSpy ui = new UserInterfaceSpy();
         Board board = new Board();
         makeMultipleMarks(board, 9);
 
-        exception.expect(InvalidMoveException.class);
         hal9000.choosePosition(ui, board);
     }
 
