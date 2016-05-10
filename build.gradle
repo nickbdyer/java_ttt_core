@@ -2,17 +2,18 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'com.github.kt3k.coveralls' version '2.6.3'
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
 }
 
 jar {
     manifest {
-        attributes 'Main-Class': 'uk.nickbdyer.tictactoe.Main'
+        attributes 'Main-Class': 'uk.nickbdyer.tictactoe.TicTacToeWeb'
     }
 }
 
 apply plugin: 'application'
 
-mainClassName = "uk.nickbdyer.tictactoe.Main"
+mainClassName = "uk.nickbdyer.tictactoe.TicTacToeWeb"
 
 run {
     standardInput = System.in
@@ -24,9 +25,10 @@ repositories {
 
 dependencies {
     compile "com.sparkjava:spark-core:2.5"
+    compile 'org.slf4j:slf4j-simple:1.7.10'
     testCompile 'junit:junit:4.12'
+    runtime 'org.slf4j:slf4j-simple:1.7.10'
 }
-
 
 test {
     testLogging {
