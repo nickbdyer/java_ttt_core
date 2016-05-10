@@ -1,6 +1,6 @@
 #TicTacToe in Java
 
-[![Codacy Badge](https://img.shields.io/codacy/e27821fb6289410b8f58338c7e0bc686/master.svg?maxAge=2592000)](https://www.codacy.com/app/nbdyer/java_ttt?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nickbdyer/java_ttt&amp;utm_campaign=Badge_Grade) [![Coverage Status](https://coveralls.io/repos/github/nickbdyer/java_ttt/badge.svg?branch=master)](https://coveralls.io/github/nickbdyer/java_ttt?branch=master) [![Build Status](https://travis-ci.org/nickbdyer/java_ttt.svg?branch=master)](https://travis-ci.org/nickbdyer/java_ttt)
+[![Codacy Badge](https://img.shields.io/codacy/e27821fb6289410b8f58338c7e0bc686.svg?maxAge=3600)](https://www.codacy.com/app/nbdyer/java_ttt?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nickbdyer/java_ttt&amp;utm_campaign=Badge_Grade) [![Coverage Status](https://coveralls.io/repos/github/nickbdyer/java_ttt/badge.svg?branch=master)](https://coveralls.io/github/nickbdyer/java_ttt?branch=master) [![Build Status](https://travis-ci.org/nickbdyer/java_ttt.svg?branch=master)](https://travis-ci.org/nickbdyer/java_ttt)
 
 ###Clone
 
