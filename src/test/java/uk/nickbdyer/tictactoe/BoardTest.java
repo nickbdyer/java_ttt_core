@@ -55,6 +55,7 @@ public class BoardTest {
         board.mark(4, Mark.X);
         board.mark(8, Mark.X);
         assertTrue(board.hasWinner());
+        assertTrue(board.isUnplayable());
     }
 
     @Test

@@ -69,4 +69,8 @@ public class Board {
     public boolean isEmpty() {
         return (availableMoves().size() == cells.size());
     }
+
+    public boolean isUnplayable() {
+        return isDraw() || hasWinner();
+    }
 }

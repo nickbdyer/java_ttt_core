@@ -6,8 +6,7 @@ import uk.nickbdyer.tictactoe.Board;
 import uk.nickbdyer.tictactoe.BoardSpy;
 import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.UserInterfaceSpy;
-import uk.nickbdyer.tictactoe.exceptions.InvalidMoveException;
-import uk.nickbdyer.tictactoe.exceptions.NoWinConditionException;
+import uk.nickbdyer.tictactoe.exceptions.boardUnplayableException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +34,7 @@ public class PerfectComputerTest {
         assertEquals(X, tron.getMark());
     }
 
-    @Test(expected=InvalidMoveException.class)
+    @Test(expected=boardUnplayableException.class)
     public void throwsExceptionIfBoardIsFull() {
         UserInterfaceSpy ui = new UserInterfaceSpy();
         Board board = new Board();
@@ -96,7 +95,7 @@ public class PerfectComputerTest {
         }
     }
 
-    @Test(expected=NoWinConditionException.class)
+    @Test(expected=boardUnplayableException.class)
     public void throwsExceptionIfCannotScoreBoard() {
         BoardSpy boardSpy = new BoardSpy();
         boardSpy.setHasAWinner(true);

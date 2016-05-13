@@ -4,8 +4,7 @@ import uk.nickbdyer.tictactoe.Board;
 import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.Player;
 import uk.nickbdyer.tictactoe.UserInterface;
-import uk.nickbdyer.tictactoe.exceptions.InvalidMoveException;
-import uk.nickbdyer.tictactoe.exceptions.NoWinConditionException;
+import uk.nickbdyer.tictactoe.exceptions.boardUnplayableException;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,7 +27,7 @@ public class PerfectComputer implements Player {
 
     @Override
     public int choosePosition(UserInterface userInterface, Board board) {
-        if (board.isFull() || board.hasWinner()) throw new InvalidMoveException();
+        if (board.isUnplayable()) throw new boardUnplayableException();
         if (board.isEmpty()) return chooseRandomCorner();
         return (int) negamax(board, 0, -10, 10, 1);
     }
@@ -40,7 +39,7 @@ public class PerfectComputer implements Player {
     }
 
     private double negamax(Board board, int depth, double α, double β, int color) {
-        if (board.isFull() || board.hasWinner()) return color * score(board, depth);
+        if (board.isUnplayable()) return color * score(board, depth);
         double bestValue = -10;
         double bestMove = 0;
         for (int cell : board.availableMoves()) {
@@ -72,6 +71,6 @@ public class PerfectComputer implements Player {
         if (board.getWinningMark() == getMark()) return (10.0 / depth);
         if (board.getWinningMark() == opponentSymbol()) return (-10.0 / depth);
         if (board.isFull()) return 0;
-        throw new NoWinConditionException();
+        throw new boardUnplayableException();
     }
 }
