@@ -28,7 +28,7 @@ public class PerfectComputer implements Player {
 
     @Override
     public int choosePosition(UserInterface userInterface, Board board) {
-        if (board.isFull()) throw new InvalidMoveException();
+        if (board.isFull() || board.hasWinner()) throw new InvalidMoveException();
         if (board.isEmpty()) return chooseRandomCorner();
         return (int) negamax(board, 0, -10, 10, 1);
     }
