@@ -7,16 +7,15 @@ import uk.nickbdyer.tictactoe.UserInterface;
 import uk.nickbdyer.tictactoe.exceptions.InvalidMoveException;
 import uk.nickbdyer.tictactoe.exceptions.NoWinConditionException;
 
-import java.util.*;
-import java.util.Map.Entry;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static uk.nickbdyer.tictactoe.Mark.*;
 
 public class PerfectComputer implements Player {
 
     private Mark mark;
-    private Map<Integer, Double> scoredMoves;
-    private Map.Entry<Integer, Double> bestMove;
 
     public PerfectComputer(Mark mark) {
         this.mark = mark;
@@ -31,19 +30,7 @@ public class PerfectComputer implements Player {
     public int choosePosition(UserInterface userInterface, Board board) {
         if (board.isFull()) throw new InvalidMoveException();
         if (board.isEmpty()) return chooseRandomCorner();
-        resetMoveCalculations();
-        makeMoveCalculations(board);
-        return bestMove.getKey();
-    }
-
-    private void makeMoveCalculations(Board board) {
-        negamax(board, 0, -10, 10, 1);
-        findBestMove();
-    }
-
-    private void resetMoveCalculations() {
-        scoredMoves = new HashMap<>();
-        bestMove = null;
+        return (int) negamax(board, 0, -10, 10, 1);
     }
 
     private int chooseRandomCorner() {
@@ -55,15 +42,17 @@ public class PerfectComputer implements Player {
     private double negamax(Board board, int depth, double α, double β, int color) {
         if (board.isFull() || board.hasWinner()) return color * score(board, depth);
         double bestValue = -10;
+        double bestMove = 0;
         for (int cell : board.availableMoves()) {
             markCell(board, color, cell);
             double val = -negamax(board, depth + 1, -β, -α, -color);
             board.mark(cell, EMPTY);
             bestValue = Math.max(bestValue, val);
-            if (depth == 0) scoredMoves.put(cell, bestValue);
+            if (depth == 0 && bestValue > α) bestMove = cell;
             α = Math.max(α, bestValue);
             if (α >= β) break;
         }
+        if (depth == 0) return bestMove;
         return bestValue;
     }
 
@@ -84,13 +73,5 @@ public class PerfectComputer implements Player {
         if (board.getWinningMark() == opponentSymbol()) return (-10.0 / depth);
         if (board.isFull()) return 0;
         throw new NoWinConditionException();
-    }
-
-    private void findBestMove() {
-        for (Entry<Integer,Double> entry : scoredMoves.entrySet()) {
-            if (bestMove == null || entry.getValue().compareTo(bestMove.getValue()) > 0) {
-                bestMove = entry;
-            }
-        }
     }
 }

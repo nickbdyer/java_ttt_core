@@ -56,7 +56,7 @@ public class PerfectComputerTest {
 
     @Test
     public void willWinGameIfOptionIsAvailable() {
-        setUpBoard(Arrays.asList(X, EMPTY, X, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board);
+        setUpBoard(Arrays.asList(X, EMPTY, X, O, O, EMPTY, EMPTY, EMPTY, EMPTY), board);
         assertEquals(1, tron.choosePosition(ui, board));
     }
 
