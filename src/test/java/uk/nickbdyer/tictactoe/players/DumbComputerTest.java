@@ -3,17 +3,15 @@ package uk.nickbdyer.tictactoe.players;
 import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Board;
-import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.UserInterfaceSpy;
 import uk.nickbdyer.tictactoe.exceptions.InvalidMoveException;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static uk.nickbdyer.tictactoe.Mark.EMPTY;
-import static uk.nickbdyer.tictactoe.Mark.O;
-import static uk.nickbdyer.tictactoe.Mark.X;
+import static uk.nickbdyer.tictactoe.Mark.*;
+import static uk.nickbdyer.tictactoe.helpers.BoardHelper.createDrawnBoard;
+import static uk.nickbdyer.tictactoe.helpers.BoardHelper.setUpBoard;
 
 public class DumbComputerTest {
 
@@ -41,13 +39,8 @@ public class DumbComputerTest {
     public void throwsExceptionIfBoardIsFull() {
         UserInterfaceSpy ui = new UserInterfaceSpy();
         Board board = new Board();
-        setUpBoard(Arrays.asList(O, O, O, O, O, O, O, O, O), board);
+        createDrawnBoard(board);
         hal9000.choosePosition(ui, board);
     }
 
-    private void setUpBoard(List<Mark> marks, Board board) {
-        for (int i=0;i<9;i++) {
-            board.mark(i, marks.get(i));
-        }
-    }
 }

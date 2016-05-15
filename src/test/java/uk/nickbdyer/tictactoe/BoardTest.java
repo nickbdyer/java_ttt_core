@@ -7,6 +7,9 @@ import java.util.Arrays;
 
 import static junit.framework.TestCase.*;
 import static uk.nickbdyer.tictactoe.Mark.*;
+import static uk.nickbdyer.tictactoe.helpers.BoardHelper.createDrawnBoard;
+import static uk.nickbdyer.tictactoe.helpers.BoardHelper.createEmptyBoard;
+import static uk.nickbdyer.tictactoe.helpers.BoardHelper.setUpBoard;
 
 public class BoardTest {
 
@@ -24,6 +27,7 @@ public class BoardTest {
 
     @Test
     public void showsSpecificCellState() {
+        createEmptyBoard(board);
         assertEquals(EMPTY, board.getMarkAt(0));
     }
 
@@ -41,6 +45,7 @@ public class BoardTest {
 
     @Test
     public void knowsIfCellIsEmpty() {
+        createEmptyBoard(board);
         assertTrue(board.isEmptyCell(1));
     }
 
@@ -52,18 +57,14 @@ public class BoardTest {
 
     @Test
     public void knowsIfThereIsAXWinner() {
-        board.mark(0, X);
-        board.mark(4, X);
-        board.mark(8, X);
+        setUpBoard(Arrays.asList(X, EMPTY, EMPTY, EMPTY, X, EMPTY, EMPTY, EMPTY, X), board);
         assertTrue(board.hasWinner());
         assertTrue(board.isUnplayable());
     }
 
     @Test
     public void knowsIfThereIsAOWinner() {
-        board.mark(0, O);
-        board.mark(4, O);
-        board.mark(8, O);
+        setUpBoard(Arrays.asList(O, EMPTY, EMPTY, EMPTY, O, EMPTY, EMPTY, EMPTY, O), board);
         assertTrue(board.hasWinner());
     }
 
@@ -75,25 +76,21 @@ public class BoardTest {
 
     @Test
     public void knowsIfItIsFull() {
-        for(int i=0;i<9;i++) {
-            board.mark(i, X);
-        }
+        setUpBoard(Arrays.asList(O, X, O, X, O, X, O, X, O), board);
         assertTrue(board.isFull());
         assertFalse(board.isEmpty());
     }
 
     @Test
     public void knowsIfItIsNotFull() {
-        for(int i=1;i<5;i++) {
-            board.mark(i, X);
-        }
+        setUpBoard(Arrays.asList(O, X, O, X, EMPTY, X, O, X, O), board);
         assertFalse(board.isFull());
         assertFalse(board.isEmpty());
     }
 
     @Test
     public void knowsIfItIsADraw() {
-        createDrawCondition();
+        createDrawnBoard(board);
         assertTrue(board.isDraw());
     }
 
@@ -105,37 +102,21 @@ public class BoardTest {
         assertFalse(board.isDraw());
     }
 
-    private void createDrawCondition() {
-        board.mark(0, X);
-        board.mark(1, X);
-        board.mark(2, O);
-        board.mark(3, O);
-        board.mark(4, O);
-        board.mark(5, X);
-        board.mark(6, X);
-        board.mark(7, O);
-        board.mark(8, X);
-    }
-
     @Test
     public void knowsIfXHasWon() {
-        board.mark(0, X);
-        board.mark(4, X);
-        board.mark(8, X);
+        setUpBoard(Arrays.asList(X, EMPTY, EMPTY, EMPTY, X, EMPTY, EMPTY, EMPTY, X), board);
         assertEquals(X, board.getWinningMark());
     }
 
     @Test
     public void knowsIfOHasWon() {
-        board.mark(0, O);
-        board.mark(4, O);
-        board.mark(8, O);
+        setUpBoard(Arrays.asList(O, EMPTY, EMPTY, EMPTY, O, EMPTY, EMPTY, EMPTY, O), board);
         assertEquals(O, board.getWinningMark());
     }
 
     @Test
     public void knowsIfBoardIsEmpty() {
-        Board board = new Board();
+        createEmptyBoard(board);
         assertTrue(board.isEmpty());
     }
 }

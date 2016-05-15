@@ -3,16 +3,17 @@ package uk.nickbdyer.tictactoe.players;
 import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Board;
-import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.UserInterfaceSpy;
 import uk.nickbdyer.tictactoe.exceptions.boardUnplayableException;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static uk.nickbdyer.tictactoe.Mark.*;
+import static uk.nickbdyer.tictactoe.helpers.BoardHelper.createDrawnBoard;
+import static uk.nickbdyer.tictactoe.helpers.BoardHelper.createEmptyBoard;
+import static uk.nickbdyer.tictactoe.helpers.BoardHelper.setUpBoard;
 
 public class PerfectComputerTest {
 
@@ -37,12 +38,13 @@ public class PerfectComputerTest {
     public void throwsExceptionIfBoardIsFull() {
         UserInterfaceSpy ui = new UserInterfaceSpy();
         Board board = new Board();
-        setUpBoard(Arrays.asList(O, O, O, O, O, O, O, O, O), board);
+        createDrawnBoard(board);
         tron.choosePosition(ui, board);
     }
 
     @Test
     public void willChooseACornerIfBoardIsEmpty() {
+        createEmptyBoard(board);
         assertTrue(Arrays.asList(0, 2, 6, 8).contains(tron.choosePosition(ui, board)));
     }
     
@@ -86,12 +88,6 @@ public class PerfectComputerTest {
     public void willPreventReverseEdgeTrap() {
         setUpBoard(Arrays.asList(EMPTY, EMPTY, EMPTY, EMPTY, X, O, EMPTY, O, EMPTY), board);
         assertEquals(2, tron.choosePosition(ui, board));
-    }
-
-    private void setUpBoard(List<Mark> marks, Board board) {
-        for (int i=0;i<9;i++) {
-            board.mark(i, marks.get(i));
-        }
     }
 
 }
