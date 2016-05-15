@@ -3,7 +3,6 @@ package uk.nickbdyer.tictactoe.players;
 import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Board;
-import uk.nickbdyer.tictactoe.BoardSpy;
 import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.UserInterfaceSpy;
 import uk.nickbdyer.tictactoe.exceptions.boardUnplayableException;
@@ -32,6 +31,14 @@ public class PerfectComputerTest {
     @Test
     public void hasMark() {
         assertEquals(X, tron.getMark());
+    }
+
+    @Test(expected=boardUnplayableException.class)
+    public void throwsExceptionIfBoardIsFull() {
+        UserInterfaceSpy ui = new UserInterfaceSpy();
+        Board board = new Board();
+        setUpBoard(Arrays.asList(O, O, O, O, O, O, O, O, O), board);
+        tron.choosePosition(ui, board);
     }
 
     @Test
@@ -85,14 +92,6 @@ public class PerfectComputerTest {
         for (int i=0;i<9;i++) {
             board.mark(i, marks.get(i));
         }
-    }
-
-    @Test(expected=boardUnplayableException.class)
-    public void throwsExceptionIfCannotScoreBoard() {
-        BoardSpy boardSpy = new BoardSpy();
-        boardSpy.setHasAWinner(true);
-        boardSpy.setEmpty(false);
-        tron.choosePosition(ui, boardSpy);
     }
 
 }

@@ -3,10 +3,15 @@ package uk.nickbdyer.tictactoe.players;
 import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Board;
+import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.UserInterfaceSpy;
 import uk.nickbdyer.tictactoe.exceptions.InvalidMoveException;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+import static uk.nickbdyer.tictactoe.Mark.EMPTY;
 import static uk.nickbdyer.tictactoe.Mark.O;
 import static uk.nickbdyer.tictactoe.Mark.X;
 
@@ -28,7 +33,7 @@ public class DumbComputerTest {
     public void returnsMoveChoice() {
         UserInterfaceSpy ui = new UserInterfaceSpy();
         Board board = new Board();
-        makeMultipleMarks(board, 8);
+        setUpBoard(Arrays.asList(X, X, O, X, X, O, O, O, EMPTY), board);
         assertEquals(8, hal9000.choosePosition(ui, board));
     }
 
@@ -36,14 +41,13 @@ public class DumbComputerTest {
     public void throwsExceptionIfBoardIsFull() {
         UserInterfaceSpy ui = new UserInterfaceSpy();
         Board board = new Board();
-        makeMultipleMarks(board, 9);
-
+        setUpBoard(Arrays.asList(O, O, O, O, O, O, O, O, O), board);
         hal9000.choosePosition(ui, board);
     }
 
-    private void makeMultipleMarks(Board board, int numMarkedCells) {
-        for(int i=0;i<numMarkedCells;i++) {
-            board.mark(i, X);
+    private void setUpBoard(List<Mark> marks, Board board) {
+        for (int i=0;i<9;i++) {
+            board.mark(i, marks.get(i));
         }
     }
 }

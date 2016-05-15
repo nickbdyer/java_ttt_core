@@ -20,9 +20,7 @@ public class DumbComputer implements Player {
     @Override
     public int choosePosition(UserInterface ui, Board board) {
         ui.displayComputerThinking();
-        if (board.isUnplayable()) {
-            throw new InvalidMoveException();
-        }
+        if (board.isUnplayable()) throw new InvalidMoveException();
         return generateMove(board.availableMoves());
     }
 

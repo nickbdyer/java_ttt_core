@@ -62,10 +62,10 @@ public class UserInterface {
     public void displayBoard(Board board) {
         String liveboard = BOARDTEMPLATE;
         for (int i = 0; i < 9; i++) {
-            if (board.getCells().get(i) == EMPTY) {
+            if (board.getMarkAt(i) == EMPTY) {
                 liveboard = liveboard.replaceFirst("#", Integer.toString(i + 1));
             } else {
-                liveboard = liveboard.replaceFirst("#", String.valueOf(board.getCells().get(i)));
+                liveboard = liveboard.replaceFirst("#", String.valueOf(board.getMarkAt(i)));
             }
         }
         clearScreen();
