@@ -34,14 +34,6 @@ public class PerfectComputerTest {
         assertEquals(X, tron.getMark());
     }
 
-    @Test(expected=boardUnplayableException.class)
-    public void throwsExceptionIfBoardIsFull() {
-        UserInterfaceSpy ui = new UserInterfaceSpy();
-        Board board = new Board();
-        setUpBoard(Arrays.asList(O, O, O, O, O, O, O, O, O), board);
-        tron.choosePosition(ui, board);
-    }
-
     @Test
     public void willChooseACornerIfBoardIsEmpty() {
         assertTrue(Arrays.asList(0, 2, 6, 8).contains(tron.choosePosition(ui, board)));
