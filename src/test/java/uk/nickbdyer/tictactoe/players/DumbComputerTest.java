@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Board;
 import uk.nickbdyer.tictactoe.UserInterfaceSpy;
-import uk.nickbdyer.tictactoe.exceptions.InvalidMoveException;
+import uk.nickbdyer.tictactoe.exceptions.BoardUnplayableException;
 
 import java.util.Arrays;
 
@@ -35,7 +35,7 @@ public class DumbComputerTest {
         assertEquals(8, hal9000.choosePosition(ui, board));
     }
 
-    @Test(expected=InvalidMoveException.class)
+    @Test(expected=BoardUnplayableException.class)
     public void throwsExceptionIfBoardIsFull() {
         UserInterfaceSpy ui = new UserInterfaceSpy();
         Board board = new Board();

@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Board;
 import uk.nickbdyer.tictactoe.UserInterfaceSpy;
-import uk.nickbdyer.tictactoe.exceptions.boardUnplayableException;
+import uk.nickbdyer.tictactoe.exceptions.BoardUnplayableException;
 
 import java.util.Arrays;
 
@@ -34,7 +34,7 @@ public class PerfectComputerTest {
         assertEquals(X, tron.getMark());
     }
 
-    @Test(expected=boardUnplayableException.class)
+    @Test(expected=BoardUnplayableException.class)
     public void throwsExceptionIfBoardIsFull() {
         UserInterfaceSpy ui = new UserInterfaceSpy();
         Board board = new Board();
