@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import static junit.framework.TestCase.*;
+import static uk.nickbdyer.tictactoe.Mark.*;
 
 public class BoardTest {
 
@@ -18,24 +19,24 @@ public class BoardTest {
 
     @Test
     public void showsCurrentState() {
-        assertEquals(Arrays.asList(Mark.EMPTY, Mark.EMPTY, Mark.EMPTY, Mark.EMPTY, Mark.EMPTY, Mark.EMPTY, Mark.EMPTY, Mark.EMPTY, Mark.EMPTY), board.getCells());
+        assertEquals(Arrays.asList(EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
     }
 
     @Test
     public void showsSpecificCellState() {
-        assertEquals(Mark.EMPTY, board.getMarkAt(0));
+        assertEquals(EMPTY, board.getMarkAt(0));
     }
 
     @Test
     public void marksWithX() {
-        board.mark(3, Mark.X);
-        assertEquals(Mark.X, board.getMarkAt(3));
+        board.mark(3, X);
+        assertEquals(X, board.getMarkAt(3));
     }
 
     @Test
     public void marksWithO() {
-        board.mark(1, Mark.O);
-        assertEquals(Mark.O, board.getMarkAt(1));
+        board.mark(1, O);
+        assertEquals(O, board.getMarkAt(1));
     }
 
     @Test
@@ -45,47 +46,49 @@ public class BoardTest {
 
     @Test
     public void knowsIfCellIsNotEmpty() {
-        board.mark(0, Mark.X);
+        board.mark(0, X);
         assertFalse(board.isEmptyCell(0));
     }
 
     @Test
     public void knowsIfThereIsAXWinner() {
-        board.mark(0, Mark.X);
-        board.mark(4, Mark.X);
-        board.mark(8, Mark.X);
+        board.mark(0, X);
+        board.mark(4, X);
+        board.mark(8, X);
         assertTrue(board.hasWinner());
         assertTrue(board.isUnplayable());
     }
 
     @Test
     public void knowsIfThereIsAOWinner() {
-        board.mark(0, Mark.O);
-        board.mark(4, Mark.O);
-        board.mark(8, Mark.O);
+        board.mark(0, O);
+        board.mark(4, O);
+        board.mark(8, O);
         assertTrue(board.hasWinner());
     }
 
     @Test
     public void knowsIfThereIsNotAWinner() {
-        board.mark(0, Mark.X);
+        board.mark(0, X);
         assertFalse(board.hasWinner());
     }
 
     @Test
     public void knowsIfItIsFull() {
         for(int i=0;i<9;i++) {
-            board.mark(i, Mark.X);
+            board.mark(i, X);
         }
         assertTrue(board.isFull());
+        assertFalse(board.isEmpty());
     }
 
     @Test
     public void knowsIfItIsNotFull() {
         for(int i=1;i<5;i++) {
-            board.mark(i, Mark.X);
+            board.mark(i, X);
         }
         assertFalse(board.isFull());
+        assertFalse(board.isEmpty());
     }
 
     @Test
@@ -97,37 +100,37 @@ public class BoardTest {
     @Test
     public void knowsIfItIsNotADraw() {
         for(int i=0;i<9;i++) {
-            board.mark(i, Mark.X);
+            board.mark(i, X);
         }
         assertFalse(board.isDraw());
     }
 
     private void createDrawCondition() {
-        board.mark(0, Mark.X);
-        board.mark(1, Mark.X);
-        board.mark(2, Mark.O);
-        board.mark(3, Mark.O);
-        board.mark(4, Mark.O);
-        board.mark(5, Mark.X);
-        board.mark(6, Mark.X);
-        board.mark(7, Mark.O);
-        board.mark(8, Mark.X);
+        board.mark(0, X);
+        board.mark(1, X);
+        board.mark(2, O);
+        board.mark(3, O);
+        board.mark(4, O);
+        board.mark(5, X);
+        board.mark(6, X);
+        board.mark(7, O);
+        board.mark(8, X);
     }
 
     @Test
     public void knowsIfXHasWon() {
-        board.mark(0, Mark.X);
-        board.mark(4, Mark.X);
-        board.mark(8, Mark.X);
-        assertEquals(Mark.X, board.getWinningMark());
+        board.mark(0, X);
+        board.mark(4, X);
+        board.mark(8, X);
+        assertEquals(X, board.getWinningMark());
     }
 
     @Test
     public void knowsIfOHasWon() {
-        board.mark(0, Mark.O);
-        board.mark(4, Mark.O);
-        board.mark(8, Mark.O);
-        assertEquals(Mark.O, board.getWinningMark());
+        board.mark(0, O);
+        board.mark(4, O);
+        board.mark(8, O);
+        assertEquals(O, board.getWinningMark());
     }
 
     @Test

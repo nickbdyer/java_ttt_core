@@ -16,11 +16,11 @@ public class Board {
         }
     }
 
-    public List<Mark> getCells() {
+    List<Mark> getCells() {
         return cells;
     }
 
-    public Mark getMarkAt(int position) {
+    Mark getMarkAt(int position) {
         return cells.get(position);
     }
 
@@ -28,8 +28,18 @@ public class Board {
         cells.set(position, mark);
     }
 
-    public boolean isEmptyCell(int position) {
-        return cells.get(position) == EMPTY;
+    public List<Integer> availableMoves() {
+        List<Integer> availableMoves = new ArrayList<>();
+        for (int i=0;i<cells.size();i++) {
+            if (isEmptyCell(i)) {
+                availableMoves.add(i);
+            }
+        }
+        return availableMoves;
+    }
+
+    public boolean isUnplayable() {
+        return isDraw() || hasWinner();
     }
 
     public boolean hasWinner() {
@@ -43,6 +53,14 @@ public class Board {
         return EMPTY;
     }
 
+    public boolean isDraw() {
+        return isFull() && !hasWinner();
+    }
+
+    boolean isEmptyCell(int position) {
+        return cells.get(position) == EMPTY;
+    }
+
     public boolean isFull() {
         for(int i=1;i<cells.size();i++) {
             if (isEmptyCell(i)) {
@@ -52,25 +70,8 @@ public class Board {
         return true;
     }
 
-    public boolean isDraw() {
-        return isFull() && !hasWinner();
-    }
-
-    public List<Integer> availableMoves() {
-        List<Integer> availableMoves = new ArrayList<>();
-        for (int i=0;i<cells.size();i++) {
-            if (isEmptyCell(i)) {
-                availableMoves.add(i);
-            }
-        }
-        return availableMoves;
-    }
-
     public boolean isEmpty() {
         return (availableMoves().size() == cells.size());
     }
 
-    public boolean isUnplayable() {
-        return isDraw() || hasWinner();
-    }
 }
