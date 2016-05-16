@@ -44,18 +44,6 @@ public class BoardTest {
     }
 
     @Test
-    public void knowsIfCellIsEmpty() {
-        createEmptyBoard(board);
-        assertTrue(board.isEmptyCell(1));
-    }
-
-    @Test
-    public void knowsIfCellIsNotEmpty() {
-        board.mark(0, X);
-        assertFalse(board.isEmptyCell(0));
-    }
-
-    @Test
     public void knowsIfThereIsAXWinner() {
         setUpBoard(Arrays.asList(X, EMPTY, EMPTY, EMPTY, X, EMPTY, EMPTY, EMPTY, X), board);
         assertTrue(board.hasWinner());

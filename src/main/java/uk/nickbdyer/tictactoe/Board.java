@@ -16,11 +16,11 @@ public class Board {
         }
     }
 
-    List<Mark> getCells() {
+    public List<Mark> getCells() {
         return cells;
     }
 
-    Mark getMarkAt(int position) {
+    public Mark getMarkAt(int position) {
         return cells.get(position);
     }
 
@@ -57,7 +57,7 @@ public class Board {
         return isFull() && !hasWinner();
     }
 
-    boolean isEmptyCell(int position) {
+    private boolean isEmptyCell(int position) {
         return getMarkAt(position) == EMPTY;
     }
 
