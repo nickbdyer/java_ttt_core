@@ -24,7 +24,6 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        game = new Game(new PlayerFactory().create(GameType.HvsH, ui));
         board = new Board();
     }
 
@@ -91,6 +90,7 @@ public class GameTest {
 
     private void makeMultipleMoves(int numberOfMoves, String positions) {
         ui = new UserInterface(new Scanner(positions), new PrintStream(outContent));
+        game = new Game(new PlayerFactory().create(GameType.HvsH, ui));
         for (int i = 0; i < numberOfMoves; i++) {
             game.promptTurn(board, ui);
         }

@@ -18,17 +18,17 @@ public class PlayerFactory {
         if (type == GameType.HvsH) {
             return Arrays.asList(new Human(X, ui), new Human(O, ui));
         } else if (type == GameType.HvsAi) {
-            return Arrays.asList(new Human(X, ui), slow(new DumbComputer(O)));
+            return Arrays.asList(new Human(X, ui), slow(new DumbComputer(O, ui)));
         } else if (type == GameType.AivsH) {
-            return Arrays.asList(slow(new DumbComputer(X)), new Human(O, ui));
+            return Arrays.asList(slow(new DumbComputer(X, ui)), new Human(O, ui));
         } else if (type == GameType.AivsAi) {
-            return Arrays.asList(slow(new DumbComputer(X)), slow(new DumbComputer(O)));
+            return Arrays.asList(slow(new DumbComputer(X, ui)), slow(new DumbComputer(O, ui)));
         } else if (type == GameType.HvsPAi) {
-            return Arrays.asList(new Human(X, ui), slow(new PerfectComputer(O)));
+            return Arrays.asList(new Human(X, ui), slow(new PerfectComputer(O, ui)));
         } else if (type == GameType.PAivsH) {
-            return Arrays.asList(slow(new PerfectComputer(X)), new Human(O, ui));
+            return Arrays.asList(slow(new PerfectComputer(X, ui)), new Human(O, ui));
         } else if (type == GameType.PAivsPAi) {
-            return Arrays.asList(slow(new PerfectComputer(X)), slow(new PerfectComputer(O)));
+            return Arrays.asList(slow(new PerfectComputer(X, ui)), slow(new PerfectComputer(O, ui)));
         } else {
             throw new InvalidGameTypeException();
         }

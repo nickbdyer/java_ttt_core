@@ -25,9 +25,9 @@ public class DumbComputerTest {
 
     @Before
     public void setUp() {
-        hal9000 = new DumbComputer(O);
         outContent = new ByteArrayOutputStream();
         ui = new UserInterface(new Scanner(""), new PrintStream(outContent));
+        hal9000 = new DumbComputer(O, ui);
         board = new Board();
     }
 
@@ -39,13 +39,13 @@ public class DumbComputerTest {
     @Test
     public void returnsMoveChoice() {
         setUpBoard(Arrays.asList(X, X, O, X, X, O, O, O, EMPTY), board);
-        assertEquals(8, hal9000.choosePosition(ui, board));
+        assertEquals(8, hal9000.choosePosition(board));
     }
 
     @Test(expected=BoardUnplayableException.class)
     public void throwsExceptionIfBoardIsFull() {
         createDrawnBoard(board);
-        hal9000.choosePosition(ui, board);
+        hal9000.choosePosition(board);
     }
 
 }

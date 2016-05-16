@@ -19,10 +19,10 @@ public class Game {
     }
 
     private int getValidPosition(UserInterface ui, Board board) {
-        int position = currentPlayer.choosePosition(ui, board);
+        int position = currentPlayer.choosePosition(board);
         while (!board.availableMoves().contains(position)) {
             ui.displayInvalidPosition();
-            position = currentPlayer.choosePosition(ui, board);
+            position = currentPlayer.choosePosition(board);
         }
         return position;
     }

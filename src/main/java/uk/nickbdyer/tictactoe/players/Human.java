@@ -16,7 +16,7 @@ public class Human implements Player {
     }
 
     @Override
-    public int choosePosition(UserInterface ui, Board board) {
+    public int choosePosition(Board board) {
         ui.displayMoveInstructions();
         return ui.getNumber();
     }

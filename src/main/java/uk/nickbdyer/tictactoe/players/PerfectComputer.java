@@ -15,9 +15,11 @@ import static uk.nickbdyer.tictactoe.Mark.*;
 public class PerfectComputer implements Player {
 
     private Mark mark;
+    private UserInterface ui;
 
-    public PerfectComputer(Mark mark) {
+    public PerfectComputer(Mark mark, UserInterface ui) {
         this.mark = mark;
+        this.ui = ui;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class PerfectComputer implements Player {
     }
 
     @Override
-    public int choosePosition(UserInterface ui, Board board) {
+    public int choosePosition(Board board) {
         ui.displayComputerThinking();
         if (board.isUnplayable()) throw new BoardUnplayableException();
         if (board.isEmpty()) return chooseRandomCorner();

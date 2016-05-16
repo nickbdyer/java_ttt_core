@@ -35,7 +35,7 @@ public class DelayedComputerTest {
 
     @Test
     public void hasMark() {
-        DumbComputer dumbComputer = new DumbComputer(X);
+        DumbComputer dumbComputer = new DumbComputer(X, ui);
         DelayedComputer delayedComputer = new DelayedComputer(dumbComputer, delayer, 0);
         assertEquals(X, delayedComputer.getMark());
 
@@ -43,26 +43,26 @@ public class DelayedComputerTest {
 
     @Test
     public void delaysDumbComputer() {
-        DumbComputer dumbComputer = new DumbComputer(X);
+        DumbComputer dumbComputer = new DumbComputer(X, ui);
         DelayedComputer delayedComputer = new DelayedComputer(dumbComputer, delayer, 0);
-        delayedComputer.choosePosition(ui, board);
+        delayedComputer.choosePosition(board);
         assertTrue(delayer.hasSleepBeenCalled);
     }
 
     @Test
     public void delaysPerfectComputer() {
-        PerfectComputer perfectComputer = new PerfectComputer(X);
+        PerfectComputer perfectComputer = new PerfectComputer(X, ui);
         DelayedComputer delayedComputer = new DelayedComputer(perfectComputer, delayer, 0);
-        delayedComputer.choosePosition(ui, board);
+        delayedComputer.choosePosition(board);
         assertTrue(delayer.hasSleepBeenCalled);
     }
 
     @Test
     public void productionDelayRuns() {
         Delayer delayer = new ThreadDelayer();
-        DumbComputer dumbComputer = new DumbComputer(X);
+        DumbComputer dumbComputer = new DumbComputer(X, ui);
         DelayedComputer delayedComputer = new DelayedComputer(dumbComputer, delayer, 0);
-        delayedComputer.choosePosition(ui, board);
+        delayedComputer.choosePosition(board);
         assertThat(outContent.toString(), containsString("The computer player is thinking"));
     }
 }

@@ -12,13 +12,15 @@ import java.util.List;
 public class DumbComputer implements Player {
 
     private Mark mark;
+    private UserInterface ui;
 
-    public DumbComputer(Mark mark) {
+    public DumbComputer(Mark mark, UserInterface ui) {
         this.mark = mark;
+        this.ui = ui;
     }
 
     @Override
-    public int choosePosition(UserInterface ui, Board board) {
+    public int choosePosition(Board board) {
         ui.displayComputerThinking();
         if (board.isUnplayable()) throw new BoardUnplayableException();
         return generateMove(board.availableMoves());

@@ -26,9 +26,9 @@ public class PerfectComputerTest {
 
     @Before
     public void setUp() {
-        tron = new PerfectComputer(X);
         outContent = new ByteArrayOutputStream();
         ui = new UserInterface(new Scanner(""), new PrintStream(outContent));
+        tron = new PerfectComputer(X, ui);
         board = new Board();
     }
 
@@ -40,55 +40,55 @@ public class PerfectComputerTest {
     @Test(expected=BoardUnplayableException.class)
     public void throwsExceptionIfBoardIsFull() {
         createDrawnBoard(board);
-        tron.choosePosition(ui, board);
+        tron.choosePosition(board);
     }
 
     @Test
     public void willChooseACornerIfBoardIsEmpty() {
         createEmptyBoard(board);
-        assertTrue(Arrays.asList(0, 2, 6, 8).contains(tron.choosePosition(ui, board)));
+        assertTrue(Arrays.asList(0, 2, 6, 8).contains(tron.choosePosition(board)));
     }
     
     @Test
     public void willPlayCenterIfFirstPlayerTookCorner() {
         setUpBoard(Arrays.asList(O, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY), board);
-        assertEquals(4, tron.choosePosition(ui, board));
+        assertEquals(4, tron.choosePosition(board));
     }
 
     @Test
     public void willWinGameIfOptionIsAvailable() {
         setUpBoard(Arrays.asList(X, EMPTY, X, O, O, EMPTY, EMPTY, EMPTY, EMPTY), board);
-        assertEquals(1, tron.choosePosition(ui, board));
+        assertEquals(1, tron.choosePosition(board));
     }
 
     @Test
     public void willStopGameWinIfOptionIsAvailable() {
         setUpBoard(Arrays.asList(EMPTY, O, EMPTY, EMPTY, EMPTY, O, X, X, O), board);
-        assertEquals(2, tron.choosePosition(ui, board));
+        assertEquals(2, tron.choosePosition(board));
     }
 
     @Test
     public void willPreventDiagonalFork() {
         setUpBoard(Arrays.asList(X, EMPTY, EMPTY, EMPTY, O, EMPTY, EMPTY, EMPTY, O), board);
-        assertEquals(2, tron.choosePosition(ui, board));
+        assertEquals(2, tron.choosePosition(board));
     }
 
     @Test
     public void willPreventAlternateDiagonalFork() {
         setUpBoard(Arrays.asList(O, EMPTY, EMPTY, EMPTY, EMPTY, X, EMPTY, EMPTY, O), board);
-        assertEquals(4, tron.choosePosition(ui, board));
+        assertEquals(4, tron.choosePosition(board));
     }
 
     @Test
     public void willPreventEdgeTrap() {
         setUpBoard(Arrays.asList(EMPTY, O, EMPTY, O, X, EMPTY, EMPTY, EMPTY, EMPTY), board);
-        assertEquals(0, tron.choosePosition(ui, board));
+        assertEquals(0, tron.choosePosition(board));
     }
 
     @Test
     public void willPreventReverseEdgeTrap() {
         setUpBoard(Arrays.asList(EMPTY, EMPTY, EMPTY, EMPTY, X, O, EMPTY, O, EMPTY), board);
-        assertEquals(2, tron.choosePosition(ui, board));
+        assertEquals(2, tron.choosePosition(board));
     }
 
 }

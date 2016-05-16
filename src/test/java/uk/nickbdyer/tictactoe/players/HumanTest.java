@@ -25,7 +25,7 @@ public class HumanTest {
         UserInterface ui = new UserInterface(new Scanner("1"), new PrintStream(new ByteArrayOutputStream()));
         Human nick = new Human(X, ui);
         Board board = new Board();
-        assertEquals(0, nick.choosePosition(ui, board));
+        assertEquals(0, nick.choosePosition(board));
     }
 
 }
