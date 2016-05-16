@@ -37,7 +37,7 @@ public class Game {
     }
 
     public boolean isOver(Board board) {
-        return board.hasWinner() || board.isDraw();
+        return board.isUnplayable();
     }
 
     private void swapPlayers() {

@@ -29,7 +29,7 @@ public class GameTest {
     }
 
     @Test
-    public void canStartItself() {
+    public void knowsWhenTheGameIsOverDueToWin() {
         makeMultipleMoves(5, "1 2 4 5 7");
         assertTrue(game.isOver(board));
     }
@@ -91,7 +91,7 @@ public class GameTest {
 
     private void makeMultipleMoves(int numberOfMoves, String positions) {
         ui = new UserInterface(new Scanner(positions), new PrintStream(outContent));
-        for (int i=0;i<numberOfMoves;i++) {
+        for (int i = 0; i < numberOfMoves; i++) {
             game.promptTurn(board, ui);
         }
     }
