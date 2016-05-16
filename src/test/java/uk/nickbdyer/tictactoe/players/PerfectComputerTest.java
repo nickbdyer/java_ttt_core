@@ -3,29 +3,32 @@ package uk.nickbdyer.tictactoe.players;
 import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Board;
-import uk.nickbdyer.tictactoe.UserInterfaceSpy;
+import uk.nickbdyer.tictactoe.UserInterface;
 import uk.nickbdyer.tictactoe.exceptions.BoardUnplayableException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static uk.nickbdyer.tictactoe.Mark.*;
-import static uk.nickbdyer.tictactoe.helpers.BoardHelper.createDrawnBoard;
-import static uk.nickbdyer.tictactoe.helpers.BoardHelper.createEmptyBoard;
-import static uk.nickbdyer.tictactoe.helpers.BoardHelper.setUpBoard;
+import static uk.nickbdyer.tictactoe.helpers.BoardHelper.*;
 
 public class PerfectComputerTest {
 
     private PerfectComputer tron;
-    private UserInterfaceSpy ui;
+    private UserInterface ui;
     private Board board;
+    private ByteArrayOutputStream outContent;
 
 
     @Before
     public void setUp() {
         tron = new PerfectComputer(X);
-        ui = new UserInterfaceSpy();
+        outContent = new ByteArrayOutputStream();
+        ui = new UserInterface(new Scanner(""), new PrintStream(outContent));
         board = new Board();
     }
 
@@ -36,8 +39,6 @@ public class PerfectComputerTest {
 
     @Test(expected=BoardUnplayableException.class)
     public void throwsExceptionIfBoardIsFull() {
-        UserInterfaceSpy ui = new UserInterfaceSpy();
-        Board board = new Board();
         createDrawnBoard(board);
         tron.choosePosition(ui, board);
     }
