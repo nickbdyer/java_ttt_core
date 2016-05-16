@@ -8,7 +8,7 @@ public class GameEngine {
     private Board board;
 
     public void start(UserInterface ui) {
-        game = new Game(new PlayerFactory().create(ui.makeGameChoice()));
+        game = new Game(new PlayerFactory().create(ui.makeGameChoice(), ui));
         board = new Board();
         while (!game.isOver(board)) {
             game.promptTurn(board, ui);

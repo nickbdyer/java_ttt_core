@@ -24,7 +24,7 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        game = new Game(new PlayerFactory().create(GameType.HvsH));
+        game = new Game(new PlayerFactory().create(GameType.HvsH, ui));
         board = new Board();
     }
 

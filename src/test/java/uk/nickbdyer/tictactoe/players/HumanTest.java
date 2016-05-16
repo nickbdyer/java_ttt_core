@@ -15,15 +15,16 @@ public class HumanTest {
 
     @Test
     public void hasMark() {
-        Human nick = new Human(X);
+        UserInterface ui = new UserInterface(new Scanner(""), new PrintStream(new ByteArrayOutputStream()));
+        Human nick = new Human(X, ui);
         assertEquals(X, nick.getMark());
     }
 
     @Test
     public void returnsMoveChoice() {
-        Human nick = new Human(X);
-        Board board = new Board();
         UserInterface ui = new UserInterface(new Scanner("1"), new PrintStream(new ByteArrayOutputStream()));
+        Human nick = new Human(X, ui);
+        Board board = new Board();
         assertEquals(0, nick.choosePosition(ui, board));
     }
 
