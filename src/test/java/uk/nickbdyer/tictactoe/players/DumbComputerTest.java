@@ -21,11 +21,10 @@ public class DumbComputerTest {
     private DumbComputer hal9000;
     private Board board;
     private UserInterface ui;
-    private ByteArrayOutputStream outContent;
 
     @Before
     public void setUp() {
-        outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         ui = new UserInterface(new Scanner(""), new PrintStream(outContent));
         hal9000 = new DumbComputer(O, ui);
         board = new Board();

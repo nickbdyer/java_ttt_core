@@ -21,12 +21,11 @@ public class PerfectComputerTest {
     private PerfectComputer tron;
     private UserInterface ui;
     private Board board;
-    private ByteArrayOutputStream outContent;
 
 
     @Before
     public void setUp() {
-        outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         ui = new UserInterface(new Scanner(""), new PrintStream(outContent));
         tron = new PerfectComputer(X, ui);
         board = new Board();
