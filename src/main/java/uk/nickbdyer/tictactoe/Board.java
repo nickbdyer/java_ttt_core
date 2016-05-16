@@ -58,7 +58,7 @@ public class Board {
     }
 
     boolean isEmptyCell(int position) {
-        return cells.get(position) == EMPTY;
+        return getMarkAt(position) == EMPTY;
     }
 
     public boolean isFull() {
