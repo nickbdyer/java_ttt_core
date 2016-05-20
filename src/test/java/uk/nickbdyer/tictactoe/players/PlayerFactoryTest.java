@@ -3,7 +3,7 @@ package uk.nickbdyer.tictactoe.players;
 import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Player;
-import uk.nickbdyer.tictactoe.UserInterface;
+import uk.nickbdyer.tictactoe.CLI;
 import uk.nickbdyer.tictactoe.exceptions.InvalidGameTypeException;
 
 import java.io.ByteArrayOutputStream;
@@ -16,11 +16,11 @@ import static uk.nickbdyer.tictactoe.GameType.*;
 
 public class PlayerFactoryTest {
 
-    private UserInterface ui;
+    private CLI ui;
 
     @Before
     public void setUp() {
-        ui = new UserInterface(new Scanner(""), new PrintStream(new ByteArrayOutputStream()));
+        ui = new CLI(new Scanner(""), new PrintStream(new ByteArrayOutputStream()));
     }
     @Test
     public void canCreateTwoHumanPlayers() {

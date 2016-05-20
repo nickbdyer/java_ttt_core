@@ -10,11 +10,11 @@ import java.util.Scanner;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 
-public class UserInterfaceTest {
+public class CLITest {
 
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private Board board;
-    private UserInterface userInterface;
+    private CLI CLI;
     private Scanner sc;
 
     @Before
@@ -24,13 +24,13 @@ public class UserInterfaceTest {
 
     private void createMockUserInput(String input) {
         sc = new Scanner(input);
-        userInterface = new UserInterface(sc, new PrintStream(outContent));
+        CLI = new CLI(sc, new PrintStream(outContent));
     }
 
     @Test
     public void showBoard() {
         createMockUserInput("");
-        userInterface.displayBoard(board);
+        CLI.displayBoard(board);
         sc.close();
         assertThat(outContent.toString(), containsString(" 1 | 2 | 3 \n---|---|---\n 4 | 5 | 6 \n---|---|---\n 7 | 8 | 9 \n\n"));
     }
@@ -38,7 +38,7 @@ public class UserInterfaceTest {
     @Test
     public void willRejectNonDigitEntry() {
         createMockUserInput("g 1");
-        userInterface.getNumber();
+        CLI.getNumber();
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
     }
@@ -46,7 +46,7 @@ public class UserInterfaceTest {
     @Test
     public void willRejectNonYNEntry() {
         createMockUserInput("g 1 24 n");
-        userInterface.getYorN();
+        CLI.getYorN();
         sc.close();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
     }
@@ -54,35 +54,35 @@ public class UserInterfaceTest {
     @Test
     public void willShowDrawMessage() {
         createMockUserInput("");
-        userInterface.displayDraw();
+        CLI.displayDraw();
         assertThat(outContent.toString(), containsString("It's a Draw!"));
     }
 
     @Test
     public void willShowComputerPlayingMessage() {
         createMockUserInput("");
-        userInterface.displayComputerThinking();
+        CLI.displayComputerThinking();
         assertThat(outContent.toString(), containsString("The computer player is thinking..."));
     }
 
     @Test
     public void willShowGameTypeOptions() {
         createMockUserInput("");
-        userInterface.displayGameChoiceMenu();
+        CLI.displayGameChoiceMenu();
         assertThat(outContent.toString(), containsString("Please choose the game type:\n 1) Human vs Human \n 2) Human vs Computer \n 3) Computer vs Human \n 4) Computer vs Computer \n 5) Human vs Perfect Computer \n 6) Perfect Computer vs Human \n 7) Perfect Computer vs Perfect Computer \n"));
     }
 
     @Test
     public void willValidateGameChoice() {
         createMockUserInput("9 h 1");
-        userInterface.makeGameChoice();
+        CLI.makeGameChoice();
         assertThat(outContent.toString(), containsString("That is not a valid input"));
     }
 
     @Test
     public void willAskForReplay() {
         createMockUserInput("");
-        userInterface.displayReplayQuery();
+        CLI.displayReplayQuery();
         assertThat(outContent.toString(), containsString("Would you like to play again (y/n)?"));
 
     }
@@ -90,7 +90,7 @@ public class UserInterfaceTest {
     @Test
     public void willAnnounceRestart() {
         createMockUserInput("");
-        userInterface.displayResetNotice();
+        CLI.displayResetNotice();
         assertThat(outContent.toString(), containsString("Resetting game board!"));
 
     }

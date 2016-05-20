@@ -20,7 +20,7 @@ public class GameTest {
     private Game game;
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private Board board;
-    private UserInterface ui;
+    private CLI ui;
 
     @Before
     public void setUp() {
@@ -89,7 +89,7 @@ public class GameTest {
     }
 
     private void makeMultipleMoves(int numberOfMoves, String positions) {
-        ui = new UserInterface(new Scanner(positions), new PrintStream(outContent));
+        ui = new CLI(new Scanner(positions), new PrintStream(outContent));
         game = new Game(new PlayerFactory().create(GameType.HvsH, ui));
         for (int i = 0; i < numberOfMoves; i++) {
             game.promptTurn(board, ui);

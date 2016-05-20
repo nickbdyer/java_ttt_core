@@ -12,13 +12,13 @@ public class Game {
         this.currentPlayer = players.get(0);
     }
 
-    public void promptTurn(Board board, UserInterface ui) {
+    public void promptTurn(Board board, CLI ui) {
         ui.displayBoard(board);
         board.mark(getValidPosition(ui, board), currentPlayer.getMark());
         swapPlayers();
     }
 
-    private int getValidPosition(UserInterface ui, Board board) {
+    private int getValidPosition(CLI ui, Board board) {
         int position = currentPlayer.choosePosition(board);
         while (!board.availableMoves().contains(position)) {
             ui.displayInvalidPosition();
@@ -27,7 +27,7 @@ public class Game {
         return position;
     }
 
-    public void endGame(Board board, UserInterface ui) {
+    public void endGame(Board board, CLI ui) {
         ui.displayBoard(board);
         if (board.isDraw()) {
             ui.displayDraw();

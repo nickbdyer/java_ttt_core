@@ -3,7 +3,7 @@ package uk.nickbdyer.tictactoe.players;
 import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Board;
-import uk.nickbdyer.tictactoe.UserInterface;
+import uk.nickbdyer.tictactoe.CLI;
 import uk.nickbdyer.tictactoe.exceptions.BoardUnplayableException;
 
 import java.io.ByteArrayOutputStream;
@@ -24,7 +24,7 @@ public class PerfectComputerTest {
     @Before
     public void setUp() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        UserInterface ui = new UserInterface(new Scanner(""), new PrintStream(outContent));
+        CLI ui = new CLI(new Scanner(""), new PrintStream(outContent));
         tron = new PerfectComputer(X, ui);
         board = new Board();
     }

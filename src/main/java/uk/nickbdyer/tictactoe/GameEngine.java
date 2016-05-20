@@ -7,7 +7,7 @@ public class GameEngine {
     private Game game;
     private Board board;
 
-    public void start(UserInterface ui) {
+    public void start(CLI ui) {
         game = new Game(new PlayerFactory().create(ui.makeGameChoice(), ui));
         board = new Board();
         while (!game.isOver(board)) {
@@ -16,12 +16,12 @@ public class GameEngine {
         endGame(ui);
     }
 
-    private void endGame(UserInterface ui) {
+    private void endGame(CLI ui) {
         game.endGame(board, ui);
         gameRestart(ui);
     }
 
-    private void gameRestart(UserInterface ui) {
+    private void gameRestart(CLI ui) {
         ui.displayReplayQuery();
         if ("y".equals(ui.getYorN())) {
             ui.displayResetNotice();

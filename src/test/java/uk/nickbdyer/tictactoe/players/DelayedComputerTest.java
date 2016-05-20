@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Board;
 import uk.nickbdyer.tictactoe.Delayer;
-import uk.nickbdyer.tictactoe.UserInterface;
+import uk.nickbdyer.tictactoe.CLI;
 import uk.nickbdyer.tictactoe.delayers.MockDelayer;
 import uk.nickbdyer.tictactoe.delayers.ThreadDelayer;
 
@@ -20,7 +20,7 @@ import static uk.nickbdyer.tictactoe.Mark.X;
 
 public class DelayedComputerTest {
 
-    private UserInterface ui;
+    private CLI ui;
     private Board board;
     private MockDelayer delayer;
     private ByteArrayOutputStream outContent;
@@ -28,7 +28,7 @@ public class DelayedComputerTest {
     @Before
     public void setUp() {
         outContent = new ByteArrayOutputStream();
-        ui = new UserInterface(new Scanner(""), new PrintStream(outContent));
+        ui = new CLI(new Scanner(""), new PrintStream(outContent));
         board = new Board();
         delayer = new MockDelayer();
     }
