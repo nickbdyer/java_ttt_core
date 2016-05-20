@@ -44,6 +44,7 @@ gradle-app.setting
 .idea/tasks.xml
 .idea/dictionaries
 .idea/vcs.xml
+.idea/copyright/*
 .idea/jsLibraryMappings.xml
 
 # Sensitive or high-churn files:
