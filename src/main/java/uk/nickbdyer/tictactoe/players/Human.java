@@ -1,16 +1,13 @@
 package uk.nickbdyer.tictactoe.players;
 
-import uk.nickbdyer.tictactoe.Board;
-import uk.nickbdyer.tictactoe.Mark;
-import uk.nickbdyer.tictactoe.Player;
-import uk.nickbdyer.tictactoe.CLI;
+import uk.nickbdyer.tictactoe.*;
 
 public class Human implements Player {
 
     private Mark mark;
-    private CLI ui;
+    private UserInterface ui;
 
-    public Human(Mark mark, CLI ui) {
+    public Human(Mark mark, UserInterface ui) {
         this.mark = mark;
         this.ui = ui;
     }

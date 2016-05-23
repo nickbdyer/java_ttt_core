@@ -2,7 +2,7 @@ package uk.nickbdyer.tictactoe.players;
 
 import uk.nickbdyer.tictactoe.GameType;
 import uk.nickbdyer.tictactoe.Player;
-import uk.nickbdyer.tictactoe.CLI;
+import uk.nickbdyer.tictactoe.UserInterface;
 import uk.nickbdyer.tictactoe.delayers.ThreadDelayer;
 import uk.nickbdyer.tictactoe.exceptions.InvalidGameTypeException;
 
@@ -14,7 +14,7 @@ import static uk.nickbdyer.tictactoe.Mark.X;
 
 public class PlayerFactory {
 
-    public List<Player> create(GameType type, CLI ui) {
+    public List<Player> create(GameType type, UserInterface ui) {
         if (type == GameType.HvsH) {
             return Arrays.asList(new Human(X, ui), new Human(O, ui));
         } else if (type == GameType.HvsAi) {
