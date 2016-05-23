@@ -3,7 +3,6 @@ package uk.nickbdyer.tictactoe.players;
 import uk.nickbdyer.tictactoe.Board;
 import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.Player;
-import uk.nickbdyer.tictactoe.UserInterface;
 import uk.nickbdyer.tictactoe.exceptions.BoardUnplayableException;
 
 import java.util.Arrays;
@@ -26,7 +25,7 @@ public class PerfectComputer implements Player {
     }
 
     @Override
-    public int choosePosition(Board board, UserInterface ui) {
+    public int choosePosition(Board board) {
         if (board.isUnplayable()) throw new BoardUnplayableException();
         if (board.isEmpty()) return chooseRandomCorner();
         return (int) negamax(board, 0, -10, 10, 1);

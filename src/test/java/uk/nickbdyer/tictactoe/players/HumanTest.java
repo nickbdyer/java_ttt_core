@@ -10,15 +10,16 @@ public class HumanTest {
 
     @Test
     public void hasMark() {
-        Human nick = new Human(X);
+        Human nick = new Human(X, new MockUI());
         assertEquals(X, nick.getMark());
     }
 
     @Test
     public void returnsMoveChoice() {
-        Human nick = new Human(X);
+        Human nick = new Human(X, new MockUI());
         Board board = new Board();
         assertEquals(0, nick.choosePosition(board));
     }
+
 
 }

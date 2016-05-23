@@ -3,6 +3,7 @@ package uk.nickbdyer.tictactoe;
 import org.junit.Before;
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.players.PlayerFactory;
+import uk.nickbdyer.tictactoe.players.MockUI;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -39,7 +40,7 @@ public class GameTest {
     }
 
     private void makeMultipleMoves(int numberOfMoves, int[] positions) {
-        game = new Game(new PlayerFactory().create(GameType.HvsH));
+        game = new Game(new PlayerFactory(new MockUI()).create(GameType.HvsH));
         for (int i = 0; i < numberOfMoves; i++) {
             game.takeTurn(board, positions[i]);
         }

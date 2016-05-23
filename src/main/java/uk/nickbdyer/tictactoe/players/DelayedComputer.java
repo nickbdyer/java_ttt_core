@@ -15,9 +15,9 @@ public class DelayedComputer implements Player {
     }
 
     @Override
-    public int choosePosition(Board board, UserInterface ui) {
+    public int choosePosition(Board board) {
         delayer.sleep(delay);
-        return player.choosePosition(board, ui);
+        return player.choosePosition(board);
     }
 
     public Mark getMark() {

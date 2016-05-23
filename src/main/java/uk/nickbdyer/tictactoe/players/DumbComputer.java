@@ -3,7 +3,6 @@ package uk.nickbdyer.tictactoe.players;
 import uk.nickbdyer.tictactoe.Board;
 import uk.nickbdyer.tictactoe.Mark;
 import uk.nickbdyer.tictactoe.Player;
-import uk.nickbdyer.tictactoe.UserInterface;
 import uk.nickbdyer.tictactoe.exceptions.BoardUnplayableException;
 
 import java.util.Collections;
@@ -18,7 +17,7 @@ public class DumbComputer implements Player {
     }
 
     @Override
-    public int choosePosition(Board board, UserInterface ui) {
+    public int choosePosition(Board board) {
         if (board.isUnplayable()) throw new BoardUnplayableException();
         return generateMove(board.availableMoves());
     }
