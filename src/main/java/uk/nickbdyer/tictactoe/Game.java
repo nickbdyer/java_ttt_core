@@ -44,7 +44,7 @@ public class Game {
         return board.isUnplayable();
     }
 
-    private void swapPlayers() {
+    public void swapPlayers() {
         if (currentPlayer == players.get(0)) {
             currentPlayer = players.get(1);
         } else {
