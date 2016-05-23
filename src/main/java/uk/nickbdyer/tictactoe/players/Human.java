@@ -11,8 +11,8 @@ public class Human implements Player {
     }
 
     @Override
-    public int choosePosition(Board board) {
-        return 0;
+    public int choosePosition(Board board, UserInterface ui) {
+        return ui.getNumber();
     }
 
     public Mark getMark() {
