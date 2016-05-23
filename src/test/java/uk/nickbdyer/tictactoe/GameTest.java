@@ -1,13 +1,13 @@
 package uk.nickbdyer.tictactoe;
 
+import org.junit.Ignore;
 import uk.nickbdyer.tictactoe.players.PlayerFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
+import java.util.Arrays;
 
+import static uk.nickbdyer.tictactoe.Mark.EMPTY;
 import static uk.nickbdyer.tictactoe.Mark.O;
 import static uk.nickbdyer.tictactoe.Mark.X;
 import static junit.framework.TestCase.assertTrue;
@@ -18,9 +18,7 @@ import static org.junit.Assert.assertThat;
 public class GameTest {
 
     private Game game;
-    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private Board board;
-    private CLI ui;
 
     @Before
     public void setUp() {
@@ -40,20 +38,6 @@ public class GameTest {
     }
 
     @Test
-    public void gameWillCallDrawGameOverStatement() {
-        makeMultipleMoves(9, "1 2 4 5 8 7 3 6 9");
-        game.endGame(board,ui);
-        assertThat(outContent.toString(), containsString("It's a Draw!"));
-    }
-
-    @Test
-    public void gameWillCallWinGameOverStatement() {
-        makeMultipleMoves(5, "1 2 4 5 7");
-        game.endGame(board,ui);
-        assertThat(outContent.toString(), containsString("X has won!"));
-    }
-
-    @Test
     public void gameKnowsWhosTurnItIs() {
         makeMultipleMoves(5, "1 2 4 5 7");
         assertEquals(X, board.getMarkAt(0));
@@ -62,37 +46,20 @@ public class GameTest {
 
     @Test
     public void willRejectOutOfBoundsEntry() {
-        makeMultipleMoves(5, "23 1 4 2 5 3");
-        game.endGame(board, ui);
-        assertThat(outContent.toString(), containsString("That is not a valid position"));
+        makeMultipleMoves(5, "23 0 3 1 4 2");
+        assertEquals(Arrays.asList(X, X, X, O, O, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
     }
 
     @Test
     public void willNotAllowAMarkedCellToBeMarked() {
         makeMultipleMoves(5, "1 1 4 2 5 3");
-        game.endGame(board, ui);
-        assertThat(outContent.toString(), containsString("That is not a valid position"));
-    }
-
-    @Test
-    public void willShowWinningMessageX() {
-        makeMultipleMoves(5, "1 4 2 5 3");
-        game.endGame(board, ui);
-        assertThat(outContent.toString(), containsString("X has won!"));
-    }
-
-    @Test
-    public void willShowWinningMessageO() {
-        makeMultipleMoves(6, "1 4 2 5 8 6");
-        game.endGame(board, ui);
-        assertThat(outContent.toString(), containsString("O has won!"));
+        assertEquals(Arrays.asList(X, X, X, O, O, EMPTY, EMPTY, EMPTY, EMPTY), board.getCells());
     }
 
     private void makeMultipleMoves(int numberOfMoves, String positions) {
-        ui = new CLI(new Scanner(positions), new PrintStream(outContent));
-        game = new Game(new PlayerFactory().create(GameType.HvsH, ui));
+        game = new Game(new PlayerFactory().create(GameType.HvsH));
         for (int i = 0; i < numberOfMoves; i++) {
-            game.promptTurn(board, ui);
+            game.promptTurn(board);
         }
     }
 }
