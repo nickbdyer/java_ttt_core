@@ -5,17 +5,14 @@ import uk.nickbdyer.tictactoe.*;
 public class Human implements Player {
 
     private Mark mark;
-    private UserInterface ui;
 
-    public Human(Mark mark, UserInterface ui) {
+    public Human(Mark mark) {
         this.mark = mark;
-        this.ui = ui;
     }
 
     @Override
     public int choosePosition(Board board) {
-        ui.displayMoveInstructions();
-        return ui.getNumber();
+        return 0;
     }
 
     public Mark getMark() {
