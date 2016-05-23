@@ -2,7 +2,6 @@ package uk.nickbdyer.tictactoe.players;
 
 import uk.nickbdyer.tictactoe.GameType;
 import uk.nickbdyer.tictactoe.Player;
-import uk.nickbdyer.tictactoe.UserInterface;
 import uk.nickbdyer.tictactoe.delayers.ThreadDelayer;
 import uk.nickbdyer.tictactoe.exceptions.InvalidGameTypeException;
 
@@ -14,21 +13,21 @@ import static uk.nickbdyer.tictactoe.Mark.X;
 
 public class PlayerFactory {
 
-    public List<Player> create(GameType type, UserInterface ui) {
+    public List<Player> create(GameType type) {
         if (type == GameType.HvsH) {
-            return Arrays.asList(new Human(X, ui), new Human(O, ui));
+            return Arrays.asList(new Human(X), new Human(O));
         } else if (type == GameType.HvsAi) {
-            return Arrays.asList(new Human(X, ui), slow(new DumbComputer(O, ui)));
+            return Arrays.asList(new Human(X), slow(new DumbComputer(O)));
         } else if (type == GameType.AivsH) {
-            return Arrays.asList(slow(new DumbComputer(X, ui)), new Human(O, ui));
+            return Arrays.asList(slow(new DumbComputer(X)), new Human(O));
         } else if (type == GameType.AivsAi) {
-            return Arrays.asList(slow(new DumbComputer(X, ui)), slow(new DumbComputer(O, ui)));
+            return Arrays.asList(slow(new DumbComputer(X)), slow(new DumbComputer(O)));
         } else if (type == GameType.HvsPAi) {
-            return Arrays.asList(new Human(X, ui), slow(new PerfectComputer(O, ui)));
+            return Arrays.asList(new Human(X), slow(new PerfectComputer(O)));
         } else if (type == GameType.PAivsH) {
-            return Arrays.asList(slow(new PerfectComputer(X, ui)), new Human(O, ui));
+            return Arrays.asList(slow(new PerfectComputer(X)), new Human(O));
         } else if (type == GameType.PAivsPAi) {
-            return Arrays.asList(slow(new PerfectComputer(X, ui)), slow(new PerfectComputer(O, ui)));
+            return Arrays.asList(slow(new PerfectComputer(X)), slow(new PerfectComputer(O)));
         } else {
             throw new InvalidGameTypeException();
         }
