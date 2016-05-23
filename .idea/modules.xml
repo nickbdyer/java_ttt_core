@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java_ttt.iml" filepath="$PROJECT_DIR$/.idea/modules/java_ttt.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java_ttt_main.iml" filepath="$PROJECT_DIR$/.idea/modules/java_ttt_main.iml" group="java_ttt" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java_ttt_test.iml" filepath="$PROJECT_DIR$/.idea/modules/java_ttt_test.iml" group="java_ttt" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java_ttt_core.iml" filepath="$PROJECT_DIR$/.idea/modules/java_ttt_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java_ttt_core_main.iml" filepath="$PROJECT_DIR$/.idea/modules/java_ttt_core_main.iml" group="java_ttt_core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java_ttt_core_test.iml" filepath="$PROJECT_DIR$/.idea/modules/java_ttt_core_test.iml" group="java_ttt_core" />
     </modules>
   </component>
 </project>
