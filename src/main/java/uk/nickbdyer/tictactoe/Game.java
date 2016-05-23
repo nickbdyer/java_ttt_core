@@ -16,28 +16,17 @@ public class Game {
         return this.currentPlayer;
     }
 
-    public void promptTurn(Board board, CLI ui) {
-        ui.displayBoard(board);
-        board.mark(getValidPosition(ui, board), currentPlayer.getMark());
+    public void promptTurn(Board board) {
+        board.mark(getValidPosition(board), currentPlayer.getMark());
         swapPlayers();
     }
 
-    private int getValidPosition(CLI ui, Board board) {
+    private int getValidPosition(Board board) {
         int position = currentPlayer.choosePosition(board);
         while (!board.availableMoves().contains(position)) {
-            ui.displayInvalidPosition();
             position = currentPlayer.choosePosition(board);
         }
         return position;
-    }
-
-    public void endGame(Board board, CLI ui) {
-        ui.displayBoard(board);
-        if (board.isDraw()) {
-            ui.displayDraw();
-        } else {
-            ui.displayWinner(board);
-        }
     }
 
     public boolean isOver(Board board) {
