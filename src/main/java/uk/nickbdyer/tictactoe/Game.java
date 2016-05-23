@@ -16,17 +16,9 @@ public class Game {
         return this.currentPlayer;
     }
 
-    public void promptTurn(Board board) {
-        board.mark(getValidPosition(board), currentPlayer.getMark());
+    public void takeTurn(Board board, int position) {
+        board.mark(position, currentPlayer.getMark());
         swapPlayers();
-    }
-
-    private int getValidPosition(Board board) {
-        int position = currentPlayer.choosePosition(board);
-        while (!board.availableMoves().contains(position)) {
-            position = currentPlayer.choosePosition(board);
-        }
-        return position;
     }
 
     public boolean isOver(Board board) {
