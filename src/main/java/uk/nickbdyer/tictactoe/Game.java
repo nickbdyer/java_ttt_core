@@ -12,6 +12,10 @@ public class Game {
         this.currentPlayer = players.get(0);
     }
 
+    public Player getCurrentPlayer() {
+        return this.currentPlayer;
+    }
+
     public void promptTurn(Board board, CLI ui) {
         ui.displayBoard(board);
         board.mark(getValidPosition(ui, board), currentPlayer.getMark());
