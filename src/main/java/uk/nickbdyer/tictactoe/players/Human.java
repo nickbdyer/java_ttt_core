@@ -13,6 +13,11 @@ public class Human implements Player {
     }
 
     @Override
+    public void markBoard(Board board, int position) {
+       board.mark(position, getMark());
+    }
+
+    @Override
     public int choosePosition(Board board) {
         return ui.getNumber();
     }

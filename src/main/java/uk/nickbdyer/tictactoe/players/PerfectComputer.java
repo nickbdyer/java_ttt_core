@@ -25,6 +25,11 @@ public class PerfectComputer implements Player {
     }
 
     @Override
+    public void markBoard(Board board, int position) {
+        board.mark(position, getMark());
+    }
+
+    @Override
     public int choosePosition(Board board) {
         if (board.isUnplayable()) throw new BoardUnplayableException();
         if (board.isEmpty()) return chooseRandomCorner();

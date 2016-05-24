@@ -21,5 +21,13 @@ public class HumanTest {
         assertEquals(0, nick.choosePosition(board));
     }
 
+    @Test
+    public void marksBoard() {
+        Human nick = new Human(X, new MockUI());
+        Board board = new Board();
+        nick.markBoard(board, nick.choosePosition(board));
+        assertEquals(X, board.getMarkAt(0));
+    }
+
 
 }
