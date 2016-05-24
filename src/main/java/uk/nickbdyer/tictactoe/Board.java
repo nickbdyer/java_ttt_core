@@ -62,7 +62,7 @@ public class Board {
     }
 
     public boolean isFull() {
-        for(int i=1;i<cells.size();i++) {
+        for(int i=0;i<cells.size();i++) {
             if (isEmptyCell(i)) {
                 return false;
             }
