@@ -35,6 +35,12 @@ public class PerfectComputerTest {
     }
 
     @Test
+    public void marksBoard() {
+        tron.markBoard(board, 0);
+        assertEquals(X, board.getMarkAt(0));
+    }
+
+    @Test
     public void willChooseACornerIfBoardIsEmpty() {
         createEmptyBoard(board);
         assertTrue(Arrays.asList(0, 2, 6, 8).contains(tron.choosePosition(board)));

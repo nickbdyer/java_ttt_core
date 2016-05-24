@@ -29,6 +29,12 @@ public class DumbComputerTest {
     }
 
     @Test
+    public void marksBoard() {
+        hal9000.markBoard(board, 0);
+        assertEquals(O, board.getMarkAt(0));
+    }
+
+    @Test
     public void returnsMoveChoice() {
         setUpBoard(Arrays.asList(X, X, O, X, X, O, O, O, EMPTY), board);
         assertEquals(8, hal9000.choosePosition(board));
