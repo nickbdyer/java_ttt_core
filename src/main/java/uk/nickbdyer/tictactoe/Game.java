@@ -16,8 +16,8 @@ public class Game {
         return this.currentPlayer;
     }
 
-    public void takeTurn(Board board) {
-        currentPlayer.markBoard(board, currentPlayer.choosePosition(board));
+    public void takeTurn(Board board, int position) {
+        currentPlayer.markBoard(board, position);
         swapPlayers();
     }
 

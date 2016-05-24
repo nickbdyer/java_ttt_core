@@ -42,8 +42,7 @@ public class GameTest {
     private void makeMultipleMoves(int numberOfMoves, int[] positions) {
         game = new Game(new PlayerFactory(new MockUI()).create(GameType.HvsH));
         for (int i = 0; i < numberOfMoves; i++) {
-            game.getCurrentPlayer().markBoard(board, positions[i]);
-            game.swapPlayers();
+            game.takeTurn(board, positions[i]);
         }
     }
 }
