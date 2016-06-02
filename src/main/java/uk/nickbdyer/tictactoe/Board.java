@@ -47,10 +47,7 @@ public class Board {
     }
 
     public Mark getWinningMark() {
-        if (hasWinner()) {
-            return new Lines(cells).winner().get();
-        }
-        return EMPTY;
+        return new Lines(cells).winner().orElse(EMPTY);
     }
 
     public boolean isDraw() {
