@@ -32,16 +32,6 @@ test {
     }
 }
 
-task copyJarToCLI(type: Copy) {
-    from createJar
-    into "~/projects/cli_java_ttt/libs"
-}
-
-task copyJarToWeb(type: Copy) {
-    from createJar
-    into "~/projects/web_java_ttt/lib"
-}
-
 jacocoTestReport {
     reports {
         xml.enabled = true
