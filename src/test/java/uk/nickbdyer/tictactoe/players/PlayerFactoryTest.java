@@ -2,67 +2,34 @@ package uk.nickbdyer.tictactoe.players;
 
 import org.junit.Test;
 import uk.nickbdyer.tictactoe.Player;
-import uk.nickbdyer.tictactoe.exceptions.InvalidGameTypeException;
+import uk.nickbdyer.tictactoe.exceptions.InvalidPlayerTypeException;
 
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
-import static uk.nickbdyer.tictactoe.GameType.*;
+import static uk.nickbdyer.tictactoe.Mark.X;
+import static uk.nickbdyer.tictactoe.PlayerType.*;
 
 public class PlayerFactoryTest {
 
     @Test
-    public void canCreateTwoHumanPlayers() {
-        List<Player> players = new PlayerFactory(new MockUI()).create(HvsH);
-        assertTrue(players.get(0) instanceof Human);
-        assertTrue(players.get(1) instanceof Human);
+    public void canCreateHumanPlayer() {
+        assertTrue(new PlayerFactory(new MockUI()).create(H, X) instanceof Human);
     }
 
     @Test
-    public void canCreateAHumanAndComputerPlayer() {
-        List<Player> players = new PlayerFactory(new MockUI()).create(HvsAi);
-        assertTrue(players.get(0) instanceof Human);
-        assertTrue(players.get(1) instanceof DelayedComputer);
+    public void canCreateComputerPlayer() {
+        assertTrue(new PlayerFactory(new MockUI()).create(Ai, X) instanceof DumbComputer);
     }
 
     @Test
-    public void canCreateAComputerAndHumanPlayer() {
-        List<Player> players = new PlayerFactory(new MockUI()).create(AivsH);
-        assertTrue(players.get(0) instanceof DelayedComputer);
-        assertTrue(players.get(1) instanceof Human);
+    public void canCreatePerfectComputerPlayer() {
+        assertTrue(new PlayerFactory(new MockUI()).create(PAi, X) instanceof PerfectComputer);
     }
 
-    @Test
-    public void canCreateTwoComputerPlayers() {
-        List<Player> players = new PlayerFactory(new MockUI()).create(AivsAi);
-        assertTrue(players.get(0) instanceof DelayedComputer);
-        assertTrue(players.get(1) instanceof DelayedComputer);
-    }
-
-    @Test
-    public void canCreateAHumanAndPerfectComputerPlayer() {
-        List<Player> players = new PlayerFactory(new MockUI()).create(HvsPAi);
-        assertTrue(players.get(0) instanceof Human);
-        assertTrue(players.get(1) instanceof DelayedComputer);
-    }
-
-    @Test
-    public void canCreateAPerfectComputerAndHumanPlayer() {
-        List<Player> players = new PlayerFactory(new MockUI()).create(PAivsH);
-        assertTrue(players.get(0) instanceof DelayedComputer);
-        assertTrue(players.get(1) instanceof Human);
-    }
-
-    @Test
-    public void canCreateTwoPerfectComputerPlayers() {
-        List<Player> players = new PlayerFactory(new MockUI()).create(PAivsPAi);
-        assertTrue(players.get(0) instanceof DelayedComputer);
-        assertTrue(players.get(1) instanceof DelayedComputer);
-    }
-
-    @Test(expected=InvalidGameTypeException.class)
+    @Test(expected=InvalidPlayerTypeException.class)
     public void throwsExceptionIfBoardIsFull() {
-        new PlayerFactory(new MockUI()).create(TEST);
+        new PlayerFactory(new MockUI()).create(TEST, X);
     }
 
 }
