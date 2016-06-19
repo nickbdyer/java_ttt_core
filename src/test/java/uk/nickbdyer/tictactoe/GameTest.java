@@ -5,10 +5,13 @@ import org.junit.Test;
 import uk.nickbdyer.tictactoe.players.PlayerFactory;
 import uk.nickbdyer.tictactoe.players.MockUI;
 
+import java.util.Arrays;
+
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static uk.nickbdyer.tictactoe.Mark.O;
 import static uk.nickbdyer.tictactoe.Mark.X;
+import static uk.nickbdyer.tictactoe.PlayerType.*;
 
 public class GameTest {
 
@@ -40,7 +43,8 @@ public class GameTest {
     }
 
     private void makeMultipleMoves(int numberOfMoves, int[] positions) {
-        game = new Game(new PlayerFactory(new MockUI()).create(GameType.HvsH));
+        PlayerFactory pf = new PlayerFactory(new MockUI());
+        game = new Game(Arrays.asList(pf.create(H, X), pf.create(H, O)));
         for (int i = 0; i < numberOfMoves; i++) {
             game.takeTurn(board, positions[i]);
         }

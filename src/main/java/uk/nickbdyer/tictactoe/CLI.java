@@ -41,9 +41,9 @@ public class CLI implements UserInterface {
         return letter;
     }
 
-    public GameType makeGameChoice() {
+    public PlayerType makeGameChoice() {
         displayGameChoiceMenu();
-        return GameType.values()[getGameChoice()];
+        return PlayerType.values()[getGameChoice()];
     }
 
     private int getGameChoice() {
@@ -56,7 +56,7 @@ public class CLI implements UserInterface {
     }
 
     private boolean validGameChoice(int choice) {
-        return (choice >= 0 && choice < GameType.values().length);
+        return (choice >= 0 && choice < PlayerType.values().length);
     }
 
     public void displayBoard(Board board) {
